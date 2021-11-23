@@ -1,0 +1,29 @@
+{
+  "name": "ktk-data-visualisation",
+  "version": "1.0.0",
+  "description": "",
+  "source": "./public/index.html",
+  "scripts": {
+    "build": "rm -rf ./dist && parcel build",
+    "start": "node .",
+    "dev": "parcel ./public/index.html",
+    "cd": "rm -rf ./dist && git add .",
+    "commit-release": "npm run build && git add ."
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.24.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "cz-conventional-changelog": "^3.3.0",
+    "parcel": "^2.0.0"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  }
+}
