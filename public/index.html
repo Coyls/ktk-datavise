@@ -98,97 +98,119 @@
 
 <section id="map">
 
+    <div class="wrapper">
 
-    <div class="map-info-wrapper">
+        <div class="map-info-wrapper">
 
-        <h2>Carte du PIB par pays et par années de Jeux Olympiques</h2>
+            <h2>Carte du PIB par pays et par années de Jeux Olympiques</h2>
 
-        <div class="info-wrapper">
+            <div class="info-wrapper">
 
-            <h4>Légende interactive</h4>
+                <h4>Légende interactive</h4>
 
-            <div class="medals-global-wrapper">
+                <div class="medalsLegendWrapper">
+                    <p>Nombre de médailles</p>
 
-                <div class="first-wrapper">
-                    <span class="first-span"></span>
-                    <h5>0 - 50</h5>
+                    <div class="medals-global-wrapper">
+
+                        <div class="first-wrapper">
+                            <span class="first-span"></span>
+                            <h5>0 - 50</h5>
+                        </div>
+
+                        <div class="second-wrapper">
+                            <span class="second-span"></span>
+                            <h5>50 - 100</h5>
+                        </div>
+
+                        <div class="third-wrapper">
+                            <span class="third-span"></span>
+                            <h5>100 - 150</h5>
+                        </div>
+
+                    </div>
                 </div>
 
-                <div class="second-wrapper">
-                    <span class="second-span"></span>
-                    <h5>50 - 100</h5>
+
+                <div class="pibLegendWrapper">
+                    <p>PIB par habitants en millions de dollars</p>
+
+                    <div class="pib-global-wrapper">
+
+                        <div class="first-wrapper">
+                            <span class="first-span"></span>
+                            <h5>0 - 50</h5>
+                        </div>
+
+                        <div class="second-wrapper">
+                            <span class="second-span"></span>
+                            <h5>50 - 100</h5>
+                        </div>
+
+                        <div class="third-wrapper">
+                            <span class="third-span"></span>
+                            <h5>100 - 150</h5>
+                        </div>
+
+                    </div>
                 </div>
 
-                <div class="third-wrapper">
-                    <span class="third-span"></span>
-                    <h5>100 - 150</h5>
+
+            </div>
+
+            <div class="pib-medals-wrapper">
+
+                <div class="pib-wrapper">
+                    <img src="asset/img/pib_icon.png" alt="icon pib">
+                    <h4>PIB</h4>
+                </div>
+
+                <div class="medals-wrapper">
+                    <img src="asset/img/medals_icon.png" alt="icon pib">
+                    <h4>MÉDAILLÉS</h4>
                 </div>
 
             </div>
 
-            <p>Nombre de médailles</p>
+            <div class="input-wrapper">
 
-            <div class="pib-global-wrapper">
-
-                <div class="first-wrapper">
-                    <span class="first-span"></span>
-                    <h5>0 - 50</h5>
+                <div class="dates">
+                    <h4>1960</h4>
+                    <h4 class="realDate">1988</h4>
+                    <h4>2020</h4>
                 </div>
 
-                <div class="second-wrapper">
-                    <span class="second-span"></span>
-                    <h5>50 - 100</h5>
-                </div>
-
-                <div class="third-wrapper">
-                    <span class="third-span"></span>
-                    <h5>100 - 150</h5>
-                </div>
+                <label>
+                    <input type="range" min="1960" max="2020" step="2" id="slider" value="1988">
+                </label>
 
             </div>
 
-            <p>PIB par habitants en millions de dollars</p>
+            <div class="disclaimer">
+
+                <img src="asset/img/disclaimer.png" alt="disclaimer">
+
+                <p>Attention, nous ne prenons pas en compte les variations des<br>frontières à travers le temps.</p>
+
+            </div>
 
         </div>
 
-        <div class="pib-medals-wrapper">
-
-            <div class="pib-wrapper">
-                <img src="asset/img/pib_icon.png" alt="icon pib">
-                <h4>PIB</h4>
+        <div class="arrow-wrapper">
+            <div class="wrapper">
+                <img src="asset/img/arrowMap.png" alt="arrow Map">
             </div>
-
-            <div class="medals-wrapper">
-                <img src="asset/img/medals_icon.png" alt="icon pib">
-                <h4>MÉDAILLÉS</h4>
-            </div>
-
-        </div>
-
-        <div class="input-wrapper">
-
-            <div class="dates">
-                <h4>1960</h4>
-                <h4 class="realDate">1988</h4>
-                <h4>2020</h4>
-            </div>
-
-            <label>
-                <input type="range" min="1960" max="2020" step="2" id="slider" value="1988">
-            </label>
-
-        </div>
-
-        <div class="disclaimer">
-
-            <img src="asset/img/disclaimer.png" alt="disclaimer">
-
-            <p>Attention, nous ne prenons pas en compte les variations des<br>frontières à travers le temps.</p>
-
         </div>
 
     </div>
 
+    <div class="seasons-wrapper">
+
+        <img src="asset/img/seasonsMap.png" alt="seasons Map">
+
+        <p>Carte des saisons</p>
+
+    </div>
 
 </section>
 
