@@ -19,8 +19,9 @@
     "express": "^4.17.1"
   },
   "devDependencies": {
+    "@parcel/transformer-sass": "^2.0.1",
     "cz-conventional-changelog": "^3.3.0",
-    "parcel": "^2.0.0"
+    "parcel": "^2.0.1"
   },
   "config": {
     "commitizen": {
