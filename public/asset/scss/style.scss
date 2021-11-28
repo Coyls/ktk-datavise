@@ -189,6 +189,15 @@ body {
   display: flex;
   justify-content: center;
   background: #FFFFFF;
+  flex-direction: column;
+
+  .curveImage {
+    position: relative;
+    height: 120px;
+    width: 100vw;
+    background: url("../img/curveDefinition.png") no-repeat;
+    background-size: cover/center;
+  }
 
   .wrapper {
     position: relative;
@@ -197,7 +206,6 @@ body {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    background: red;
 
     .left-wrapper, .middle-wrapper, .right-wrapper {
       position: relative;
@@ -1106,4 +1114,3 @@ body {
 
 
 }
-

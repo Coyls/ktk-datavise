@@ -161,6 +161,14 @@ body::-webkit-scrollbar {
   display: flex;
   justify-content: center;
   background: #FFFFFF;
+  flex-direction: column;
+}
+#definition .curveImage {
+  position: relative;
+  height: 120px;
+  width: 100vw;
+  background: url("../img/curveDefinition.png") no-repeat;
+  background-size: cover/center;
 }
 #definition .wrapper {
   position: relative;
@@ -169,7 +177,6 @@ body::-webkit-scrollbar {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  background: red;
 }
 #definition .wrapper .left-wrapper, #definition .wrapper .middle-wrapper, #definition .wrapper .right-wrapper {
   position: relative;
