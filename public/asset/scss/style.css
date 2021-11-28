@@ -107,12 +107,12 @@ body::-webkit-scrollbar {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding-bottom: 388px;
+  padding-bottom: 61px;
   background: #F9FBFE;
 }
 #study h2 {
   position: relative;
-  margin: 86px auto 0;
+  margin: 68px auto 0;
   font-family: Poppins, serif;
   font-size: 60px;
   font-weight: 500;
@@ -120,16 +120,16 @@ body::-webkit-scrollbar {
 }
 #study h4 {
   position: relative;
-  margin: 28px auto 0;
+  margin: 11px auto 0;
   text-align: center;
   font-family: Poppins, serif;
-  font-size: 25px;
+  font-size: 28px;
   font-weight: 500;
   color: #33343B;
 }
 #study .wrapper {
   position: relative;
-  margin-top: 106px;
+  margin-top: 50px;
 }
 #study .wrapper p {
   position: relative;
@@ -141,10 +141,13 @@ body::-webkit-scrollbar {
   font-weight: 400;
   color: #33343B;
 }
+#study .wrapper .first-paragraph {
+  color: #8E8E8E;
+}
 #study .wrapper .middle-text {
   position: relative;
   width: 947px;
-  margin: 28px auto;
+  margin: 54px auto;
   text-align: center;
   font-family: Poppins, serif;
   font-size: 21px;
@@ -162,9 +165,11 @@ body::-webkit-scrollbar {
 #definition .wrapper {
   position: relative;
   width: 1475px;
+  margin: 132px auto 128px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  background: red;
 }
 #definition .wrapper .left-wrapper, #definition .wrapper .middle-wrapper, #definition .wrapper .right-wrapper {
   position: relative;
@@ -231,11 +236,8 @@ body::-webkit-scrollbar {
     font-size: 13px;
   }
 }
-#definition .wrapper .left-wrapper, #definition .wrapper .right-wrapper {
-  transform: translateY(-96px);
-}
 #definition .wrapper .middle-wrapper {
-  transform: translateY(-230px);
+  transform: translateY(-134px);
 }
 #definition .wrapper .middle-wrapper p {
   width: 260px;
@@ -469,6 +471,7 @@ body::-webkit-scrollbar {
   justify-content: center;
   align-items: center;
   cursor: pointer;
+  user-select: none;
 }
 #map .wrapper .map-info-wrapper .pib-medals-wrapper .pib-wrapper img, #map .wrapper .map-info-wrapper .pib-medals-wrapper .medals-wrapper img {
   position: relative;
