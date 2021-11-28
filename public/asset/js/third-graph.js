@@ -1,4 +1,7 @@
 import axios from "axios"
+const slider = document.getElementById("slider-third-graph")
+const svgContainer = document.getElementById("third-graph")
+
 
 const width = 800
 const height = 400
@@ -11,7 +14,7 @@ const colors = {
     unknown: '#000000',
 };
 
-const generateChart = data => {
+const generateSecondGraph = data => {
 
     const bubble = data => d3.pack()
         .size([width, height])
@@ -48,29 +51,19 @@ const generateChart = data => {
 
 };
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 (async () => {
-    const { data } = await axios.get(process.env.VPS + '/athletes-by-continent')
-    console.log('athleteByContinent:', data)
 
-    generateChart(data);
+    const { data } = await axios.get(process.env.VPS + '/athletes-by-continent?year=' + slider.value)
+    generateSecondGraph(data)
+
+    slider.addEventListener("mouseup", async () => {
+        const svg = svgContainer.children[0]
+
+        if (svgContainer.children.length > 0) svg.remove()
+        console.log('svg:', svg)
+
+        const { data } = await axios.get(process.env.VPS + '/athletes-by-continent?year=' + slider.value)
+        generateSecondGraph(data)
+    })
 })()
+
