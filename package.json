@@ -6,7 +6,7 @@
   "scripts": {
     "build": "rm -rf ./dist && parcel build",
     "start": "node .",
-    "dev": "parcel ./public/index.html",
+    "dev": "parcel ./public/index.html --no-hmr --no-cache --no-source-maps",
     "cd": "rm -rf ./dist && git add .",
     "commit-release": "npm run build && git add ."
   },

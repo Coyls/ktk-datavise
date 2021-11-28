@@ -70,14 +70,14 @@ map.on('load', () => {
         if (e.features.length > 0) {
             if (hoveredStateId !== null) {
                 map.setFeatureState(
-                    {source: 'countries', id: hoveredStateId},
-                    {hover: false}
+                    { source: 'countries', id: hoveredStateId },
+                    { hover: false }
                 );
             }
             hoveredStateId = e.features[0].id;
             map.setFeatureState(
-                {source: 'countries', id: hoveredStateId},
-                {hover: true}
+                { source: 'countries', id: hoveredStateId },
+                { hover: true }
             );
         }
     });
@@ -85,8 +85,8 @@ map.on('load', () => {
     map.on('mouseleave', 'countriesHover', () => {
         if (hoveredStateId !== null) {
             map.setFeatureState(
-                {source: 'countries', id: hoveredStateId},
-                {hover: false}
+                { source: 'countries', id: hoveredStateId },
+                { hover: false }
             );
         }
         hoveredStateId = null;
@@ -679,7 +679,7 @@ map.on('load', () => {
                     source: 'countries',
                     id: indexOfFeatures
                 },
-                {colorCountries: color},
+                { colorCountries: color },
             );
 
             color = null
@@ -833,7 +833,7 @@ map.on('load', () => {
                     source: 'countries',
                     id: i
                 },
-                {circleRadius: circleRadius},
+                { circleRadius: circleRadius },
             );
 
             circleRadius = null
@@ -854,15 +854,15 @@ map.on('load', () => {
 
     map.on('click', 'countriesHover', (e) => {
         countryRealName = Object.values(e.features[0].properties)[1]
-        console.log(e.features[0])
+        // console.log(e.features[0])
 
-        console.log("country = " + countryRealName)
+        // console.log("country = " + countryRealName)
 
         let bbox = turf.extent(e.features[0])
 
         function center() {
             map.fitBounds(bbox, {
-                padding: {top: 100, bottom: 100, left: 650, right: 0},
+                padding: { top: 100, bottom: 100, left: 650, right: 0 },
                 maxZoom: 3,
                 linear: true,
                 duration: 1000,
