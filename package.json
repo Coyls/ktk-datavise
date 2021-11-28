@@ -6,13 +6,14 @@
   "scripts": {
     "build": "rm -rf ./dist && parcel build",
     "start": "node .",
-    "dev": "parcel ./public/index.html",
+    "dev": "parcel ./public/index.html --no-hmr --no-cache --no-source-maps",
     "cd": "rm -rf ./dist && git add .",
     "commit-release": "npm run build && git add ."
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@turf/center": "^6.5.0",
     "axios": "^0.24.0",
     "cors": "^2.8.5",
     "express": "^4.17.1"
