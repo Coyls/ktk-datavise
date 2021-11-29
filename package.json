@@ -8,7 +8,7 @@
     "start": "node .",
     "dev": "parcel ./public/index.html --no-hmr --no-cache --no-source-maps",
     "cd": "rm -rf ./dist && git add .",
-    "commit-release": "npm run build && git add ."
+    "cr": "npm run build && git add ."
   },
   "author": "",
   "license": "ISC",
