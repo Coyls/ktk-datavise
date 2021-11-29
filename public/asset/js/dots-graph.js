@@ -19,6 +19,11 @@ const generateFirstGraph = (data) => {
         .attr("transform",
             "translate(" + margin.left + "," + margin.top + ")");
 
+
+    var div = d3.select(".first-wrapper wrapper").append("div")
+        .attr("class", "tooltip-donut")
+        .style("opacity", 0);
+
     // Add X axis
     var x = d3.scaleLinear()
         .domain([0, 13000])
@@ -36,6 +41,8 @@ const generateFirstGraph = (data) => {
     svg.append("g")
         .call(d3.axisLeft(y));
 
+    const tooltip = d3.select('.tooltip-dots');
+
     // Add dots
     svg.append('g')
         .selectAll("dot")
@@ -45,7 +52,23 @@ const generateFirstGraph = (data) => {
         .attr("cx", (d) => { return x(d.budjet); })
         .attr("cy", (d) => { return y(d.medals); })
         .attr("r", 10)
-        .style("fill", "#69b3a2")
+        .style("fill", "#B4D6FF")
+        .on('mouseover', (d, i) => {
+            console.log("mouseover", d, i);
+            svg.append("text")
+                .attr("x", d.budjet)         // set x position of left side of text
+                .attr("y", d.medals)
+                .text(d.country)
+        })
+        .on('mouseout', (d) => {
+            d3.select("#" + d.country,).remove();
+        })
+
+
+
+
+
+
 
 
 
@@ -58,6 +81,7 @@ const generateFirstGraph = (data) => {
 
     const { data } = await axios.get(process.env.VPS + '/medals-and-budjet?year=' + slider.value)
     generateFirstGraph(data)
+    console.log('data:', data)
 
     slider.addEventListener("mouseup", async () => {
         const svg = svgContainer.children[0]

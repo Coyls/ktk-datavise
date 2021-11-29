@@ -3,22 +3,23 @@ const slider = document.getElementById("slider-third-graph")
 const svgContainer = document.getElementById("third-graph")
 
 
-const width = 800
+const width = 400
 const height = 400
 const colors = {
-    Asia: '#F16529',
-    Americas: '#1C88C7',
-    Africa: '#FCC700',
-    Oceania: '#C6C6C6',
-    Europe: '#A4A4A4',
-    unknown: '#000000',
+    Asia: '#B4D6FF',
+    Americas: '#F92B49',
+    Africa: '#D3DCE5',
+    Oceania: '#FD4C4C',
+    Europe: '#7C9FFF',
 };
 
 const generateSecondGraph = data => {
 
+    data = data.filter(c => c.continent !== "unknown")
+
     const bubble = data => d3.pack()
         .size([width, height])
-        .padding(2)(d3.hierarchy({ children: data }).sum(d => d.nbAthlete));
+        .padding(15)(d3.hierarchy({ children: data }).sum(d => d.nbAthlete));
 
     let svg = d3.select("#third-graph")
         .append("svg")
@@ -35,18 +36,14 @@ const generateSecondGraph = data => {
         .attr('transform', d => `translate(${d.x}, ${d.y})`);
 
     node.append('circle')
-        .style('fill', d => colors[d.data.continent])
+        .style('fill', 'none')
+        .style("stroke", d => colors[d.data.continent])
+        .style("stroke-width", 10)
         .attr('r', d => d.r);
 
     node.append('text')
-        .attr('dy', 2)
+        // .attr('dy', 2)
         .text(d => d.data.continent.substring(0, d.r / 3));
-
-    node.append("title")
-        .text(d => d.data.continent);
-
-
-
 
 
 };
