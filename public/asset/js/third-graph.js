@@ -60,7 +60,6 @@ const generateSecondGraph = data => {
         const svg = svgContainer.children[0]
 
         if (svgContainer.children.length > 0) svg.remove()
-        console.log('svg:', svg)
 
         const { data } = await axios.get(process.env.VPS + '/athletes-by-continent?year=' + slider.value)
         generateSecondGraph(data)
