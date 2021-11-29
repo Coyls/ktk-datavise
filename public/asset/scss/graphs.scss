@@ -1,12 +1,123 @@
-.slider-graph {
-    border-radius: 5px;
-    height: 2px;
+$inputColor: #7c9fff;
+$widthSlider: 90%;
 
-    &::-webkit-slider-thumb {
-        appearance: none;
+.input-wrapper {
+    position: relative;
+    margin-top: 6rem;
+    width: 100%;
+    text-align: center;
+
+    .date {
+        color: $inputColor;
+        position: relative;
+    }
+
+    .slider-container {
+        .dates {
+            position: relative;
+            color: $inputColor;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            width: $widthSlider;
+            margin: 0 auto;
+
+            h4 {
+                position: relative;
+            }
+        }
+
+        input[type="range"] {
+            position: relative;
+            height: 25px;
+            -webkit-appearance: none;
+            width: $widthSlider;
+            background: transparent;
+        }
+
+        input[type="range"]:focus {
+            outline: none;
+        }
+
+        input[type="range"]::-webkit-slider-runnable-track {
+            width: 100%;
+            height: 2px;
+            cursor: pointer;
+            background: $inputColor;
+            border-radius: 50px;
+        }
+
+        input[type="range"]::-webkit-slider-thumb {
+            border: 2px solid $inputColor;
+            height: 15px;
+            width: 15px;
+            border-radius: 50px;
+            background: #fefefe;
+            cursor: pointer;
+            -webkit-appearance: none;
+            margin-top: -6.5px;
+        }
+
+        input[type="range"]:focus::-webkit-slider-runnable-track {
+            background: $inputColor;
+        }
+
+        input[type="range"]::-moz-range-track {
+            width: 100%;
+            height: 2px;
+            cursor: pointer;
+            background: $inputColor;
+            border-radius: 50px;
+        }
+
+        input[type="range"]::-moz-range-thumb {
+            border: 2px solid $inputColor;
+            height: 15px;
+            width: 15px;
+            border-radius: 50px;
+            background: #fefefe;
+            cursor: pointer;
+        }
+
+        input[type="range"]::-ms-track {
+            width: 100%;
+            height: 2px;
+            cursor: pointer;
+            background: transparent;
+            border-color: transparent;
+            color: transparent;
+        }
+
+        input[type="range"]::-ms-fill-lower {
+            background: $inputColor;
+            border-radius: 100px;
+        }
+
+        input[type="range"]::-ms-fill-upper {
+            background: $inputColor;
+            border-radius: 100px;
+        }
+
+        input[type="range"]::-ms-thumb {
+            margin-top: 1px;
+            border: 2px solid $inputColor;
+            height: 15px;
+            width: 15px;
+            border-radius: 50px;
+            background: #fefefe;
+            cursor: pointer;
+        }
+
+        input[type="range"]:focus::-ms-fill-lower {
+            background: $inputColor;
+        }
+
+        input[type="range"]:focus::-ms-fill-upper {
+            background: $inputColor;
+        }
     }
 }
-
+// -------------------------
 #stats {
     position: relative;
     padding: 92px 155px 170px;
@@ -29,19 +140,19 @@
         height: 460px;
         display: flex;
         flex-direction: row;
-
         .graph {
             position: relative;
             height: 100%;
-            width: 790px;
+            width: 50%;
             border-radius: 25px;
             background: #f9fbfe;
-            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            box-shadow: 0 8px 32px 0 rgba(71, 72, 104, 0.2);
         }
 
         .text-wrapper {
             position: relative;
             height: 100%;
+            width: 100%;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -49,20 +160,11 @@
 
             p {
                 position: relative;
-                margin: 0 92.5px;
                 width: 635px;
                 font-family: Poppins, serif;
                 font-size: 24px;
                 font-weight: 500;
                 color: #33343b;
-            }
-
-            .info {
-                position: relative;
-                margin-top: 82px;
-                height: 20px;
-                width: 200px;
-                background: mediumpurple;
             }
         }
     }

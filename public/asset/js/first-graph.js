@@ -63,7 +63,6 @@ const generateFirstGraph = (data) => {
         const svg = svgContainer.children[0]
 
         if (svgContainer.children.length > 0) svg.remove()
-        console.log('svg:', svg)
 
         const { data } = await axios.get(process.env.VPS + '/medals-and-budjet?year=' + slider.value)
         generateFirstGraph(data)
