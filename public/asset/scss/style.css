@@ -34,7 +34,7 @@
   width: 790px;
   border-radius: 25px;
   background: #f9fbfe;
-  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  box-shadow: 1.8px 1.8px 3.7px rgba(0, 0, 0, 0.025), 6px 6px 15.9px rgba(0, 0, 0, 0.04), 27px 27px 68px rgba(0, 0, 0, 0.07);
 }
 #stats .wrapper .text-wrapper {
   position: relative;
@@ -254,7 +254,7 @@ body::-webkit-scrollbar {
   justify-content: center;
   border-radius: 25px;
   background: #ffffff;
-  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  box-shadow: 1.8px 1.8px 3.7px rgba(0, 0, 0, 0.025), 6px 6px 15.9px rgba(0, 0, 0, 0.04), 27px 27px 68px rgba(0, 0, 0, 0.07);
 }
 #definition .wrapper .left-wrapper .image,
 #definition .wrapper .middle-wrapper .image,
@@ -386,7 +386,7 @@ body::-webkit-scrollbar {
   display: flex;
   flex-direction: column;
   background: rgba(250, 251, 252, 0.3);
-  box-shadow: 0 15px 25px 10px rgba(31, 38, 135, 0.37);
+  box-shadow: 1.8px 1.8px 3.7px rgba(0, 0, 0, 0.025), 6px 6px 15.9px rgba(0, 0, 0, 0.04), 27px 27px 68px rgba(0, 0, 0, 0.07);
   backdrop-filter: blur(7px);
   -webkit-backdrop-filter: blur(7px);
   border-radius: 20px;
@@ -868,11 +868,66 @@ body::-webkit-scrollbar {
 #knowledge .wrapper {
   position: relative;
   margin: 90px auto 0;
-  height: 592px;
-  width: 780px;
+  width: 683px;
   border-radius: 25px;
-  background: #ffffff;
-  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  box-shadow: 1.8px 1.8px 3.7px rgba(0, 0, 0, 0.025), 6px 6px 15.9px rgba(0, 0, 0, 0.04), 27px 27px 68px rgba(0, 0, 0, 0.07);
+}
+#knowledge .wrapper .swiper-wrapper {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  border-radius: 25px;
+}
+#knowledge .wrapper .swiper-wrapper .swiper-slide {
+  position: relative;
+  border-radius: 25px;
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+}
+#knowledge .wrapper .swiper-wrapper .swiper-slide h4 {
+  position: relative;
+  margin: 41px auto 50px;
+  font-family: Poppins, serif;
+  font-size: 28px;
+  font-weight: 500;
+  color: #2F2F2F;
+  text-align: center;
+}
+#knowledge .wrapper .swiper-wrapper .swiper-slide .wrapper {
+  position: relative;
+  height: 329px;
+  margin-top: 0;
+  display: flex;
+  flex-direction: row;
+  box-shadow: none;
+}
+#knowledge .wrapper .swiper-wrapper .swiper-slide .wrapper .first-part {
+  position: relative;
+  height: 100%;
+  width: 50%;
+}
+#knowledge .wrapper .swiper-wrapper .swiper-slide .wrapper .first-part p {
+  position: relative;
+  width: 265px;
+  margin: 40px 0 0 54px;
+  font-family: Poppins, serif;
+  font-size: 17px;
+  font-weight: 400;
+  color: #050D3960;
+  text-align: left;
+}
+#knowledge .wrapper .swiper-wrapper .swiper-slide .wrapper .second-part {
+  position: relative;
+  height: 100%;
+  width: 50%;
+}
+#knowledge .wrapper .swiper-wrapper .swiper-slide .wrapper img {
+  position: absolute;
+  top: 6px;
+  right: 0;
+  height: 100%;
 }
 
 #skills {
