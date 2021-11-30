@@ -447,13 +447,13 @@ body::-webkit-scrollbar {
 
 #map {
   position: relative;
-  height: 1082px;
+  height: 1078px;
   width: 100vw;
   background: #c1d6f5;
 }
 @media screen and (max-width: 1450px) {
   #map {
-    height: 730px;
+    height: 845px;
   }
 }
 #map .wrapper {
@@ -487,8 +487,8 @@ body::-webkit-scrollbar {
 }
 @media screen and (max-width: 1450px) {
   #map .wrapper .map-info-wrapper {
-    padding-left: 41px;
-    width: 452px;
+    padding-left: 50px;
+    width: 460px;
   }
 }
 #map .wrapper .map-info-wrapper h2 {
@@ -503,7 +503,7 @@ body::-webkit-scrollbar {
 }
 @media screen and (max-width: 1450px) {
   #map .wrapper .map-info-wrapper h2 {
-    margin-top: 46px;
+    margin-top: 55px;
     width: 383px;
     font-size: 34px;
     line-height: 41px;
@@ -524,9 +524,9 @@ body::-webkit-scrollbar {
 }
 @media screen and (max-width: 1450px) {
   #map .wrapper .map-info-wrapper .info-wrapper {
-    margin-top: 34px;
-    width: 300px;
-    padding: 15px;
+    margin-top: 67px;
+    width: 340px;
+    padding: 18px;
   }
 }
 #map .wrapper .map-info-wrapper .info-wrapper h4 {
@@ -539,7 +539,7 @@ body::-webkit-scrollbar {
 }
 @media screen and (max-width: 1450px) {
   #map .wrapper .map-info-wrapper .info-wrapper h4 {
-    font-size: 15px;
+    font-size: 18px;
   }
 }
 #map .wrapper .map-info-wrapper .info-wrapper p {
@@ -552,8 +552,8 @@ body::-webkit-scrollbar {
 }
 @media screen and (max-width: 1450px) {
   #map .wrapper .map-info-wrapper .info-wrapper p {
-    margin-top: 18px;
-    font-size: 13px;
+    margin-top: 25px;
+    font-size: 14px;
   }
 }
 #map .wrapper .map-info-wrapper .info-wrapper .medals-global-wrapper {
@@ -568,8 +568,9 @@ body::-webkit-scrollbar {
 }
 @media screen and (max-width: 1450px) {
   #map .wrapper .map-info-wrapper .info-wrapper .medals-global-wrapper {
-    margin-top: 5px;
-    height: 30px;
+    margin-top: 7px;
+    margin-bottom: -3px;
+    height: 34px;
   }
 }
 #map .wrapper .map-info-wrapper .info-wrapper .medals-global-wrapper .first-wrapper,
@@ -651,9 +652,9 @@ body::-webkit-scrollbar {
   #map .wrapper .map-info-wrapper .info-wrapper .medals-global-wrapper .first-wrapper .first-span,
 #map .wrapper .map-info-wrapper .info-wrapper .medals-global-wrapper .second-wrapper .first-span,
 #map .wrapper .map-info-wrapper .info-wrapper .medals-global-wrapper .third-wrapper .first-span {
-    height: 10px;
-    width: 10px;
-    margin-right: 13px;
+    height: 12.5px;
+    width: 12.5px;
+    margin-right: 21px;
   }
 }
 #map .wrapper .map-info-wrapper .info-wrapper .medals-global-wrapper .first-wrapper .second-span,
@@ -667,9 +668,9 @@ body::-webkit-scrollbar {
   #map .wrapper .map-info-wrapper .info-wrapper .medals-global-wrapper .first-wrapper .second-span,
 #map .wrapper .map-info-wrapper .info-wrapper .medals-global-wrapper .second-wrapper .second-span,
 #map .wrapper .map-info-wrapper .info-wrapper .medals-global-wrapper .third-wrapper .second-span {
-    height: 17px;
-    width: 17px;
-    margin-right: 9px;
+    height: 21px;
+    width: 21px;
+    margin-right: 19px;
   }
 }
 #map .wrapper .map-info-wrapper .info-wrapper .medals-global-wrapper .first-wrapper .third-span,
@@ -683,9 +684,9 @@ body::-webkit-scrollbar {
   #map .wrapper .map-info-wrapper .info-wrapper .medals-global-wrapper .first-wrapper .third-span,
 #map .wrapper .map-info-wrapper .info-wrapper .medals-global-wrapper .second-wrapper .third-span,
 #map .wrapper .map-info-wrapper .info-wrapper .medals-global-wrapper .third-wrapper .third-span {
-    height: 21px;
-    width: 21px;
-    margin-right: 6px;
+    height: 25px;
+    width: 25px;
+    margin-right: 17px;
   }
 }
 #map .wrapper .map-info-wrapper .info-wrapper .pib-global-wrapper {
@@ -700,8 +701,8 @@ body::-webkit-scrollbar {
 }
 @media screen and (max-width: 1450px) {
   #map .wrapper .map-info-wrapper .info-wrapper .pib-global-wrapper {
-    margin-top: 5px;
-    height: 30px;
+    margin-top: 7px;
+    height: 34px;
   }
 }
 #map .wrapper .map-info-wrapper .info-wrapper .pib-global-wrapper .first-wrapper,
@@ -777,9 +778,9 @@ body::-webkit-scrollbar {
   #map .wrapper .map-info-wrapper .info-wrapper .pib-global-wrapper .first-wrapper span,
 #map .wrapper .map-info-wrapper .info-wrapper .pib-global-wrapper .second-wrapper span,
 #map .wrapper .map-info-wrapper .info-wrapper .pib-global-wrapper .third-wrapper span {
-    height: 16px;
-    width: 25px;
-    margin-right: 5px;
+    height: 19.5px;
+    width: 30px;
+    margin-right: 9px;
   }
 }
 #map .wrapper .map-info-wrapper .info-wrapper .pib-global-wrapper .first-wrapper .first-span,
@@ -800,13 +801,13 @@ body::-webkit-scrollbar {
 }
 #map .wrapper .map-info-wrapper .pib-medals-wrapper {
   position: relative;
-  margin: 92px 0 123px;
+  margin: 80px 0 60px;
   display: flex;
   flex-direction: row;
 }
 @media screen and (max-width: 1450px) {
   #map .wrapper .map-info-wrapper .pib-medals-wrapper {
-    margin: 29px 0 21px;
+    margin: 35px 0 26px;
   }
 }
 #map .wrapper .map-info-wrapper .pib-medals-wrapper .pib-wrapper,
@@ -825,8 +826,8 @@ body::-webkit-scrollbar {
 @media screen and (max-width: 1450px) {
   #map .wrapper .map-info-wrapper .pib-medals-wrapper .pib-wrapper,
 #map .wrapper .map-info-wrapper .pib-medals-wrapper .medals-wrapper {
-    height: 95px;
-    width: 131px;
+    height: 114px;
+    width: 157px;
   }
 }
 #map .wrapper .map-info-wrapper .pib-medals-wrapper .pib-wrapper img,
@@ -837,7 +838,7 @@ body::-webkit-scrollbar {
 @media screen and (max-width: 1450px) {
   #map .wrapper .map-info-wrapper .pib-medals-wrapper .pib-wrapper img,
 #map .wrapper .map-info-wrapper .pib-medals-wrapper .medals-wrapper img {
-    height: 36px;
+    height: 44px;
   }
 }
 #map .wrapper .map-info-wrapper .pib-medals-wrapper .pib-wrapper h4,
@@ -852,7 +853,7 @@ body::-webkit-scrollbar {
 @media screen and (max-width: 1450px) {
   #map .wrapper .map-info-wrapper .pib-medals-wrapper .pib-wrapper h4,
 #map .wrapper .map-info-wrapper .pib-medals-wrapper .medals-wrapper h4 {
-    margin-top: 14px;
+    margin-top: 16px;
   }
 }
 #map .wrapper .map-info-wrapper .pib-medals-wrapper .pib-wrapper {
@@ -918,20 +919,6 @@ body::-webkit-scrollbar {
 }
 @media screen and (max-width: 1450px) {
   #map .wrapper .map-info-wrapper .input-wrapper .dates h4 {
-    font-size: 12px;
-  }
-}
-#map .wrapper .map-info-wrapper .input-wrapper .dates .realDate {
-  position: absolute;
-  left: 46.5%;
-  transform: translate(-50%);
-  font-family: Poppins, serif;
-  font-size: 15px;
-  font-weight: 400;
-  color: #28215d;
-}
-@media screen and (max-width: 1450px) {
-  #map .wrapper .map-info-wrapper .input-wrapper .dates .realDate {
     font-size: 12px;
   }
 }
@@ -1015,17 +1002,31 @@ body::-webkit-scrollbar {
   width: auto;
   margin-left: -20px;
 }
+#map .wrapper .map-info-wrapper .input-wrapper .realDate {
+  position: absolute;
+  left: 46.5%;
+  transform: translate(-50%);
+  font-family: Poppins, serif;
+  font-size: 15px;
+  font-weight: 400;
+  color: #28215d;
+}
+@media screen and (max-width: 1450px) {
+  #map .wrapper .map-info-wrapper .input-wrapper .realDate {
+    font-size: 12px;
+  }
+}
 #map .wrapper .map-info-wrapper .disclaimer {
   position: relative;
   width: fit-content;
-  margin-top: 29px;
+  margin-top: 34px;
   display: flex;
   flex-direction: row;
   align-items: center;
 }
 @media screen and (max-width: 1450px) {
   #map .wrapper .map-info-wrapper .disclaimer {
-    margin-top: 19px;
+    margin-top: 25px;
     margin-bottom: 40px;
   }
 }

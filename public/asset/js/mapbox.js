@@ -630,11 +630,11 @@ map.on('load', () => {
         'paint': {
             'fill-color': [
                 "case",
-                ["==", ["feature-state", "colorCountries"], 0], "#d0d0d0",
+                ["==", ["feature-state", "colorCountries"], 0], "#e9e9e9",
                 ["==", ["feature-state", "colorCountries"], 1], "#B4D6FF",
                 ["==", ["feature-state", "colorCountries"], 2], "#9DC2FF",
                 ["==", ["feature-state", "colorCountries"], 3], "#7C9FFF",
-                "#d0d0d0"
+                "#e9e9e9"
             ],
             'fill-opacity': 0.75
         }
@@ -705,14 +705,14 @@ map.on('load', () => {
         'paint': {
             'fill-color': [
                 "case",
-                ["==", ["feature-state", "circleRadius"], 0], "#d0d0d0",
+                ["==", ["feature-state", "circleRadius"], 0], "#e9e9e9",
                 ["==", ["feature-state", "circleRadius"], 1], "#ffafa8",
                 ["==", ["feature-state", "circleRadius"], 2], "#ff5753",
                 ["==", ["feature-state", "circleRadius"], 3], "#ff0a00",
                 ["==", ["feature-state", "circleRadius"], 4], "#c6e6ff",
                 ["==", ["feature-state", "circleRadius"], 5], "#60aafc",
                 ["==", ["feature-state", "circleRadius"], 6], "#0048ff",
-                "#d0d0d0"
+                "#e9e9e9"
             ],
             'fill-opacity': 0.75
         }
