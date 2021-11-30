@@ -4,36 +4,32 @@ let margin = { top: 10, right: 30, bottom: 30, left: 60 }
 let width = 800 - margin.left - margin.right
 let height = 400 - margin.top - margin.bottom
 
+const colors = {
+    Asia: '#B4D6FF',
+    Americas: '#F92B49',
+    Africa: '#D3DCE5',
+    Oceania: '#FD4C4C',
+    Europe: '#7C9FFF',
+};
+
+const styleAxis = (svg) => {
+    svg.selectAll(".domain")
+        .attr("stroke", "#7C9FFF")
+        .attr("stroke-width", "2")
+
+    svg.selectAll(".tick text")
+        .attr("font-size", "14")
+        .attr("font-family", "Poppins")
+        .attr("font-weight", "600")
+        .style('fill', "#7C9FFF")
+
+    svg.selectAll(".tick line")
+        .attr("stroke", "transparent");
+
+}
 
 
 const generateLineChart = (data) => {
-
-    const packData = data.reduce((acc, item) => {
-        if (item.gpd !== null) {
-
-            const exist = acc.find(part => part.country === item.country)
-
-            exist ? exist.values.push({
-                year: item.year,
-                gpd: item.gpd
-            }) : acc.push({
-                country: item.country,
-                values: [{
-                    year: item.year,
-                    gpd: item.gpd
-                }]
-            })
-        }
-
-
-        return acc
-    }, [])
-
-    const dataReadyToUse = packData.map(item => {
-        item.values.sort((a, b) => a.year - b.year)
-        return item
-    })
-
 
     let svg = d3.select("#second-graph")
         .append("svg")
@@ -49,27 +45,47 @@ const generateLineChart = (data) => {
         .domain([1960, 2020])
         .range([0, width]);
 
+    let xAxis = d3.axisBottom(x);
+
+    xAxis.ticks(7)
+        .tickSize(10)
+        .tickFormat(d3.format(".4"))
+
     svg.append("g")
         .attr("transform", "translate(0," + height + ")")
-        .call(d3.axisBottom(x));
+        .call(xAxis);
 
     // Add Y axis
     let y = d3.scaleLinear()
-        .domain([0, 5000000000000])
+        .domain([0, 40000000000000])
         .range([height, 0]);
 
-    svg.append("g")
-        .call(d3.axisLeft(y));
+    let yAxis = d3.axisLeft(y);
 
+    yAxis.ticks(6)
+        .tickSize(10)
+        .tickFormat(d3.format(".2s"))
+
+    svg.append("g")
+        .call(yAxis);
+
+
+    styleAxis(svg)
+
+    // Lines
     svg.selectAll(".line")
-        .data(dataReadyToUse)
+        .data(data)
         .enter()
         .append("path")
         .attr("fill", "none")
-        .attr("stroke", "#e41a1c")
-        .attr("stroke-width", 1.5)
+        .attr("stroke", (d) => {
+            console.log(d)
+            return colors[d.continent]
+        })
+        .attr("stroke-width", 5)
         .attr("d", (d) => {
             return d3.line()
+                .curve(d3.curveBasis)
                 .x((d) => {
                     return x(d.year)
                 })
@@ -80,7 +96,7 @@ const generateLineChart = (data) => {
 
 
 (async () => {
-    const { data } = await axios.get(process.env.VPS + '/gpd-europe')
+    const { data } = await axios.get(process.env.VPS + '/gpd-continent')
 
     generateLineChart(data)
 })()
