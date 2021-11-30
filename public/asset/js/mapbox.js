@@ -1,5 +1,8 @@
 import countries from '../json/countries.json'
+import capitals from '../json/capitals.json'
 import axios from "axios"
+
+// const getCountryISO3 = require("country-iso-2-to-3");
 
 mapboxgl.accessToken = 'pk.eyJ1Ijoibm9vb29vb29vb29vb29vb2UiLCJhIjoiY2t2aTN0OXFtMGZvYzJvbjBlYmNhcnJlbiJ9.7d0EuZjxcvKMFEuyVoEAnw'
 
@@ -10,11 +13,15 @@ const map = new mapboxgl.Map({
     style: "mapbox://styles/noooooooooooooooe/ckvi4aw5d1jsb14oak88v6scz", // style URL
     center: [3.5, 45], // starting position [lng, lat]
     zoom: 4,
-    maxZoom: 5.5,
+    maxZoom: 5,
     minZoom: 1.5,
     pitch: 0,
     //maxBounds: maxCoordinates, // max coordinates
 });
+
+map.scrollZoom.disable();
+
+map.addControl(new mapboxgl.NavigationControl());
 
 let hoveredStateId = null;
 
@@ -33,8 +40,17 @@ map.on('load', () => {
         generateId: true
     });
 
+    map.addSource('capitals', {
+        type: 'geojson',
+        data: capitals,
+        generateId: true
+    });
+
     // Get the source
     const src = map.getSource('countries')._data.features
+
+    const srcCapitals = map.getSource('capitals')._data.features
+    console.log(srcCapitals)
 
     // Border
     map.addLayer({
@@ -408,7 +424,6 @@ map.on('load', () => {
 
     const seasonsWrapper = document.querySelector('#map .seasons-wrapper')
     const seasonsWrapperParagraph = document.querySelector('.seasons-wrapper p')
-    const seasonsWrapperImage = document.querySelector('.seasons-wrapper img')
 
     const medalsLegendWrapper = document.querySelector('.medalsLegendWrapper')
     const pibLegendWrapperParagraph = document.querySelector('.pibLegendWrapper p')
@@ -426,6 +441,9 @@ map.on('load', () => {
         if (seasonsWrapperVerif) {
             resetMap()
             startMap()
+            pibBigWrapper.classList.add("season")
+            pibBigWrapper.classList.add("activeSeason")
+            medalsBigWrapper.classList.add("season")
             seasonsWrapperParagraph.innerHTML = 'Pib / Médailles'
             pibBigWrapperParagraph.innerHTML = 'MÉDAILLES<br>SAISON HIVER'
             medalsBigWrapperParagraph.innerHTML = 'MÉDAILLES<br>SAISON ÉTÉ'
@@ -438,6 +456,12 @@ map.on('load', () => {
                 0,
             )
 
+            map.setPaintProperty(
+                'countriesMedals',
+                'fill-opacity',
+                1,
+            )
+
             inputWrapper.setAttribute("value", "1990")
             inputWrapper.setAttribute("step", "4")
             setDate(slider, realDate)
@@ -445,6 +469,10 @@ map.on('load', () => {
         } else {
             resetMap()
             startMap()
+            pibBigWrapper.classList.remove("season")
+            pibBigWrapper.classList.remove("activeSeason")
+            medalsBigWrapper.classList.remove("season")
+            medalsBigWrapper.classList.remove("activeSeason")
             seasonsWrapperParagraph.innerHTML = 'Carte des saisons'
             pibBigWrapperParagraph.innerHTML = 'PIB'
             medalsBigWrapperParagraph.innerHTML = 'MÉDAILLÉS'
@@ -455,6 +483,12 @@ map.on('load', () => {
                 'countriesPib',
                 'fill-opacity',
                 0.75,
+            )
+
+            map.setPaintProperty(
+                'countriesMedals',
+                'fill-opacity',
+                0,
             )
 
             inputWrapper.max = 2020
@@ -503,6 +537,9 @@ map.on('load', () => {
                 firstWrapperMedalsVerification = true
                 firstWrapperGpd.style.border = "3px solid #FD4C4C"
 
+                medalsBigWrapper.classList.add("activeSeason")
+                pibBigWrapper.classList.remove("activeSeason")
+
                 firstWrapperGpdSpan.style.backgroundColor = "#ffafa8"
                 secondWrapperGpdSpan.style.backgroundColor = "#ff5753"
                 thirdWrapperGpdSpan.style.backgroundColor = "#ff0a00"
@@ -522,6 +559,9 @@ map.on('load', () => {
                 firstWrapperGpd.classList.add('active')
                 firstWrapperMedalsVerification = true
                 firstWrapperGpd.style.border = "3px solid #9EC3FF"
+
+                medalsBigWrapper.classList.remove("activeSeason")
+                pibBigWrapper.classList.add("activeSeason")
 
                 firstWrapperGpdSpan.style.backgroundColor = "#B4D6FF"
                 secondWrapperGpdSpan.style.backgroundColor = "#9DC2FF"
@@ -576,6 +616,9 @@ map.on('load', () => {
                 firstWrapperMedalsVerification = firstWrapperGpd.classList.contains('active')
                 firstWrapperGpd.style.border = "3px solid #9EC3FF"
 
+                medalsBigWrapper.classList.remove("activeSeason")
+                pibBigWrapper.classList.add("activeSeason")
+
                 firstWrapperGpdSpan.style.backgroundColor = "#B4D6FF"
                 secondWrapperGpdSpan.style.backgroundColor = "#9DC2FF"
                 thirdWrapperGpdSpan.style.backgroundColor = "#7C9FFF"
@@ -599,6 +642,9 @@ map.on('load', () => {
                 firstWrapperGpdSpan.style.backgroundColor = "#ffafa8"
                 secondWrapperGpdSpan.style.backgroundColor = "#ff5753"
                 thirdWrapperGpdSpan.style.backgroundColor = "#ff0a00"
+
+                medalsBigWrapper.classList.add("activeSeason")
+                pibBigWrapper.classList.remove("activeSeason")
 
                 pibBigWrapper.classList.remove('active')
                 medalsBigWrapper.classList.add('active')
@@ -626,11 +672,11 @@ map.on('load', () => {
         'paint': {
             'fill-color': [
                 "case",
-                ["==", ["feature-state", "colorCountries"], 0], "#d0d0d0",
+                ["==", ["feature-state", "colorCountries"], 0], "#e9e9e9",
                 ["==", ["feature-state", "colorCountries"], 1], "#B4D6FF",
                 ["==", ["feature-state", "colorCountries"], 2], "#9DC2FF",
                 ["==", ["feature-state", "colorCountries"], 3], "#7C9FFF",
-                "#d0d0d0"
+                "#e9e9e9"
             ],
             'fill-opacity': 0.75
         }
@@ -692,7 +738,7 @@ map.on('load', () => {
         pibCountries().then()
     }
 
-    ///////////////////////////////////////////// COUNTRIES MEDALS /////////////////////////////////////////////////////
+    ///////////////////////////////////////////// COUNTRIES MEDALS FILL /////////////////////////////////////////////////////
 
     map.addLayer({
         'id': 'countriesMedals',
@@ -701,14 +747,14 @@ map.on('load', () => {
         'paint': {
             'fill-color': [
                 "case",
-                ["==", ["feature-state", "circleRadius"], 0], "#d0d0d0",
+                ["==", ["feature-state", "circleRadius"], 0], "#e9e9e9",
                 ["==", ["feature-state", "circleRadius"], 1], "#ffafa8",
                 ["==", ["feature-state", "circleRadius"], 2], "#ff5753",
                 ["==", ["feature-state", "circleRadius"], 3], "#ff0a00",
                 ["==", ["feature-state", "circleRadius"], 4], "#c6e6ff",
                 ["==", ["feature-state", "circleRadius"], 5], "#60aafc",
                 ["==", ["feature-state", "circleRadius"], 6], "#0048ff",
-                "#d0d0d0"
+                "#e9e9e9"
             ],
             'fill-opacity': 0.75
         }
@@ -729,9 +775,6 @@ map.on('load', () => {
 
         for (let i = 0; i < src.length; i++) {
 
-            //let bbox = turf.extent(src[i])
-            //console.log("Bbox of " + src[indexOfFeatures].properties.ISO_A3 + " is " + bbox)
-
             let indexOfFeature = dataArray.findIndex(index => index === src[i].properties.ISO_A3)
 
             if (indexOfFeature === -1) {
@@ -745,88 +788,96 @@ map.on('load', () => {
             }
 
 
-            if (!firstWrapperMedalsVerification && !secondWrapperMedalsVerification && !thirdWrapperMedalsVerification) {
+            if (seasonsWrapperVerif) {
 
-                circleRadius = 0
-
-            } else {
-
-                if (countriesMedals > 0 && countriesMedals < 30) {
-
-                    if (firstWrapperMedalsVerification) {
-
-                        if (seasonsWrapperVerif) {
-
-                            if (medalsBigWrapper.classList.contains('active')) {
-
-                                circleRadius = 1
-
-                            } else {
-
-                                circleRadius = 4
-
-                            }
-
-                        } else {
-
-                            circleRadius = 1
-                        }
-
-                    }
-
-                } else if (countriesMedals >= 30 && countriesMedals < 100) {
-
-                    if (secondWrapperMedalsVerification) {
-
-                        if (seasonsWrapperVerif) {
-
-                            if (medalsBigWrapper.classList.contains('active')) {
-
-                                circleRadius = 2
-
-                            } else {
-
-                                circleRadius = 5
-
-                            }
-
-                        } else {
-
-                            circleRadius = 2
-                        }
-
-                    }
-
-                } else if (countriesMedals >= 100) {
-
-                    if (thirdWrapperMedalsVerification) {
-
-                        if (seasonsWrapperVerif) {
-
-                            if (medalsBigWrapper.classList.contains('active')) {
-
-                                circleRadius = 3
-
-                            } else {
-
-                                circleRadius = 6
-
-                            }
-
-                        } else {
-
-                            circleRadius = 3
-                        }
-
-                    }
-
-                } else {
+                if (!firstWrapperMedalsVerification && !secondWrapperMedalsVerification && !thirdWrapperMedalsVerification) {
 
                     circleRadius = 0
 
+                } else {
+
+                    if (countriesMedals > 0 && countriesMedals < 30) {
+
+                        if (firstWrapperMedalsVerification) {
+
+                            if (seasonsWrapperVerif) {
+
+                                if (medalsBigWrapper.classList.contains('active')) {
+
+                                    circleRadius = 1
+
+                                } else {
+
+                                    circleRadius = 4
+
+                                }
+
+                            } else {
+
+                                circleRadius = 1
+                            }
+
+                        }
+
+                    } else if (countriesMedals >= 30 && countriesMedals < 100) {
+
+                        if (secondWrapperMedalsVerification) {
+
+                            if (seasonsWrapperVerif) {
+
+                                if (medalsBigWrapper.classList.contains('active')) {
+
+                                    circleRadius = 2
+
+                                } else {
+
+                                    circleRadius = 5
+
+                                }
+
+                            } else {
+
+                                circleRadius = 2
+                            }
+
+                        }
+
+                    } else if (countriesMedals >= 100) {
+
+                        if (thirdWrapperMedalsVerification) {
+
+                            if (seasonsWrapperVerif) {
+
+                                if (medalsBigWrapper.classList.contains('active')) {
+
+                                    circleRadius = 3
+
+                                } else {
+
+                                    circleRadius = 6
+
+                                }
+
+                            } else {
+
+                                circleRadius = 3
+                            }
+
+                        }
+
+                    } else {
+
+                        circleRadius = 0
+
+                    }
+
                 }
 
+            } else {
+
+
             }
+
 
             map.setFeatureState(
                 {
@@ -843,10 +894,13 @@ map.on('load', () => {
 
     }
 
-
     if (firstWrapperMedalsVerification || secondWrapperMedalsVerification || thirdWrapperMedalsVerification) {
         medalsCountries().then()
     }
+
+    ///////////////////////////////////////////// COUNTRIES MEDALS CIRCLE /////////////////////////////////////////////////////
+
+
 
     ///////////////////////////////////////////////// COUNTRY //////////////////////////////////////////////////////////
 
@@ -854,9 +908,6 @@ map.on('load', () => {
 
     map.on('click', 'countriesHover', (e) => {
         countryRealName = Object.values(e.features[0].properties)[1]
-        // console.log(e.features[0])
-
-        // console.log("country = " + countryRealName)
 
         let bbox = turf.extent(e.features[0])
 
@@ -873,93 +924,5 @@ map.on('load', () => {
         center()
 
     });
-
-    /*
-    if (!seasonsWrapperVerif) {
-
-        if (medalsBigWrapper.classList.contains('active') && !pibBigWrapper.classList.contains('active')) {
-            map.setPaintProperty(
-                'countriesPib',
-                'fill-opacity',
-                0,
-            )
-            map.setPaintProperty(
-                'countriesMedals',
-                'fill-opacity',
-                1,
-            )
-        }
-
-
-        if (!medalsBigWrapper.classList.contains('active') && pibBigWrapper.classList.contains('active')) {
-            map.setPaintProperty(
-                'countriesPib',
-                'fill-opacity',
-                1,
-            )
-            map.setPaintProperty(
-                'countriesMedals',
-                'fill-opacity',
-                0,
-            )
-        }
-
-
-        if (!medalsBigWrapper.classList.contains('active') && !pibBigWrapper.classList.contains('active')) {
-
-            map.setPaintProperty(
-                'countriesPib',
-                'fill-opacity',
-                1,
-            )
-
-            map.setPaintProperty(
-                'countriesMedals',
-                'fill-opacity',
-                1,
-            )
-        }
-
-    }
-
-     */
-
-
-    // Mouse position
-    /*map.on('mousemove', (e) => {
-        // `e.point` is the x, y coordinates of the `mousemove` event
-        // relative to the top-left corner of the map.
-        // `e.lngLat` is the longitude, latitude geographical position of the event.
-         console.log(JSON.stringify(e.point) + " " + e.lngLat.wrap())
-    });*/
-
-
-    // Add marker on mouse position on click
-    /*map.on('click', function(e) {
-        let lat = e.lngLat.wrap().lat;
-        let lng = e.lngLat.wrap().lng;
-
-        const marker = new mapboxgl.Marker()
-            .setLngLat([lng, lat])
-            .addTo(map)
-
-    });*/
-
-    // Add popup on mouse position on click
-    /*map.on('click', function(e) {
-        let lat = e.lngLat.wrap().lat;
-        let lng = e.lngLat.wrap().lng;
-
-        const popup = new mapboxgl.Popup({ closeOnClick: false })
-            .setLngLat([lng, lat])
-            .setHTML('<h1>hello world</h1>')
-            .addTo(map);
-    });*/
-
-
-    // Markers
-    /*const markerParis = new mapboxgl.Marker()
-        .setLngLat([2.3522219, 48.856614])
-        .addTo(map)*/
 
 });

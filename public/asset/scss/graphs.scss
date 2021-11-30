@@ -1,76 +1,232 @@
-.slider-graph {
-  border-radius: 5px;
-  height: 2px;
+$inputColor: #7c9fff;
+$widthSlider: 90%;
 
-  &::-webkit-slider-thumb {
-    appearance: none;
-  }
+* {
+    font-family: "Poppins", sans-serif;
 }
 
-#stats {
-  position: relative;
-  padding: 92px 155px 170px;
-  background: #ffffff;
-
-  h2 {
+.input-wrapper {
     position: relative;
-    margin-bottom: 102px;
-    width: fit-content;
-    font-family: Poppins, serif;
+    margin-top: 6rem;
+    width: 100%;
     text-align: center;
-    font-size: 60px;
-    line-height: 90px;
-    font-weight: 500;
-    color: #7c9fff;
-  }
 
-  .wrapper {
+    .date {
+        color: $inputColor;
+        position: relative;
+    }
+
+    .slider-container {
+        .dates {
+            position: relative;
+            color: $inputColor;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            width: $widthSlider;
+            margin: 0 auto;
+
+            h4 {
+                position: relative;
+            }
+        }
+
+        input[type="range"] {
+            position: relative;
+            height: 25px;
+            -webkit-appearance: none;
+            width: $widthSlider;
+            background: transparent;
+        }
+
+        input[type="range"]:focus {
+            outline: none;
+        }
+
+        input[type="range"]::-webkit-slider-runnable-track {
+            width: 100%;
+            height: 2px;
+            cursor: pointer;
+            background: $inputColor;
+            border-radius: 50px;
+        }
+
+        input[type="range"]::-webkit-slider-thumb {
+            border: 2px solid $inputColor;
+            height: 15px;
+            width: 15px;
+            border-radius: 50px;
+            background: #fefefe;
+            cursor: pointer;
+            -webkit-appearance: none;
+            margin-top: -6.5px;
+        }
+
+        input[type="range"]:focus::-webkit-slider-runnable-track {
+            background: $inputColor;
+        }
+
+        input[type="range"]::-moz-range-track {
+            width: 100%;
+            height: 2px;
+            cursor: pointer;
+            background: $inputColor;
+            border-radius: 50px;
+        }
+
+        input[type="range"]::-moz-range-thumb {
+            border: 2px solid $inputColor;
+            height: 15px;
+            width: 15px;
+            border-radius: 50px;
+            background: #fefefe;
+            cursor: pointer;
+        }
+
+        input[type="range"]::-ms-track {
+            width: 100%;
+            height: 2px;
+            cursor: pointer;
+            background: transparent;
+            border-color: transparent;
+            color: transparent;
+        }
+
+        input[type="range"]::-ms-fill-lower {
+            background: $inputColor;
+            border-radius: 100px;
+        }
+
+        input[type="range"]::-ms-fill-upper {
+            background: $inputColor;
+            border-radius: 100px;
+        }
+
+        input[type="range"]::-ms-thumb {
+            margin-top: 1px;
+            border: 2px solid $inputColor;
+            height: 15px;
+            width: 15px;
+            border-radius: 50px;
+            background: #fefefe;
+            cursor: pointer;
+        }
+
+        input[type="range"]:focus::-ms-fill-lower {
+            background: $inputColor;
+        }
+
+        input[type="range"]:focus::-ms-fill-upper {
+            background: $inputColor;
+        }
+    }
+}
+// -------------------------
+#stats {
     position: relative;
-    height: 460px;
-    display: flex;
-    flex-direction: row;
+    padding: 92px 155px 170px;
+    background: #ffffff;
 
-    .graph {
-      position: relative;
-      height: 100%;
-      width: 790px;
-      border-radius: 25px;
-      background: #f9fbfe;
-      box-shadow: 1.8px 1.8px 3.7px rgba(0, 0, 0, 0.025),
-      6px 6px 15.9px rgba(0, 0, 0, 0.04),
-      27px 27px 68px rgba(0, 0, 0, 0.07);
-    }
-
-    .text-wrapper {
-      position: relative;
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-
-      p {
+    h2 {
         position: relative;
-        margin: 0 92.5px;
-        width: 635px;
+        margin-bottom: 102px;
+        width: fit-content;
         font-family: Poppins, serif;
-        font-size: 24px;
+        text-align: center;
+        font-size: 60px;
+        line-height: 90px;
         font-weight: 500;
-        color: #33343b;
-      }
-
-      .info {
-        position: relative;
-        margin-top: 82px;
-        height: 20px;
-        width: 200px;
-        background: mediumpurple;
-      }
+        color: #7c9fff;
     }
-  }
 
-  .first-wrapper,
-  .second-wrapper {
-    margin-bottom: 102px;
-  }
+    .wrapper {
+        position: relative;
+        height: 460px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+
+        .graph {
+            position: relative;
+            height: 100%;
+            width: 790px;
+            border-radius: 25px;
+            background: #f9fbfe;
+            box-shadow: 1.8px 1.8px 3.7px rgba(0, 0, 0, 0.025), 6px 6px 15.9px rgba(0, 0, 0, 0.04),
+                27px 27px 68px rgba(0, 0, 0, 0.07);
+
+            svg {
+                position: relative;
+                margin: 30px auto;
+            }
+        }
+
+        .text-wrapper {
+            position: relative;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+            p {
+                position: relative;
+                width: 635px;
+                font-family: "Poppins", serif;
+                font-size: 24px;
+                font-weight: 500;
+                color: #33343b;
+                line-height: 2.25rem;
+            }
+        }
+    }
+
+    .second-wrapper {
+        padding: 50px 177px;
+        margin: 100px -177px;
+        background-color: #f9fbfe;
+
+        svg {
+            margin-right: 30px;
+            margin-left: 30px;
+        }
+    }
+}
+
+.legend {
+    margin-top: 2rem;
+    .legend-line {
+        text-align: left;
+        display: flex;
+        flex-direction: row;
+        height: auto;
+        margin: 0 auto;
+
+        span {
+            position: relative;
+            margin: auto 0;
+        }
+
+        .case-color {
+            width: 40px;
+            height: 1rem;
+            margin: 0.75rem 0.5rem;
+
+            &#asia {
+                background-color: #b4d6ff;
+            }
+            &#amerique {
+                background-color: #f92b49;
+            }
+            &#afrique {
+                background-color: #d3dce5;
+            }
+            &#oceanie {
+                background-color: #fd4c4c;
+            }
+            &#europe {
+                background-color: #7c9fff;
+            }
+        }
+    }
 }
