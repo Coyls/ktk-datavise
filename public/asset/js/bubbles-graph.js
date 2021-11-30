@@ -3,7 +3,7 @@ const slider = document.getElementById("slider-third-graph")
 const svgContainer = document.getElementById("third-graph")
 
 
-const width = 400
+const width = 800
 const height = 400
 const colors = {
     Asia: '#B4D6FF',
@@ -28,6 +28,7 @@ const generateSecondGraph = data => {
 
 
     const root = bubble(data);
+    console.log('data:', data)
 
     const node = svg.selectAll()
         .data(root.children)
@@ -42,8 +43,25 @@ const generateSecondGraph = data => {
         .attr('r', d => d.r);
 
     node.append('text')
-        // .attr('dy', 2)
-        .text(d => d.data.continent.substring(0, d.r / 3));
+        .attr('dy', -8)
+        .text(d => d.data.nbAthlete)
+        .attr("text-anchor", "middle")
+        .attr("font-family", "Poppins")
+        .attr("font-weight", "600")
+        .style('fill', d => colors[d.data.continent])
+
+    node.append('text')
+        .attr('dy', 8)
+        .text(d => d.data.continent.substring(0, d.r / 3))
+        .attr("text-anchor", "middle")
+        .attr("font-family", "Poppins")
+        .style('fill', d => colors[d.data.continent])
+
+    node.append('title')
+        .text(d => d.data.continent + ' : ' + d.data.nbAthlete)
+
+
+
 
 
 };
@@ -62,4 +80,9 @@ const generateSecondGraph = data => {
         generateSecondGraph(data)
     })
 })()
+
+// Font axis poppins 11 semi bold
+// FOnt text axis 14
+// FOnt text axis 14
+
 

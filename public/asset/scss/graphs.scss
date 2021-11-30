@@ -143,10 +143,15 @@ $widthSlider: 90%;
         .graph {
             position: relative;
             height: 100%;
-            width: 50%;
+            width: auto;
             border-radius: 25px;
             background: #f9fbfe;
             box-shadow: 0 8px 32px 0 rgba(71, 72, 104, 0.2);
+
+            svg {
+                position: relative;
+                margin: 30px auto;
+            }
         }
 
         .text-wrapper {
