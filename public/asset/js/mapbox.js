@@ -2,7 +2,7 @@ import countries from '../json/countries.json'
 import capitals from '../json/capitals.json'
 import axios from "axios"
 
-const getCountryISO3 = require("country-iso-2-to-3");
+// const getCountryISO3 = require("country-iso-2-to-3");
 
 mapboxgl.accessToken = 'pk.eyJ1Ijoibm9vb29vb29vb29vb29vb2UiLCJhIjoiY2t2aTN0OXFtMGZvYzJvbjBlYmNhcnJlbiJ9.7d0EuZjxcvKMFEuyVoEAnw'
 
@@ -86,14 +86,14 @@ map.on('load', () => {
         if (e.features.length > 0) {
             if (hoveredStateId !== null) {
                 map.setFeatureState(
-                    {source: 'countries', id: hoveredStateId},
-                    {hover: false}
+                    { source: 'countries', id: hoveredStateId },
+                    { hover: false }
                 );
             }
             hoveredStateId = e.features[0].id;
             map.setFeatureState(
-                {source: 'countries', id: hoveredStateId},
-                {hover: true}
+                { source: 'countries', id: hoveredStateId },
+                { hover: true }
             );
         }
     });
@@ -101,8 +101,8 @@ map.on('load', () => {
     map.on('mouseleave', 'countriesHover', () => {
         if (hoveredStateId !== null) {
             map.setFeatureState(
-                {source: 'countries', id: hoveredStateId},
-                {hover: false}
+                { source: 'countries', id: hoveredStateId },
+                { hover: false }
             );
         }
         hoveredStateId = null;
@@ -725,7 +725,7 @@ map.on('load', () => {
                     source: 'countries',
                     id: indexOfFeatures
                 },
-                {colorCountries: color},
+                { colorCountries: color },
             );
 
             color = null
@@ -884,7 +884,7 @@ map.on('load', () => {
                     source: 'countries',
                     id: i
                 },
-                {circleRadius: circleRadius},
+                { circleRadius: circleRadius },
             );
 
             circleRadius = null
@@ -913,7 +913,7 @@ map.on('load', () => {
 
         function center() {
             map.fitBounds(bbox, {
-                padding: {top: 100, bottom: 100, left: 650, right: 0},
+                padding: { top: 100, bottom: 100, left: 650, right: 0 },
                 maxZoom: 3,
                 linear: true,
                 duration: 1000,
