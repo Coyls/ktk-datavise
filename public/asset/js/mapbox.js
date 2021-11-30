@@ -1,5 +1,8 @@
 import countries from '../json/countries.json'
+import capitals from '../json/capitals.json'
 import axios from "axios"
+
+const getCountryISO3 = require("country-iso-2-to-3");
 
 mapboxgl.accessToken = 'pk.eyJ1Ijoibm9vb29vb29vb29vb29vb2UiLCJhIjoiY2t2aTN0OXFtMGZvYzJvbjBlYmNhcnJlbiJ9.7d0EuZjxcvKMFEuyVoEAnw'
 
@@ -37,8 +40,17 @@ map.on('load', () => {
         generateId: true
     });
 
+    map.addSource('capitals', {
+        type: 'geojson',
+        data: capitals,
+        generateId: true
+    });
+
     // Get the source
     const src = map.getSource('countries')._data.features
+
+    const srcCapitals = map.getSource('capitals')._data.features
+    console.log(srcCapitals)
 
     // Border
     map.addLayer({
@@ -74,14 +86,14 @@ map.on('load', () => {
         if (e.features.length > 0) {
             if (hoveredStateId !== null) {
                 map.setFeatureState(
-                    { source: 'countries', id: hoveredStateId },
-                    { hover: false }
+                    {source: 'countries', id: hoveredStateId},
+                    {hover: false}
                 );
             }
             hoveredStateId = e.features[0].id;
             map.setFeatureState(
-                { source: 'countries', id: hoveredStateId },
-                { hover: true }
+                {source: 'countries', id: hoveredStateId},
+                {hover: true}
             );
         }
     });
@@ -89,8 +101,8 @@ map.on('load', () => {
     map.on('mouseleave', 'countriesHover', () => {
         if (hoveredStateId !== null) {
             map.setFeatureState(
-                { source: 'countries', id: hoveredStateId },
-                { hover: false }
+                {source: 'countries', id: hoveredStateId},
+                {hover: false}
             );
         }
         hoveredStateId = null;
@@ -412,7 +424,6 @@ map.on('load', () => {
 
     const seasonsWrapper = document.querySelector('#map .seasons-wrapper')
     const seasonsWrapperParagraph = document.querySelector('.seasons-wrapper p')
-    const seasonsWrapperImage = document.querySelector('.seasons-wrapper img')
 
     const medalsLegendWrapper = document.querySelector('.medalsLegendWrapper')
     const pibLegendWrapperParagraph = document.querySelector('.pibLegendWrapper p')
@@ -430,6 +441,9 @@ map.on('load', () => {
         if (seasonsWrapperVerif) {
             resetMap()
             startMap()
+            pibBigWrapper.classList.add("season")
+            pibBigWrapper.classList.add("activeSeason")
+            medalsBigWrapper.classList.add("season")
             seasonsWrapperParagraph.innerHTML = 'Pib / Médailles'
             pibBigWrapperParagraph.innerHTML = 'MÉDAILLES<br>SAISON HIVER'
             medalsBigWrapperParagraph.innerHTML = 'MÉDAILLES<br>SAISON ÉTÉ'
@@ -442,6 +456,12 @@ map.on('load', () => {
                 0,
             )
 
+            map.setPaintProperty(
+                'countriesMedals',
+                'fill-opacity',
+                1,
+            )
+
             inputWrapper.setAttribute("value", "1990")
             inputWrapper.setAttribute("step", "4")
             setDate(slider, realDate)
@@ -449,6 +469,10 @@ map.on('load', () => {
         } else {
             resetMap()
             startMap()
+            pibBigWrapper.classList.remove("season")
+            pibBigWrapper.classList.remove("activeSeason")
+            medalsBigWrapper.classList.remove("season")
+            medalsBigWrapper.classList.remove("activeSeason")
             seasonsWrapperParagraph.innerHTML = 'Carte des saisons'
             pibBigWrapperParagraph.innerHTML = 'PIB'
             medalsBigWrapperParagraph.innerHTML = 'MÉDAILLÉS'
@@ -459,6 +483,12 @@ map.on('load', () => {
                 'countriesPib',
                 'fill-opacity',
                 0.75,
+            )
+
+            map.setPaintProperty(
+                'countriesMedals',
+                'fill-opacity',
+                0,
             )
 
             inputWrapper.max = 2020
@@ -507,6 +537,9 @@ map.on('load', () => {
                 firstWrapperMedalsVerification = true
                 firstWrapperGpd.style.border = "3px solid #FD4C4C"
 
+                medalsBigWrapper.classList.add("activeSeason")
+                pibBigWrapper.classList.remove("activeSeason")
+
                 firstWrapperGpdSpan.style.backgroundColor = "#ffafa8"
                 secondWrapperGpdSpan.style.backgroundColor = "#ff5753"
                 thirdWrapperGpdSpan.style.backgroundColor = "#ff0a00"
@@ -526,6 +559,9 @@ map.on('load', () => {
                 firstWrapperGpd.classList.add('active')
                 firstWrapperMedalsVerification = true
                 firstWrapperGpd.style.border = "3px solid #9EC3FF"
+
+                medalsBigWrapper.classList.remove("activeSeason")
+                pibBigWrapper.classList.add("activeSeason")
 
                 firstWrapperGpdSpan.style.backgroundColor = "#B4D6FF"
                 secondWrapperGpdSpan.style.backgroundColor = "#9DC2FF"
@@ -580,6 +616,9 @@ map.on('load', () => {
                 firstWrapperMedalsVerification = firstWrapperGpd.classList.contains('active')
                 firstWrapperGpd.style.border = "3px solid #9EC3FF"
 
+                medalsBigWrapper.classList.remove("activeSeason")
+                pibBigWrapper.classList.add("activeSeason")
+
                 firstWrapperGpdSpan.style.backgroundColor = "#B4D6FF"
                 secondWrapperGpdSpan.style.backgroundColor = "#9DC2FF"
                 thirdWrapperGpdSpan.style.backgroundColor = "#7C9FFF"
@@ -603,6 +642,9 @@ map.on('load', () => {
                 firstWrapperGpdSpan.style.backgroundColor = "#ffafa8"
                 secondWrapperGpdSpan.style.backgroundColor = "#ff5753"
                 thirdWrapperGpdSpan.style.backgroundColor = "#ff0a00"
+
+                medalsBigWrapper.classList.add("activeSeason")
+                pibBigWrapper.classList.remove("activeSeason")
 
                 pibBigWrapper.classList.remove('active')
                 medalsBigWrapper.classList.add('active')
@@ -683,7 +725,7 @@ map.on('load', () => {
                     source: 'countries',
                     id: indexOfFeatures
                 },
-                { colorCountries: color },
+                {colorCountries: color},
             );
 
             color = null
@@ -696,7 +738,7 @@ map.on('load', () => {
         pibCountries().then()
     }
 
-    ///////////////////////////////////////////// COUNTRIES MEDALS /////////////////////////////////////////////////////
+    ///////////////////////////////////////////// COUNTRIES MEDALS FILL /////////////////////////////////////////////////////
 
     map.addLayer({
         'id': 'countriesMedals',
@@ -733,9 +775,6 @@ map.on('load', () => {
 
         for (let i = 0; i < src.length; i++) {
 
-            //let bbox = turf.extent(src[i])
-            //console.log("Bbox of " + src[indexOfFeatures].properties.ISO_A3 + " is " + bbox)
-
             let indexOfFeature = dataArray.findIndex(index => index === src[i].properties.ISO_A3)
 
             if (indexOfFeature === -1) {
@@ -749,95 +788,103 @@ map.on('load', () => {
             }
 
 
-            if (!firstWrapperMedalsVerification && !secondWrapperMedalsVerification && !thirdWrapperMedalsVerification) {
+            if (seasonsWrapperVerif) {
 
-                circleRadius = 0
-
-            } else {
-
-                if (countriesMedals > 0 && countriesMedals < 30) {
-
-                    if (firstWrapperMedalsVerification) {
-
-                        if (seasonsWrapperVerif) {
-
-                            if (medalsBigWrapper.classList.contains('active')) {
-
-                                circleRadius = 1
-
-                            } else {
-
-                                circleRadius = 4
-
-                            }
-
-                        } else {
-
-                            circleRadius = 1
-                        }
-
-                    }
-
-                } else if (countriesMedals >= 30 && countriesMedals < 100) {
-
-                    if (secondWrapperMedalsVerification) {
-
-                        if (seasonsWrapperVerif) {
-
-                            if (medalsBigWrapper.classList.contains('active')) {
-
-                                circleRadius = 2
-
-                            } else {
-
-                                circleRadius = 5
-
-                            }
-
-                        } else {
-
-                            circleRadius = 2
-                        }
-
-                    }
-
-                } else if (countriesMedals >= 100) {
-
-                    if (thirdWrapperMedalsVerification) {
-
-                        if (seasonsWrapperVerif) {
-
-                            if (medalsBigWrapper.classList.contains('active')) {
-
-                                circleRadius = 3
-
-                            } else {
-
-                                circleRadius = 6
-
-                            }
-
-                        } else {
-
-                            circleRadius = 3
-                        }
-
-                    }
-
-                } else {
+                if (!firstWrapperMedalsVerification && !secondWrapperMedalsVerification && !thirdWrapperMedalsVerification) {
 
                     circleRadius = 0
 
+                } else {
+
+                    if (countriesMedals > 0 && countriesMedals < 30) {
+
+                        if (firstWrapperMedalsVerification) {
+
+                            if (seasonsWrapperVerif) {
+
+                                if (medalsBigWrapper.classList.contains('active')) {
+
+                                    circleRadius = 1
+
+                                } else {
+
+                                    circleRadius = 4
+
+                                }
+
+                            } else {
+
+                                circleRadius = 1
+                            }
+
+                        }
+
+                    } else if (countriesMedals >= 30 && countriesMedals < 100) {
+
+                        if (secondWrapperMedalsVerification) {
+
+                            if (seasonsWrapperVerif) {
+
+                                if (medalsBigWrapper.classList.contains('active')) {
+
+                                    circleRadius = 2
+
+                                } else {
+
+                                    circleRadius = 5
+
+                                }
+
+                            } else {
+
+                                circleRadius = 2
+                            }
+
+                        }
+
+                    } else if (countriesMedals >= 100) {
+
+                        if (thirdWrapperMedalsVerification) {
+
+                            if (seasonsWrapperVerif) {
+
+                                if (medalsBigWrapper.classList.contains('active')) {
+
+                                    circleRadius = 3
+
+                                } else {
+
+                                    circleRadius = 6
+
+                                }
+
+                            } else {
+
+                                circleRadius = 3
+                            }
+
+                        }
+
+                    } else {
+
+                        circleRadius = 0
+
+                    }
+
                 }
 
+            } else {
+
+
             }
+
 
             map.setFeatureState(
                 {
                     source: 'countries',
                     id: i
                 },
-                { circleRadius: circleRadius },
+                {circleRadius: circleRadius},
             );
 
             circleRadius = null
@@ -851,6 +898,10 @@ map.on('load', () => {
         medalsCountries().then()
     }
 
+    ///////////////////////////////////////////// COUNTRIES MEDALS CIRCLE /////////////////////////////////////////////////////
+
+
+
     ///////////////////////////////////////////////// COUNTRY //////////////////////////////////////////////////////////
 
     let countryRealName
@@ -862,7 +913,7 @@ map.on('load', () => {
 
         function center() {
             map.fitBounds(bbox, {
-                padding: { top: 100, bottom: 100, left: 650, right: 0 },
+                padding: {top: 100, bottom: 100, left: 650, right: 0},
                 maxZoom: 3,
                 linear: true,
                 duration: 1000,

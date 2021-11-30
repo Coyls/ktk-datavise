@@ -156,19 +156,19 @@ body {
 
   .scroll-wrapper {
     position: absolute;
-    bottom: 52px;
+    bottom: 50px;
     left: 50%;
-    height: 173px;
+    height: 175px;
     width: 54px;
     transform: translate(-50%);
-    background: url("../img/introductionScoll.png");
+    background: url("../img/introductionScroll.png");
     background-size: cover;
 
     @media screen and (max-width: 1450px) {
       bottom: 32px;
       height: 134px;
       width: 42px;
-      background: url("../img/introductionScoll1440.png");
+      background: url("../img/introductionScroll1440.png");
       background-size: cover;
     }
   }
@@ -391,7 +391,7 @@ body {
   background: rgb(193, 214, 245);
 
   @media screen and (max-width: 1450px) {
-    height: 845px;
+    height: 800px;
   }
 
   .wrapper {
@@ -439,11 +439,12 @@ body {
         color: #04081f;
 
         @media screen and (max-width: 1450px) {
-          margin-top: 55px;
+          margin-top: 40px;
           width: 383px;
           font-size: 34px;
           line-height: 41px;
         }
+
       }
 
       .info-wrapper {
@@ -732,13 +733,22 @@ body {
             width: 157px;
           }
 
-          img {
+          .image-wrapper {
             position: relative;
-            height: 56px;
+            height: 54.5px;
+            width: 54.5px;
+            border-radius: 100px;
 
             @media screen and (max-width: 1450px) {
-              height: 44px;
+              height: 43.5px;
+              width: 43.5px;
             }
+
+            img {
+              position: relative;
+              height: 100%;
+            }
+
           }
 
           h4 {
@@ -751,6 +761,7 @@ body {
 
             @media screen and (max-width: 1450px) {
               margin-top: 16px;
+              font-size: 16px;
             }
           }
         }
@@ -761,17 +772,51 @@ body {
           margin-right: 50px;
           transition: 0.35s ease-in-out;
 
+          .image-wrapper {
+            border: 3px solid #7C9FFF;
+            background: url("../img/pibMap.png") no-repeat center;
+            background-size: cover;
+            transition: 0.35s ease-in-out;
+          }
+
           @media screen and (max-width: 1450px) {
-            margin-right: 33px;
+            margin-right: 40px;
           }
 
           &.active {
             background: #7c9fff;
             transition: 0.35s ease-in-out;
 
+            .image-wrapper {
+              border: 3px solid #FFFFFF;
+              background: url("../img/pibMapActive.png") no-repeat center;
+              background-size: cover;
+              transition: 0.35s ease-in-out;
+            }
+
             h4 {
               color: #ffffff;
             }
+          }
+
+          &.season {
+
+            .image-wrapper {
+              background: url("../img/winterMap.png") no-repeat center;
+              background-size: cover;
+              transition: 0.35s ease-in-out;
+            }
+
+          }
+
+          &.activeSeason {
+
+            .image-wrapper {
+              background: url("../img/winterMapActive.png") no-repeat center;
+              background-size: cover;
+              transition: 0.35s ease-in-out;
+            }
+
           }
 
           h4 {
@@ -784,13 +829,47 @@ body {
           border: 4px solid #fd4c4c;
           transition: 0.35s ease-in-out;
 
+          .image-wrapper {
+            border: 3px solid #FD4C4C;
+            background: url("../img/medalsMap.png") no-repeat center;
+            background-size: cover;
+            transition: 0.35s ease-in-out;
+          }
+
           &.active {
             background: #fd4c4c;
             transition: 0.35s ease-in-out;
 
+            .image-wrapper {
+              border: 3px solid #FFFFFF;
+              background: url("../img/medalsMapActive.png") no-repeat center;
+              background-size: cover;
+              transition: 0.35s ease-in-out;
+            }
+
             h4 {
               color: #ffffff;
             }
+          }
+
+          &.season {
+
+            .image-wrapper {
+              background: url("../img/summerMap.png") no-repeat center;
+              background-size: cover;
+              transition: 0.35s ease-in-out;
+            }
+
+          }
+
+          &.activeSeason {
+
+            .image-wrapper {
+              background: url("../img/summerMapActive.png") no-repeat center;
+              background-size: cover;
+              transition: 0.35s ease-in-out;
+            }
+
           }
 
           h4 {
@@ -805,8 +884,8 @@ body {
         width: 475px;
 
         @media screen and (max-width: 1450px) {
-          margin-top: 22px;
-          width: 295px;
+          margin-top: 26px;
+          width: 365px;
         }
 
         .dates {
@@ -1039,6 +1118,7 @@ body {
     justify-content: space-evenly;
     cursor: pointer;
     border: 1px solid #7c9fff;
+    user-select: none;
 
     @media screen and (max-width: 1450px) {
       width: 120px;
