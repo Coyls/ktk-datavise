@@ -10,11 +10,15 @@ const map = new mapboxgl.Map({
     style: "mapbox://styles/noooooooooooooooe/ckvi4aw5d1jsb14oak88v6scz", // style URL
     center: [3.5, 45], // starting position [lng, lat]
     zoom: 4,
-    maxZoom: 5.5,
+    maxZoom: 5,
     minZoom: 1.5,
     pitch: 0,
     //maxBounds: maxCoordinates, // max coordinates
 });
+
+map.scrollZoom.disable();
+
+map.addControl(new mapboxgl.NavigationControl());
 
 let hoveredStateId = null;
 
@@ -843,7 +847,6 @@ map.on('load', () => {
 
     }
 
-
     if (firstWrapperMedalsVerification || secondWrapperMedalsVerification || thirdWrapperMedalsVerification) {
         medalsCountries().then()
     }
@@ -854,9 +857,6 @@ map.on('load', () => {
 
     map.on('click', 'countriesHover', (e) => {
         countryRealName = Object.values(e.features[0].properties)[1]
-        // console.log(e.features[0])
-
-        // console.log("country = " + countryRealName)
 
         let bbox = turf.extent(e.features[0])
 
@@ -873,93 +873,5 @@ map.on('load', () => {
         center()
 
     });
-
-    /*
-    if (!seasonsWrapperVerif) {
-
-        if (medalsBigWrapper.classList.contains('active') && !pibBigWrapper.classList.contains('active')) {
-            map.setPaintProperty(
-                'countriesPib',
-                'fill-opacity',
-                0,
-            )
-            map.setPaintProperty(
-                'countriesMedals',
-                'fill-opacity',
-                1,
-            )
-        }
-
-
-        if (!medalsBigWrapper.classList.contains('active') && pibBigWrapper.classList.contains('active')) {
-            map.setPaintProperty(
-                'countriesPib',
-                'fill-opacity',
-                1,
-            )
-            map.setPaintProperty(
-                'countriesMedals',
-                'fill-opacity',
-                0,
-            )
-        }
-
-
-        if (!medalsBigWrapper.classList.contains('active') && !pibBigWrapper.classList.contains('active')) {
-
-            map.setPaintProperty(
-                'countriesPib',
-                'fill-opacity',
-                1,
-            )
-
-            map.setPaintProperty(
-                'countriesMedals',
-                'fill-opacity',
-                1,
-            )
-        }
-
-    }
-
-     */
-
-
-    // Mouse position
-    /*map.on('mousemove', (e) => {
-        // `e.point` is the x, y coordinates of the `mousemove` event
-        // relative to the top-left corner of the map.
-        // `e.lngLat` is the longitude, latitude geographical position of the event.
-         console.log(JSON.stringify(e.point) + " " + e.lngLat.wrap())
-    });*/
-
-
-    // Add marker on mouse position on click
-    /*map.on('click', function(e) {
-        let lat = e.lngLat.wrap().lat;
-        let lng = e.lngLat.wrap().lng;
-
-        const marker = new mapboxgl.Marker()
-            .setLngLat([lng, lat])
-            .addTo(map)
-
-    });*/
-
-    // Add popup on mouse position on click
-    /*map.on('click', function(e) {
-        let lat = e.lngLat.wrap().lat;
-        let lng = e.lngLat.wrap().lng;
-
-        const popup = new mapboxgl.Popup({ closeOnClick: false })
-            .setLngLat([lng, lat])
-            .setHTML('<h1>hello world</h1>')
-            .addTo(map);
-    });*/
-
-
-    // Markers
-    /*const markerParis = new mapboxgl.Marker()
-        .setLngLat([2.3522219, 48.856614])
-        .addTo(map)*/
 
 });
