@@ -4,7 +4,7 @@ const slider = document.getElementById("slider-first-graph")
 const svgContainer = document.getElementById("first-graph")
 
 // set the dimensions and margins of the graph
-let margin = { top: 50, right: 100, bottom: 30, left: 60 }
+let margin = { top: 50, right: 120, bottom: 30, left: 60 }
 let width = 800 - margin.left - margin.right
 let height = 400 - margin.top - margin.bottom
 
@@ -82,17 +82,41 @@ const generateFirstGraph = (data) => {
     yAxis.ticks(6)
         .tickSize(10)
 
-
-
     svg.append("g")
         .call(yAxis);
 
+    svg.append("text")
+        .attr("text-anchor", "middle")
+        .attr("y", height)
+        .attr("x", width + margin.right / 2 - 10)
+        .text("Budjet en")
+        .attr("font-size", "14")
+        .attr("font-family", "Poppins")
+        .attr("font-weight", "600")
+        .style('fill', "#7C9FFF")
 
-    // ICIICICIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
-    // Ajouter le text en bout de ligne
-
+    svg.append("text")
+        .attr("text-anchor", "middle")
+        .attr("y", height + 16)
+        .attr("x", width + margin.right / 2 - 10)
+        .text("millions d'€")
+        .attr("font-size", "14")
+        .attr("font-family", "Poppins")
+        .attr("font-weight", "600")
+        .style('fill', "#7C9FFF")
 
     styleAxis(svg)
+
+    // TEXT pays
+    const countryHover = svg.append("text")
+        .attr("text-anchor", "end")
+        .attr("y", -16)
+        .attr("x", width + margin.right / 2)
+        .text("Pays")
+        .attr("font-size", "16")
+        .attr("font-family", "Poppins")
+        .attr("font-weight", "600")
+        .style('fill', "#7C9FFF")
 
     // Add dots
     svg.append('g')
@@ -102,17 +126,15 @@ const generateFirstGraph = (data) => {
         .append("circle")
         .attr("cx", (d) => { return x(d.budjet * 1000); })
         .attr("cy", (d) => { return y(d.medals); })
-        .attr("r", 10)
+        .attr("r", 12)
         .style("fill", "#B4D6FF")
         .on('mouseover', (d, i) => {
             console.log("mouseover", d, i);
-            svg.append("text")
-                .attr("x", d.budjet)         // set x position of left side of text
-                .attr("y", d.medals)
-                .text(d.country)
+            d3.select(this).attr("r", 30)
+            countryHover.text(d.country + " : " + d.medals)
         })
         .on('mouseout', (d) => {
-            d3.select("#" + d.country,).remove();
+            // d3.select("#" + d.country,).remove();
         })
 
 
@@ -128,7 +150,8 @@ const generateFirstGraph = (data) => {
 
 
 (async () => {
-    console.log(slider.value)
+    const spanSlider = document.getElementById('year-g-1')
+    spanSlider.innerText = slider.value
 
     const { data } = await axios.get(process.env.VPS + '/medals-and-budjet?year=' + slider.value)
     generateFirstGraph(data)
@@ -136,6 +159,7 @@ const generateFirstGraph = (data) => {
 
     slider.addEventListener("mouseup", async () => {
         const svg = svgContainer.children[0]
+        spanSlider.innerText = slider.value
 
         if (svgContainer.children.length > 0) svg.remove()
 
