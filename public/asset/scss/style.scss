@@ -1128,6 +1128,7 @@ body {
         display: flex;
         flex-direction: column;
         cursor: pointer;
+        user-select: none;
 
         h4 {
           position: relative;
@@ -1190,6 +1191,7 @@ body {
     justify-content: space-between;
     width: 900px;
     align-items: center;
+    user-select: none;
 
     img {
       position: relative;
