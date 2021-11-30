@@ -1,6 +1,10 @@
 $inputColor: #7c9fff;
 $widthSlider: 90%;
 
+* {
+    font-family: "Poppins", sans-serif;
+}
+
 .input-wrapper {
     position: relative;
     margin-top: 6rem;
@@ -141,6 +145,13 @@ $widthSlider: 90%;
         display: flex;
         flex-direction: row;
 
+        #dot-info {
+            position: absolute;
+            color: #7c9fff;
+            z-index: 9;
+            font-weight: 600;
+        }
+
         .graph {
             position: relative;
             height: 100%;
@@ -149,6 +160,11 @@ $widthSlider: 90%;
             background: #f9fbfe;
             box-shadow: 1.8px 1.8px 3.7px rgba(0, 0, 0, 0.025), 6px 6px 15.9px rgba(0, 0, 0, 0.04),
                 27px 27px 68px rgba(0, 0, 0, 0.07);
+
+            svg {
+                position: relative;
+                margin: 30px auto;
+            }
         }
 
         .text-wrapper {
