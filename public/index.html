@@ -229,41 +229,57 @@
 
     <section id="stats">
         <div class="first-wrapper wrapper">
-            <div id="dot-info">Pays</div>
             <div class="first-graph graph" id="first-graph">
 
             </div>
             <div class="text-wrapper">
-                <p>
+                <p class="p-graph">
                     Graphique du nombre de médailles remportées par un pays (Europe) par années en fonction du budget
                     mis dans le sport en millions d’euro.
                 </p>
 
                 <div class="input-wrapper">
 
-                    <!-- TODO: Ajouter la logique au span-->
-                    <h4 class="date">Année : <span id="year-g-1">2016</span></h4>
+                    <h4 class="date">Année : <span id="year-g-1"></span></h4>
 
                     <div class="slider-container">
                         <input class="slider-graph" type="range" min="2008" max="2016" step="2" id="slider-first-graph"
-                            value="2008">
+                            value="2012">
                         <article class="dates">
-                            <h4>2004</h4>
+                            <h4>2008</h4>
                             <h4>2016</h4>
                         </article>
                     </div>
-
-
-
-
                 </div>
-
             </div>
         </div>
 
         <div class="second-wrapper wrapper">
             <div class="text-wrapper">
-                <p>Graphique de l’évolution dans le temps du PIB des pays d’Europe, en millions d’euro.</p>
+                <p>Graphique de l’évolution dans le temps du PIB des continents, en Trillion d’euro.</p>
+
+                <article class="legend">
+                    <div class="legend-line">
+                        <div id="europe" class="case-color"></div>
+                        <span>Europe</span>
+                    </div>
+                    <div class="legend-line">
+                        <div id="amerique" class="case-color"></div>
+                        <span>Amerique</span>
+                    </div>
+                    <div class="legend-line">
+                        <div id="asia" class="case-color"></div>
+                        <span>Asie</span>
+                    </div>
+                    <div class="legend-line">
+                        <div id="afrique" class="case-color"></div>
+                        <span>Afrique</span>
+                    </div>
+                    <div class="legend-line">
+                        <div id="oceanie" class="case-color"></div>
+                        <span>Océanie</span>
+                    </div>
+                </article>
 
             </div>
             <div class="second-graph graph" id="second-graph">
@@ -280,14 +296,14 @@
 
                 <div class="input-wrapper">
 
-                    <h4 class="date">Année : <span id="year-g-2">2016</span></h4>
+                    <h4 class="date">Année : <span id="year-g-2"></span></h4>
 
                     <div class="slider-container">
                         <input class="slider-graph" type="range" min="1960" max="2016" step="2" id="slider-third-graph"
                             value="1988">
 
                         <article class="dates">
-                            <h4>2004</h4>
+                            <h4>1960</h4>
                             <h4>2016</h4>
                         </article>
 

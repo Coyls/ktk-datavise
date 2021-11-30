@@ -82,10 +82,13 @@ const generateFirstGraph = (data) => {
     yAxis.ticks(6)
         .tickSize(10)
 
+    svg.append("g")
+        .call(yAxis);
+
     svg.append("text")
         .attr("text-anchor", "middle")
         .attr("y", height)
-        .attr("x", width + margin.right / 2)
+        .attr("x", width + margin.right / 2 - 10)
         .text("Budjet en")
         .attr("font-size", "14")
         .attr("font-family", "Poppins")
@@ -95,28 +98,22 @@ const generateFirstGraph = (data) => {
     svg.append("text")
         .attr("text-anchor", "middle")
         .attr("y", height + 16)
-        .attr("x", width + margin.right / 2)
+        .attr("x", width + margin.right / 2 - 10)
         .text("millions d'€")
         .attr("font-size", "14")
         .attr("font-family", "Poppins")
         .attr("font-weight", "600")
         .style('fill', "#7C9FFF")
 
-
-
-    svg.append("g")
-        .call(yAxis);
-
-
     styleAxis(svg)
 
     // TEXT pays
     const countryHover = svg.append("text")
         .attr("text-anchor", "end")
-        .attr("y", -15)
+        .attr("y", -16)
         .attr("x", width + margin.right / 2)
         .text("Pays")
-        .attr("font-size", "14")
+        .attr("font-size", "16")
         .attr("font-family", "Poppins")
         .attr("font-weight", "600")
         .style('fill', "#7C9FFF")
@@ -153,7 +150,8 @@ const generateFirstGraph = (data) => {
 
 
 (async () => {
-    console.log(slider.value)
+    const spanSlider = document.getElementById('year-g-1')
+    spanSlider.innerText = slider.value
 
     const { data } = await axios.get(process.env.VPS + '/medals-and-budjet?year=' + slider.value)
     generateFirstGraph(data)
@@ -161,6 +159,7 @@ const generateFirstGraph = (data) => {
 
     slider.addEventListener("mouseup", async () => {
         const svg = svgContainer.children[0]
+        spanSlider.innerText = slider.value
 
         if (svgContainer.children.length > 0) svg.remove()
 
