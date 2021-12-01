@@ -8,8 +8,6 @@ let margin = { top: 50, right: 120, bottom: 30, left: 60 }
 let width = (window.innerWidth <= 1475) ? 700 - margin.left - margin.right : 800 - margin.left - margin.right
 let height = 400 - margin.top - margin.bottom
 
-console.log("taille ecran", window.innerWidth)
-
 const styleAxis = (svg) => {
     svg.selectAll(".domain")
         .attr("stroke", "#7C9FFF")
@@ -130,14 +128,23 @@ const generateFirstGraph = (data) => {
         .attr("cy", (d) => { return y(d.medals); })
         .attr("r", 12)
         .style("fill", "#B4D6FF")
-        .on('mouseover', (d, i) => {
-            console.log("mouseover", d, i);
-            d3.select(this).attr("r", 30)
+        .style("cursor", "pointer")
+        .on('mouseover', function (d) {
+            d3.select(this)
+                .transition()
+                .duration(100)
+                .attr("r", 16)
             countryHover.text(d.country + " : " + d.medals)
         })
-        .on('mouseout', (d) => {
-            // d3.select("#" + d.country,).remove();
+        .on('mouseout', function (d) {
+            d3.select(this)
+                .transition()
+                .duration(100)
+                .attr("r", 12)
         })
+
+
+
 
 
 
