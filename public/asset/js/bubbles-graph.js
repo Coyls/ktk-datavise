@@ -12,6 +12,14 @@ const colors = {
     Europe: '#7C9FFF',
 };
 
+const continentName = {
+    Asia: 'Asie',
+    Americas: 'Amerique',
+    Africa: 'Afrique',
+    Oceania: 'Oceanie',
+    Europe: 'Europe',
+}
+
 const generateSecondGraph = data => {
 
     let svg = d3.select("#third-graph")
@@ -63,13 +71,13 @@ const generateSecondGraph = data => {
 
     node.append('text')
         .attr('dy', 8)
-        .text(d => d.data.continent.substring(0, d.r / 3))
+        .text(d => continentName[d.data.continent])
         .attr("text-anchor", "middle")
         .attr("font-family", "Poppins")
         .style('fill', d => colors[d.data.continent])
 
     node.append('title')
-        .text(d => d.data.continent + ' : ' + d.data.nbAthlete)
+        .text(d => continentName[d.data.continent] + ' : ' + d.data.nbAthlete)
 
     svg.append("text")
         .data(root.children)
