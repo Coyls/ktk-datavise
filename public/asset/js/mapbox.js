@@ -2,7 +2,7 @@ import countries from '../json/countries.json'
 import capitals from '../json/capitals.json'
 import axios from "axios"
 
-// const getCountryISO3 = require("country-iso-2-to-3");
+const getCountryISO3 = require("country-iso-2-to-3");
 
 mapboxgl.accessToken = 'pk.eyJ1Ijoibm9vb29vb29vb29vb29vb2UiLCJhIjoiY2t2aTN0OXFtMGZvYzJvbjBlYmNhcnJlbiJ9.7d0EuZjxcvKMFEuyVoEAnw'
 
@@ -48,6 +48,7 @@ map.on('load', () => {
 
     // Get the source
     const src = map.getSource('countries')._data.features
+    console.log(src)
 
     const srcCapitals = map.getSource('capitals')._data.features
     console.log(srcCapitals)
@@ -457,6 +458,12 @@ map.on('load', () => {
             )
 
             map.setPaintProperty(
+                'countriesCircle',
+                'fill-opacity',
+                0,
+            )
+
+            map.setPaintProperty(
                 'countriesMedals',
                 'fill-opacity',
                 1,
@@ -482,7 +489,13 @@ map.on('load', () => {
             map.setPaintProperty(
                 'countriesPib',
                 'fill-opacity',
-                0.75,
+                1,
+            )
+
+            map.setPaintProperty(
+                'countriesCircle',
+                'fill-opacity',
+                1,
             )
 
             map.setPaintProperty(
@@ -684,7 +697,7 @@ map.on('load', () => {
 
     async function pibCountries() {
         // Get the data
-        let data = await axios.get(process.env.VPS + '/gpds?year=' + slider.value)
+        let data = await axios.get(process.env.VPS + '/gpd-by-population?year=' + slider.value)
 
         let countriesGpd
         let color = 0
@@ -695,16 +708,16 @@ map.on('load', () => {
                 return e.properties.ISO_A3;
             }).indexOf(data.data[i].country);
 
-            countriesGpd = data.data[i].gpd
+            countriesGpd = data.data[i].gpdByPopulation
 
-            if (countriesGpd >= 0 && countriesGpd < 5000000000) {
+            if (countriesGpd >= 0 && countriesGpd < 10000) {
 
                 if (firstWrapperGpdVerification) {
 
                     color = 1
                 }
 
-            } else if (countriesGpd >= 5000000000 && countriesGpd < 20000000000) {
+            } else if (countriesGpd >= 10000 && countriesGpd < 25000) {
 
                 if (secondWrapperGpdVerification) {
 
@@ -747,16 +760,16 @@ map.on('load', () => {
         'paint': {
             'fill-color': [
                 "case",
-                ["==", ["feature-state", "circleRadius"], 0], "#e9e9e9",
-                ["==", ["feature-state", "circleRadius"], 1], "#ffafa8",
-                ["==", ["feature-state", "circleRadius"], 2], "#ff5753",
-                ["==", ["feature-state", "circleRadius"], 3], "#ff0a00",
-                ["==", ["feature-state", "circleRadius"], 4], "#c6e6ff",
-                ["==", ["feature-state", "circleRadius"], 5], "#60aafc",
-                ["==", ["feature-state", "circleRadius"], 6], "#0048ff",
+                ["==", ["feature-state", "colorMedals"], 0], "#e9e9e9",
+                ["==", ["feature-state", "colorMedals"], 1], "#FBB4B4",
+                ["==", ["feature-state", "colorMedals"], 2], "#FD9B9B",
+                ["==", ["feature-state", "colorMedals"], 3], "#FF7777",
+                ["==", ["feature-state", "colorMedals"], 4], "#c6e6ff",
+                ["==", ["feature-state", "colorMedals"], 5], "#60aafc",
+                ["==", ["feature-state", "colorMedals"], 6], "#0048ff",
                 "#e9e9e9"
             ],
-            'fill-opacity': 0.75
+            'fill-opacity': 1
         }
     });
 
@@ -770,16 +783,27 @@ map.on('load', () => {
             dataArray.push(data.data[i].country)
         }
 
+        let srcCapitalsArray = []
+        for (let i = 0; i < srcCapitals.length; i++) {
+            srcCapitalsArray.push(getCountryISO3(srcCapitals[i].properties.ISO))
+        }
+
+        console.log(srcCapitalsArray)
+
         let countriesMedals
+        let colorMedals = 0
         let circleRadius = 0
 
         for (let i = 0; i < src.length; i++) {
 
             let indexOfFeature = dataArray.findIndex(index => index === src[i].properties.ISO_A3)
 
+            let indexOfFeatureCapitals = srcCapitalsArray.findIndex(index => index === src[i].properties.ISO_A3)
+
             if (indexOfFeature === -1) {
 
                 countriesMedals = 0
+                circleRadius = 0
 
             } else {
 
@@ -787,108 +811,120 @@ map.on('load', () => {
 
             }
 
+            if (!firstWrapperMedalsVerification && !secondWrapperMedalsVerification && !thirdWrapperMedalsVerification) {
 
-            if (seasonsWrapperVerif) {
-
-                if (!firstWrapperMedalsVerification && !secondWrapperMedalsVerification && !thirdWrapperMedalsVerification) {
-
-                    circleRadius = 0
-
-                } else {
-
-                    if (countriesMedals > 0 && countriesMedals < 30) {
-
-                        if (firstWrapperMedalsVerification) {
-
-                            if (seasonsWrapperVerif) {
-
-                                if (medalsBigWrapper.classList.contains('active')) {
-
-                                    circleRadius = 1
-
-                                } else {
-
-                                    circleRadius = 4
-
-                                }
-
-                            } else {
-
-                                circleRadius = 1
-                            }
-
-                        }
-
-                    } else if (countriesMedals >= 30 && countriesMedals < 100) {
-
-                        if (secondWrapperMedalsVerification) {
-
-                            if (seasonsWrapperVerif) {
-
-                                if (medalsBigWrapper.classList.contains('active')) {
-
-                                    circleRadius = 2
-
-                                } else {
-
-                                    circleRadius = 5
-
-                                }
-
-                            } else {
-
-                                circleRadius = 2
-                            }
-
-                        }
-
-                    } else if (countriesMedals >= 100) {
-
-                        if (thirdWrapperMedalsVerification) {
-
-                            if (seasonsWrapperVerif) {
-
-                                if (medalsBigWrapper.classList.contains('active')) {
-
-                                    circleRadius = 3
-
-                                } else {
-
-                                    circleRadius = 6
-
-                                }
-
-                            } else {
-
-                                circleRadius = 3
-                            }
-
-                        }
-
-                    } else {
-
-                        circleRadius = 0
-
-                    }
-
-                }
+                colorMedals = 0
+                circleRadius = 0
 
             } else {
 
+                if (countriesMedals > 0 && countriesMedals < 0.5000) {
+
+                    if (firstWrapperMedalsVerification) {
+
+                        if (seasonsWrapperVerif) {
+
+                            if (medalsBigWrapper.classList.contains('active')) {
+
+                                colorMedals = 1
+                                circleRadius = 1
+
+                            } else {
+
+                                colorMedals = 4
+
+                            }
+
+                        } else {
+
+                            colorMedals = 1
+                            circleRadius = 1
+                        }
+
+                    }
+
+                } else if (countriesMedals >= 0.5000 && countriesMedals < 1.0000) {
+
+                    if (secondWrapperMedalsVerification) {
+
+                        if (seasonsWrapperVerif) {
+
+                            if (medalsBigWrapper.classList.contains('active')) {
+
+                                colorMedals = 2
+                                circleRadius = 2
+
+                            } else {
+
+                                colorMedals = 5
+
+                            }
+
+                        } else {
+
+                            colorMedals = 2
+                            circleRadius = 2
+                        }
+
+                    }
+
+                } else if (countriesMedals >= 1.0000) {
+
+                    if (thirdWrapperMedalsVerification) {
+
+                        if (seasonsWrapperVerif) {
+
+                            if (medalsBigWrapper.classList.contains('active')) {
+
+                                colorMedals = 3
+                                circleRadius = 3
+
+                            } else {
+
+                                colorMedals = 6
+
+                            }
+
+                        } else {
+
+                            colorMedals = 3
+                            circleRadius = 3
+                        }
+
+                    }
+
+                } else {
+
+                    colorMedals = 0
+                    circleRadius = 0
+
+                }
 
             }
 
+            if (seasonsWrapperVerif) {
+                circleRadius = 0
+            } else {
+                colorMedals = 0
+            }
 
             map.setFeatureState(
                 {
                     source: 'countries',
                     id: i
                 },
-                { circleRadius: circleRadius },
+                {colorMedals: colorMedals},
             );
 
-            circleRadius = null
+            map.setFeatureState(
+                {
+                    source: 'capitals',
+                    id: indexOfFeatureCapitals
+                },
+                {circleRadius: circleRadius},
+            );
 
+            colorMedals = null
 
         }
 
@@ -898,9 +934,47 @@ map.on('load', () => {
         medalsCountries().then()
     }
 
+    map.setPaintProperty(
+        'countriesMedals',
+        'fill-opacity',
+        0,
+    )
+
     ///////////////////////////////////////////// COUNTRIES MEDALS CIRCLE /////////////////////////////////////////////////////
 
-
+    map.addLayer({
+        'id': 'countriesMedalsCircle',
+        'type': 'circle',
+        'source': 'capitals',
+        'paint': {
+            'circle-radius': [
+                "case",
+                ["==", ["feature-state", "circleRadius"], 0], 0,
+                ["==", ["feature-state", "circleRadius"], 1], 10,
+                ["==", ["feature-state", "circleRadius"], 2], 20,
+                ["==", ["feature-state", "circleRadius"], 3], 30,
+                0
+            ],
+            'circle-opacity': 0.65,
+            'circle-color': [
+                "case",
+                ["==", ["feature-state", "circleRadius"], 0], "#e9e9e9",
+                ["==", ["feature-state", "circleRadius"], 1], "#F36B79",
+                ["==", ["feature-state", "circleRadius"], 2], "#F36B79",
+                ["==", ["feature-state", "circleRadius"], 3], "#F36B79",
+                "#e9e9e9"
+            ],
+            "circle-stroke-width": [
+                "case",
+                ["==", ["feature-state", "circleRadius"], 0], 0,
+                ["==", ["feature-state", "circleRadius"], 1], 2,
+                ["==", ["feature-state", "circleRadius"], 2], 2,
+                ["==", ["feature-state", "circleRadius"], 3], 2,
+                0
+            ],
+            "circle-stroke-color": "#FE414D"
+        }
+    });
 
     ///////////////////////////////////////////////// COUNTRY //////////////////////////////////////////////////////////
 
