@@ -2,8 +2,7 @@ import axios from "axios"
 const slider = document.getElementById("slider-third-graph")
 const svgContainer = document.getElementById("third-graph")
 
-
-const width = 800
+const width = (window.innerWidth <= 1475) ? 700 : 800
 const height = 400
 const colors = {
     Asia: '#B4D6FF',
