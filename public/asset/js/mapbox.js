@@ -691,7 +691,7 @@ map.on('load', () => {
                 ["==", ["feature-state", "colorCountries"], 3], "#7C9FFF",
                 "#e9e9e9"
             ],
-            'fill-opacity': 0.75
+            'fill-opacity': 1
         }
     });
 
@@ -710,14 +710,16 @@ map.on('load', () => {
 
             countriesGpd = data.data[i].gpdByPopulation
 
-            if (countriesGpd >= 0 && countriesGpd < 10000) {
+            console.log(countriesGpd)
+
+            if (countriesGpd >= 0 && countriesGpd < 2500) {
 
                 if (firstWrapperGpdVerification) {
 
                     color = 1
                 }
 
-            } else if (countriesGpd >= 10000 && countriesGpd < 25000) {
+            } else if (countriesGpd >= 2500 && countriesGpd < 15000) {
 
                 if (secondWrapperGpdVerification) {
 
@@ -982,6 +984,8 @@ map.on('load', () => {
 
     map.on('click', 'countriesHover', (e) => {
         countryRealName = Object.values(e.features[0].properties)[1]
+
+        console.log(e.features[0])
 
         let bbox = turf.extent(e.features[0])
 
