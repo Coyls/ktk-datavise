@@ -386,7 +386,7 @@ body {
 
 #map {
   position: relative;
-  height: 1078px;
+  height: 1065px;
   width: 100vw;
   background: rgb(193, 214, 245);
 
@@ -421,7 +421,7 @@ body {
       left: 0;
       height: 100%;
       width: 625px;
-      background: #f9fbfe99;
+      background: rgba(249, 251, 254, 0.8);
 
       @media screen and (max-width: 1450px) {
         padding-left: 50px;
@@ -1151,6 +1151,27 @@ body {
   .mapboxgl-ctrl-bottom-right {
     display: none !important;
   }
+
+  .mapboxgl-ctrl-group button {
+    height: 50px !important;
+    width: 50px !important;
+
+    @media screen and (max-width: 1450px) {
+      height: 37.5px !important;
+      width: 37.5px !important;
+    }
+
+  }
+
+  .mapboxgl-ctrl-top-right .mapboxgl-ctrl {
+    margin: 20px 20px 0 0 !important;
+
+    @media screen and (max-width: 1450px) {
+      margin: 15px 15px 0 0 !important;
+    }
+
+  }
+
 }
 
 #knowledge {
