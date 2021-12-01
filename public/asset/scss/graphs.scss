@@ -1,5 +1,6 @@
 $inputColor: #7c9fff;
 $widthSlider: 90%;
+$widthSlider1400: 80%;
 
 * {
     font-family: "Poppins", sans-serif;
@@ -10,6 +11,7 @@ $widthSlider: 90%;
     margin-top: 6rem;
     width: 100%;
     text-align: center;
+    font-weight: 600;
 
     .date {
         color: $inputColor;
@@ -24,6 +26,9 @@ $widthSlider: 90%;
             flex-direction: row;
             justify-content: space-between;
             width: $widthSlider;
+            @media screen and (max-width: 1450px) {
+                width: $widthSlider1400;
+            }
             margin: 0 auto;
 
             h4 {
@@ -36,6 +41,9 @@ $widthSlider: 90%;
             height: 25px;
             -webkit-appearance: none;
             width: $widthSlider;
+            @media screen and (max-width: 1450px) {
+                width: $widthSlider1400;
+            }
             background: transparent;
         }
 
@@ -127,6 +135,11 @@ $widthSlider: 90%;
     padding: 92px 155px 170px;
     background: #ffffff;
 
+    @media screen and (max-width: 1450px) {
+        padding-left: 45px;
+        padding-right: 45px;
+    }
+
     h2 {
         position: relative;
         margin-bottom: 102px;
@@ -177,6 +190,12 @@ $widthSlider: 90%;
                 font-weight: 500;
                 color: #33343b;
                 line-height: 2.25rem;
+
+                @media screen and (max-width: 1450px) {
+                    font-size: 20px;
+                    padding: 0 50px;
+                    width: auto;
+                }
             }
         }
     }

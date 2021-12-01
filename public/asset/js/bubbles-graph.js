@@ -2,8 +2,7 @@ import axios from "axios"
 const slider = document.getElementById("slider-third-graph")
 const svgContainer = document.getElementById("third-graph")
 
-
-const width = 800
+const width = (window.innerWidth <= 1475) ? 700 : 800
 const height = 400
 const colors = {
     Asia: '#B4D6FF',
@@ -12,6 +11,14 @@ const colors = {
     Oceania: '#FD4C4C',
     Europe: '#7C9FFF',
 };
+
+const continentName = {
+    Asia: 'Asie',
+    Americas: 'Amerique',
+    Africa: 'Afrique',
+    Oceania: 'Oceanie',
+    Europe: 'Europe',
+}
 
 const generateSecondGraph = data => {
 
@@ -64,13 +71,13 @@ const generateSecondGraph = data => {
 
     node.append('text')
         .attr('dy', 8)
-        .text(d => d.data.continent.substring(0, d.r / 3))
+        .text(d => continentName[d.data.continent])
         .attr("text-anchor", "middle")
         .attr("font-family", "Poppins")
         .style('fill', d => colors[d.data.continent])
 
     node.append('title')
-        .text(d => d.data.continent + ' : ' + d.data.nbAthlete)
+        .text(d => continentName[d.data.continent] + ' : ' + d.data.nbAthlete)
 
     svg.append("text")
         .data(root.children)

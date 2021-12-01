@@ -1,7 +1,7 @@
 import axios from "axios"
 // set the dimensions and margins of the graph
 let margin = { top: 50, right: 110, bottom: 30, left: 70 }
-let width = 800 - margin.left - margin.right
+let width = (window.innerWidth <= 1475) ? 700 - margin.left - margin.right : 800 - margin.left - margin.right
 let height = 400 - margin.top - margin.bottom
 
 const colors = {
