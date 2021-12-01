@@ -2,7 +2,7 @@ import countries from '../json/countries.json'
 import capitals from '../json/capitals.json'
 import axios from "axios"
 
-// const getCountryISO3 = require("country-iso-2-to-3");
+const getCountryISO3 = require("country-iso-2-to-3");
 
 mapboxgl.accessToken = 'pk.eyJ1Ijoibm9vb29vb29vb29vb29vb2UiLCJhIjoiY2t2aTN0OXFtMGZvYzJvbjBlYmNhcnJlbiJ9.7d0EuZjxcvKMFEuyVoEAnw'
 
