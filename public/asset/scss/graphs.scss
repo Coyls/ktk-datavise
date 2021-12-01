@@ -1,5 +1,10 @@
 $inputColor: #7c9fff;
 $widthSlider: 90%;
+$widthSlider1400: 80%;
+
+* {
+    font-family: "Poppins", sans-serif;
+}
 
 .input-wrapper {
     position: relative;
@@ -20,6 +25,9 @@ $widthSlider: 90%;
             flex-direction: row;
             justify-content: space-between;
             width: $widthSlider;
+            @media screen and (max-width: 1450px) {
+                width: $widthSlider1400;
+            }
             margin: 0 auto;
 
             h4 {
@@ -32,6 +40,9 @@ $widthSlider: 90%;
             height: 25px;
             -webkit-appearance: none;
             width: $widthSlider;
+            @media screen and (max-width: 1450px) {
+                width: $widthSlider1400;
+            }
             background: transparent;
         }
 
@@ -123,6 +134,11 @@ $widthSlider: 90%;
     padding: 92px 155px 170px;
     background: #ffffff;
 
+    @media screen and (max-width: 1450px) {
+        padding-left: 45px;
+        padding-right: 45px;
+    }
+
     h2 {
         position: relative;
         margin-bottom: 102px;
@@ -140,6 +156,7 @@ $widthSlider: 90%;
         height: 460px;
         display: flex;
         flex-direction: row;
+        justify-content: space-between;
 
         .graph {
             position: relative;
@@ -149,6 +166,11 @@ $widthSlider: 90%;
             background: #f9fbfe;
             box-shadow: 1.8px 1.8px 3.7px rgba(0, 0, 0, 0.025), 6px 6px 15.9px rgba(0, 0, 0, 0.04),
                 27px 27px 68px rgba(0, 0, 0, 0.07);
+
+            svg {
+                position: relative;
+                margin: 30px auto;
+            }
         }
 
         .text-wrapper {
@@ -161,51 +183,68 @@ $widthSlider: 90%;
 
             p {
                 position: relative;
-                margin: 0 92.5px;
                 width: 635px;
-                font-family: Poppins, serif;
+                font-family: "Poppins", serif;
                 font-size: 24px;
                 font-weight: 500;
                 color: #33343b;
-            }
+                line-height: 2.25rem;
 
-            .graph {
-                position: relative;
-                height: 100%;
-                width: auto;
-                border-radius: 25px;
-                background: #f9fbfe;
-                box-shadow: 0 8px 32px 0 rgba(71, 72, 104, 0.2);
-
-                svg {
-                    position: relative;
-                    margin: 30px auto;
-                }
-            }
-
-            .text-wrapper {
-                position: relative;
-                height: 100%;
-                width: 50%;
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                align-items: center;
-
-                p {
-                    position: relative;
-                    width: $widthSlider;
-                    font-family: Poppins, serif;
-                    font-size: 24px;
-                    font-weight: 500;
-                    color: #33343b;
+                @media screen and (max-width: 1450px) {
+                    font-size: 20px;
+                    padding: 0 50px;
+                    width: auto;
                 }
             }
         }
     }
 
-    .first-wrapper,
     .second-wrapper {
-        margin-bottom: 102px;
+        padding: 50px 177px;
+        margin: 100px -177px;
+        background-color: #f9fbfe;
+
+        svg {
+            margin-right: 30px;
+            margin-left: 30px;
+        }
+    }
+}
+
+.legend {
+    margin-top: 2rem;
+    .legend-line {
+        text-align: left;
+        display: flex;
+        flex-direction: row;
+        height: auto;
+        margin: 0 auto;
+
+        span {
+            position: relative;
+            margin: auto 0;
+        }
+
+        .case-color {
+            width: 40px;
+            height: 1rem;
+            margin: 0.75rem 0.5rem;
+
+            &#asia {
+                background-color: #b4d6ff;
+            }
+            &#amerique {
+                background-color: #f92b49;
+            }
+            &#afrique {
+                background-color: #d3dce5;
+            }
+            &#oceanie {
+                background-color: #fd4c4c;
+            }
+            &#europe {
+                background-color: #7c9fff;
+            }
+        }
     }
 }

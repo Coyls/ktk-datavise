@@ -1,7 +1,7 @@
 import axios from "axios"
 // set the dimensions and margins of the graph
-let margin = { top: 10, right: 30, bottom: 30, left: 60 }
-let width = 800 - margin.left - margin.right
+let margin = { top: 50, right: 110, bottom: 30, left: 70 }
+let width = (window.innerWidth <= 1475) ? 700 - margin.left - margin.right : 800 - margin.left - margin.right
 let height = 400 - margin.top - margin.bottom
 
 const colors = {
@@ -55,6 +55,26 @@ const generateLineChart = (data) => {
         .attr("transform", "translate(0," + height + ")")
         .call(xAxis);
 
+    svg.append("text")
+        .attr("text-anchor", "end")
+        .attr("y", -35)
+        .attr("x", 12)
+        .text("PIB")
+        .attr("font-size", "16")
+        .attr("font-family", "Poppins")
+        .attr("font-weight", "600")
+        .style('fill', "#7C9FFF")
+
+    svg.append("text")
+        .attr("text-anchor", "end")
+        .attr("y", -15)
+        .attr("x", 48)
+        .text("(en Trillion d'€)")
+        .attr("font-size", "12")
+        .attr("font-family", "Poppins")
+        .attr("font-weight", "600")
+        .style('fill', "#7C9FFF")
+
     // Add Y axis
     let y = d3.scaleLinear()
         .domain([0, 40000000000000])
@@ -68,6 +88,16 @@ const generateLineChart = (data) => {
 
     svg.append("g")
         .call(yAxis);
+
+    svg.append("text")
+        .attr("text-anchor", "middle")
+        .attr("y", height + 5)
+        .attr("x", width + margin.right / 2 - 10)
+        .text("Années")
+        .attr("font-size", "14")
+        .attr("font-family", "Poppins")
+        .attr("font-weight", "600")
+        .style('fill', "#7C9FFF")
 
 
     styleAxis(svg)
