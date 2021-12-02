@@ -89,7 +89,7 @@ const generateFirstGraph = (data) => {
         .attr("text-anchor", "middle")
         .attr("y", height)
         .attr("x", width + margin.right / 2 - 10)
-        .text("Budjet en")
+        .text("Budget en")
         .attr("font-size", "14")
         .attr("font-family", "Poppins")
         .attr("font-weight", "600")
