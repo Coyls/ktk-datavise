@@ -7,6 +7,7 @@
         content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="./asset/scss/style.scss">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="icon" type="image/png" href="asset/img/favicon.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,10 +18,6 @@
 </head>
 
 <body>
-
-    <section id="loading">
-        <h1>Chargement</h1>
-    </section>
 
     <section id="introduction">
 
@@ -51,10 +48,10 @@
 
     <section id="study">
 
-        <h2>Vous connaissez l’évènement sportif le plus suivi au monde ?</h2>
+        <h2 data-aos="zoom-in">Vous connaissez l’évènement sportif le plus suivi au monde ?</h2>
 
 
-        <div class="wrapper">
+        <div class="wrapper" data-aos="zoom-in" data-aos-delay="600">
 
             <p class="first-paragraph"><span>Ce sont les Jeux Olympiques</span>, cette compétition qui n’a cessé
                 d’évoluer
@@ -78,7 +75,7 @@
 
         <div class="curveImage"></div>
 
-        <div class="wrapper">
+        <div class="wrapper" data-aos="fade-up">
             <div class="invisible-container-left invisible-container">
                 <div class="left-wrapper">
                     <img src="asset/img/pib.png" class="image" alt="image">
@@ -157,23 +154,23 @@
 
 
                     <div class="pibLegendWrapper">
-                        <p>PIB par habitants en dollars</p>
+                        <p>PIB par habitant en milliers de dollars</p>
 
                         <div class="pib-global-wrapper">
 
                             <div class="first-wrapper">
                                 <span class="first-span"></span>
-                                <h5>0 - 2.5K</h5>
+                                <h5>0 - 2.5</h5>
                             </div>
 
                             <div class="second-wrapper">
                                 <span class="second-span"></span>
-                                <h5>2.5K - 15K</h5>
+                                <h5>2.5 - 15</h5>
                             </div>
 
                             <div class="third-wrapper">
                                 <span class="third-span"></span>
-                                <h5>15K ou +</h5>
+                                <h5>15 ou +</h5>
                             </div>
 
                         </div>
@@ -269,10 +266,10 @@
     </section>
 
     <section id="stats">
-        <p id="title-stats">Quelques Graphiques</p>
+        <p id="title-stats" data-aos="zoom-in">Quelques Graphiques</p>
 
 
-        <div class="first-wrapper wrapper">
+        <div class="first-wrapper wrapper" data-aos="fade-right" data-aos-delay="600">
             <div class="first-graph graph" id="first-graph">
 
             </div>
@@ -304,7 +301,7 @@
             </div>
         </div>
 
-        <div class="second-wrapper wrapper">
+        <div class="second-wrapper wrapper" data-aos="fade-right">
             <div class="text-wrapper">
                 <p>Evolution dans le temps du PIB des continents, en Trillion d’euro.</p>
 
@@ -343,7 +340,7 @@
             </div>
         </div>
 
-        <div class="third-wrapper wrapper">
+        <div class="third-wrapper wrapper" data-aos="fade-right">
             <div class="third-graph graph" id="third-graph"></div>
             <div class="text-wrapper">
                 <p>Nombres d’athlètes qualifiés au Jeux Olympiques par continents et par années.</p>
@@ -383,7 +380,7 @@
         <p>Anecdotes, chiffres, classements… Vous allez pouvoir impressionner vos camarades sur votre culture des Jeux
             Olympiques !</p>
 
-        <div class="wrapper">
+        <div class="wrapper" data-aos="fade-up" data-aos-duration="1500">
 
             <div class="swiper-wrapper">
 
@@ -492,7 +489,7 @@
             <div class="right-wrapper">
 
                 <a href="#">
-                    <button>Rejoignez KTK</button>
+                    <button data-aos="zoom-in">Rejoignez KTK</button>
                 </a>
 
             </div>
@@ -532,6 +529,7 @@
 
     </section>
 
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="asset/js/main.js"></script>
     <script src="https://d3js.org/d3.v4.js"></script>
     <script src='https://api.mapbox.com/mapbox-gl-js/v2.5.1/mapbox-gl.js'></script>

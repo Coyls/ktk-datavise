@@ -25,14 +25,6 @@ map.addControl(new mapboxgl.NavigationControl());
 
 let hoveredStateId = null;
 
-const body = document.querySelector("body");
-body.style.position = "fixed"
-
-window.addEventListener('load', (e) => {
-    body.style.position = "relative"
-    document.getElementById('loading').remove()
-});
-
 map.on('load', () => {
     map.addSource('countries', {
         type: 'geojson',
@@ -455,8 +447,8 @@ map.on('load', () => {
                 1,
             )
 
-            inputWrapper.setAttribute("value", "1990")
-            inputWrapper.setAttribute("step", "4")
+            slider.setAttribute("value", "1994")
+            slider.setAttribute("step", "4")
             setDate(slider, realDate)
 
         } else {
@@ -490,10 +482,10 @@ map.on('load', () => {
                 0,
             )
 
-            inputWrapper.max = 2020
-            inputWrapper.value = 1990
+            slider.max = 2020
+            slider.value = 1992
             setDate(slider, realDate)
-            inputWrapper.step = 2
+            slider.step = 2
 
         }
 
@@ -752,7 +744,7 @@ map.on('load', () => {
                 ["==", ["feature-state", "colorMedals"], 3], "#FF7777",
                 ["==", ["feature-state", "colorMedals"], 4], "#c6e6ff",
                 ["==", ["feature-state", "colorMedals"], 5], "#60aafc",
-                ["==", ["feature-state", "colorMedals"], 6], "#0048ff",
+                ["==", ["feature-state", "colorMedals"], 6], "#2763fc",
                 "#EAEAEA"
             ],
             'fill-opacity': 1
