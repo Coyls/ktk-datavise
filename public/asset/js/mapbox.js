@@ -51,18 +51,6 @@ map.on('load', () => {
 
     const srcCapitals = map.getSource('capitals')._data.features
 
-    // Border
-    map.addLayer({
-        'id': 'countries',
-        'type': 'line',
-        'source': 'countries',
-        'layout': {},
-        'paint': {
-            'line-color': '#F9FBFE',
-            'line-width': 1
-        }
-    });
-
     ///////////////////////////////////////////// COUNTRIES HOVER //////////////////////////////////////////////////////
 
     map.addLayer({
@@ -85,14 +73,14 @@ map.on('load', () => {
         if (e.features.length > 0) {
             if (hoveredStateId !== null) {
                 map.setFeatureState(
-                    { source: 'countries', id: hoveredStateId },
-                    { hover: false }
+                    {source: 'countries', id: hoveredStateId},
+                    {hover: false}
                 );
             }
             hoveredStateId = e.features[0].id;
             map.setFeatureState(
-                { source: 'countries', id: hoveredStateId },
-                { hover: true }
+                {source: 'countries', id: hoveredStateId},
+                {hover: true}
             );
         }
     });
@@ -100,8 +88,8 @@ map.on('load', () => {
     map.on('mouseleave', 'countriesHover', () => {
         if (hoveredStateId !== null) {
             map.setFeatureState(
-                { source: 'countries', id: hoveredStateId },
-                { hover: false }
+                {source: 'countries', id: hoveredStateId},
+                {hover: false}
             );
         }
         hoveredStateId = null;
@@ -736,7 +724,7 @@ map.on('load', () => {
                     source: 'countries',
                     id: indexOfFeatures
                 },
-                { colorCountries: color },
+                {colorCountries: color},
             );
 
             color = null
@@ -936,7 +924,7 @@ map.on('load', () => {
         0,
     )
 
-    ///////////////////////////////////////////// COUNTRIES MEDALS CIRCLE /////////////////////////////////////////////////////
+    ///////////////////////////////////////////// COUNTRIES MEDALS CIRCLE //////////////////////////////////////////////
 
     map.addLayer({
         'id': 'countriesMedalsCircle',
@@ -983,7 +971,7 @@ map.on('load', () => {
 
         function center() {
             map.fitBounds(bbox, {
-                padding: { top: 100, bottom: 100, left: 650, right: 0 },
+                padding: {top: 100, bottom: 100, left: 650, right: 0},
                 maxZoom: 3,
                 linear: true,
                 duration: 1000,
@@ -993,8 +981,70 @@ map.on('load', () => {
 
         center()
 
-        console.log(e.features[0])
+        async function getInfoOfCountries() {
 
+            let countryName = e.features[0].properties.ADMIN
+            let countryIso = e.features[0].properties.ISO_A3
+
+            if (countryIso !== "-99") {
+
+                const dataMedals = await axios.get(process.env.VPS + '/medals?year=' + slider.value)
+                const dataPib = await axios.get(process.env.VPS + '/gpd-by-population/?year=' + slider.value)
+
+                let dataMedalsArray = []
+                let dataPibArray = []
+
+                for (let i = 0; i < dataMedals.data.length; i++) {
+                    dataMedalsArray.push(dataMedals.data[i].country)
+                }
+
+                for (let i = 0; i < dataPib.data.length; i++) {
+                    dataPibArray.push(dataPib.data[i].country)
+                }
+
+                let indexOfMedals = dataMedalsArray.findIndex(index => index === countryIso)
+                let indexOfPib = dataPibArray.findIndex(index => index === countryIso)
+
+                let countryMedals
+                let countryPib
+
+                if (indexOfMedals !== -1) {
+                    countryMedals = dataMedals.data[indexOfMedals].total
+                } else {
+                    countryMedals = 0
+                }
+
+                if (indexOfPib !== -1) {
+                    countryPib = dataPib.data[indexOfPib].gpdByPopulation
+                } else {
+                    countryPib = 0
+                }
+
+                console.log(countryName, countryMedals, countryPib)
+
+            } else {
+                console.log("no iso")
+            }
+
+
+        }
+
+        getInfoOfCountries().then()
+
+
+    });
+
+    // Border
+    map.addLayer({
+        'id': 'countries',
+        'type': 'line',
+        'source': 'countries',
+        'layout': {},
+        'paint': {
+            'line-color': '#F9FBFE',
+            'line-width': 1,
+            'line-opacity': 0.3
+        }
     });
 
 });
