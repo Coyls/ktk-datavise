@@ -186,30 +186,18 @@ body {
 
   h2 {
     position: relative;
+    width: 1170px;
     margin: 68px auto 0;
     font-family: Poppins, serif;
     font-size: 60px;
     font-weight: 500;
     color: #7c9fff;
+    text-align: center;
 
     @media screen and (max-width: 1450px) {
+      width: 957px;
       margin: 55px auto 0;
       font-size: 50px;
-    }
-  }
-
-  h4 {
-    position: relative;
-    margin: 11px auto 0;
-    text-align: center;
-    font-family: Poppins, serif;
-    font-size: 28px;
-    font-weight: 500;
-    color: #33343b;
-
-    @media screen and (max-width: 1450px) {
-      margin: 24px auto 0;
-      font-size: 28px;
     }
   }
 
@@ -229,11 +217,17 @@ body {
       font-family: Poppins, serif;
       font-size: 20px;
       font-weight: 400;
-      color: #33343b;
+      color: #8E8E8E;
 
       @media screen and (max-width: 1450px) {
         font-size: 15px;
+        width: 824px;
       }
+
+    }
+
+    span {
+      color: #42476F;
     }
 
     .first-paragraph {
@@ -248,14 +242,16 @@ body {
       font-family: Poppins, serif;
       font-size: 21px;
       font-weight: 500;
-      color: #9dc2ff;
+      color: #000000;
 
       @media screen and (max-width: 1450px) {
         margin: 37px auto;
         font-size: 18px;
       }
+
     }
   }
+
 }
 
 #definition {
