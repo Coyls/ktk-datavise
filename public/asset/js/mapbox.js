@@ -48,10 +48,8 @@ map.on('load', () => {
 
     // Get the source
     const src = map.getSource('countries')._data.features
-    console.log(src)
 
     const srcCapitals = map.getSource('capitals')._data.features
-    console.log(srcCapitals)
 
     // Border
     map.addLayer({
@@ -553,9 +551,9 @@ map.on('load', () => {
                 medalsBigWrapper.classList.add("activeSeason")
                 pibBigWrapper.classList.remove("activeSeason")
 
-                firstWrapperGpdSpan.style.backgroundColor = "#ffafa8"
-                secondWrapperGpdSpan.style.backgroundColor = "#ff5753"
-                thirdWrapperGpdSpan.style.backgroundColor = "#ff0a00"
+                firstWrapperGpdSpan.style.backgroundColor = "#FBB4B4"
+                secondWrapperGpdSpan.style.backgroundColor = "#FD9B9B"
+                thirdWrapperGpdSpan.style.backgroundColor = "#FF7777"
 
                 pibBigWrapper.classList.remove('active')
                 medalsBigWrapper.classList.add('active')
@@ -652,9 +650,9 @@ map.on('load', () => {
                 firstWrapperMedalsVerification = firstWrapperGpd.classList.contains('active')
                 firstWrapperGpd.style.border = "3px solid #FD4C4C"
 
-                firstWrapperGpdSpan.style.backgroundColor = "#ffafa8"
-                secondWrapperGpdSpan.style.backgroundColor = "#ff5753"
-                thirdWrapperGpdSpan.style.backgroundColor = "#ff0a00"
+                firstWrapperGpdSpan.style.backgroundColor = "#FBB4B4"
+                secondWrapperGpdSpan.style.backgroundColor = "#FD9B9B"
+                thirdWrapperGpdSpan.style.backgroundColor = "#FF7777"
 
                 medalsBigWrapper.classList.add("activeSeason")
                 pibBigWrapper.classList.remove("activeSeason")
@@ -685,11 +683,11 @@ map.on('load', () => {
         'paint': {
             'fill-color': [
                 "case",
-                ["==", ["feature-state", "colorCountries"], 0], "#e9e9e9",
+                ["==", ["feature-state", "colorCountries"], 0], "#EAEAEA",
                 ["==", ["feature-state", "colorCountries"], 1], "#B4D6FF",
                 ["==", ["feature-state", "colorCountries"], 2], "#9DC2FF",
                 ["==", ["feature-state", "colorCountries"], 3], "#7C9FFF",
-                "#e9e9e9"
+                "#EAEAEA"
             ],
             'fill-opacity': 1
         }
@@ -709,8 +707,6 @@ map.on('load', () => {
             }).indexOf(data.data[i].country);
 
             countriesGpd = data.data[i].gpdByPopulation
-
-            console.log(countriesGpd)
 
             if (countriesGpd >= 0 && countriesGpd < 2500) {
 
@@ -762,14 +758,14 @@ map.on('load', () => {
         'paint': {
             'fill-color': [
                 "case",
-                ["==", ["feature-state", "colorMedals"], 0], "#e9e9e9",
+                ["==", ["feature-state", "colorMedals"], 0], "#EAEAEA",
                 ["==", ["feature-state", "colorMedals"], 1], "#FBB4B4",
                 ["==", ["feature-state", "colorMedals"], 2], "#FD9B9B",
                 ["==", ["feature-state", "colorMedals"], 3], "#FF7777",
                 ["==", ["feature-state", "colorMedals"], 4], "#c6e6ff",
                 ["==", ["feature-state", "colorMedals"], 5], "#60aafc",
                 ["==", ["feature-state", "colorMedals"], 6], "#0048ff",
-                "#e9e9e9"
+                "#EAEAEA"
             ],
             'fill-opacity': 1
         }
@@ -789,8 +785,6 @@ map.on('load', () => {
         for (let i = 0; i < srcCapitals.length; i++) {
             srcCapitalsArray.push(getCountryISO3(srcCapitals[i].properties.ISO))
         }
-
-        console.log(srcCapitalsArray)
 
         let countriesMedals
         let colorMedals = 0
@@ -820,7 +814,7 @@ map.on('load', () => {
 
             } else {
 
-                if (countriesMedals > 0 && countriesMedals < 0.5000) {
+                if (countriesMedals > 0 && countriesMedals < 50) {
 
                     if (firstWrapperMedalsVerification) {
 
@@ -845,7 +839,7 @@ map.on('load', () => {
 
                     }
 
-                } else if (countriesMedals >= 0.5000 && countriesMedals < 1.0000) {
+                } else if (countriesMedals >= 50 && countriesMedals < 100) {
 
                     if (secondWrapperMedalsVerification) {
 
@@ -870,7 +864,7 @@ map.on('load', () => {
 
                     }
 
-                } else if (countriesMedals >= 1.0000) {
+                } else if (countriesMedals >= 100) {
 
                     if (thirdWrapperMedalsVerification) {
 
@@ -960,11 +954,11 @@ map.on('load', () => {
             'circle-opacity': 0.65,
             'circle-color': [
                 "case",
-                ["==", ["feature-state", "circleRadius"], 0], "#e9e9e9",
+                ["==", ["feature-state", "circleRadius"], 0], "#EAEAEA",
                 ["==", ["feature-state", "circleRadius"], 1], "#F36B79",
                 ["==", ["feature-state", "circleRadius"], 2], "#F36B79",
                 ["==", ["feature-state", "circleRadius"], 3], "#F36B79",
-                "#e9e9e9"
+                "#EAEAEA"
             ],
             "circle-stroke-width": [
                 "case",
@@ -985,8 +979,6 @@ map.on('load', () => {
     map.on('click', 'countriesHover', (e) => {
         countryRealName = Object.values(e.features[0].properties)[1]
 
-        console.log(e.features[0])
-
         let bbox = turf.extent(e.features[0])
 
         function center() {
@@ -1000,6 +992,8 @@ map.on('load', () => {
         }
 
         center()
+
+        console.log(e.features[0])
 
     });
 
