@@ -288,6 +288,11 @@ body {
       width: 360px;
       height: 440px;
 
+      @media screen and (max-width: 1450px) {
+        width: 280px;
+        height: 360px;
+      }
+
       .middle-wrapper {
         transform: translateY(-134px);
 
