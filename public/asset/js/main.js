@@ -2,28 +2,44 @@
 
 const leftDefinition = document.querySelector('#definition .wrapper .left-wrapper')
 const middleDefinition = document.querySelector('#definition .wrapper .middle-wrapper')
-const rightDefinition = document.querySelector('#definition .wrapper .middle-wrapper')
+const rightDefinition = document.querySelector('#definition .wrapper .right-wrapper')
 
-leftDefinition.addEventListener('mouseover', function () {
-    leftDefinition.querySelector('h4').innerHTML = 'Produit intérieur brut'
+
+const invisibleContainerLeft = document.querySelector('.invisible-container-left')
+const invisibleContainerMiddle = document.querySelector('.invisible-container-middle')
+const invisibleContainerRight = document.querySelector('.invisible-container-right')
+
+const rotateCard = (item) => {
+    item.classList.toggle("isHover")
+
+}
+
+
+
+invisibleContainerLeft.addEventListener("mouseover", (e) => {
+    rotateCard(leftDefinition)
+})
+invisibleContainerMiddle.addEventListener("mouseover", (e) => {
+    rotateCard(middleDefinition)
+
+})
+invisibleContainerRight.addEventListener("mouseover", (e) => {
+    rotateCard(rightDefinition)
 })
 
-leftDefinition.addEventListener('mouseleave', function () {
-    leftDefinition.querySelector('h4').innerHTML = 'Le PIB, tu connais ?'
+
+
+
+invisibleContainerLeft.addEventListener("mouseout", (e) => {
+    rotateCard(leftDefinition)
+})
+invisibleContainerMiddle.addEventListener("mouseout", (e) => {
+    rotateCard(middleDefinition)
+
+})
+invisibleContainerRight.addEventListener("mouseout", (e) => {
+    rotateCard(rightDefinition)
 })
 
-middleDefinition.addEventListener('mouseover', function () {
-    middleDefinition.querySelector('h4').innerHTML = 'Un pays en développement, ça veut dire quoi ?'
-})
 
-middleDefinition.addEventListener('mouseleave', function () {
-    middleDefinition.querySelector('h4').innerHTML = 'Pays en développement'
-})
 
-rightDefinition.addEventListener('mouseover', function () {
-    rightDefinition.querySelector('h4').innerHTML = 'Pays développés'
-})
-
-rightDefinition.addEventListener('mouseleave', function () {
-    rightDefinition.querySelector('h4').innerHTML = 'Comment considérer un pays comme développé ?'
-})
