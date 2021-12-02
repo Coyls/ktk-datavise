@@ -444,7 +444,6 @@ body {
           font-size: 34px;
           line-height: 41px;
         }
-
       }
 
       .info-wrapper {
@@ -748,7 +747,6 @@ body {
               position: relative;
               height: 100%;
             }
-
           }
 
           h4 {
@@ -773,7 +771,7 @@ body {
           transition: 0.35s ease-in-out;
 
           .image-wrapper {
-            border: 3px solid #7C9FFF;
+            border: 3px solid #7c9fff;
             background: url("../img/pibMap.png") no-repeat center;
             background-size: cover;
             transition: 0.35s ease-in-out;
@@ -788,7 +786,7 @@ body {
             transition: 0.35s ease-in-out;
 
             .image-wrapper {
-              border: 3px solid #FFFFFF;
+              border: 3px solid #ffffff;
               background: url("../img/pibMapActive.png") no-repeat center;
               background-size: cover;
               transition: 0.35s ease-in-out;
@@ -800,23 +798,19 @@ body {
           }
 
           &.season {
-
             .image-wrapper {
               background: url("../img/winterMap.png") no-repeat center;
               background-size: cover;
               transition: 0.35s ease-in-out;
             }
-
           }
 
           &.activeSeason {
-
             .image-wrapper {
               background: url("../img/winterMapActive.png") no-repeat center;
               background-size: cover;
               transition: 0.35s ease-in-out;
             }
-
           }
 
           h4 {
@@ -830,7 +824,7 @@ body {
           transition: 0.35s ease-in-out;
 
           .image-wrapper {
-            border: 3px solid #FD4C4C;
+            border: 3px solid #fd4c4c;
             background: url("../img/medalsMap.png") no-repeat center;
             background-size: cover;
             transition: 0.35s ease-in-out;
@@ -841,7 +835,7 @@ body {
             transition: 0.35s ease-in-out;
 
             .image-wrapper {
-              border: 3px solid #FFFFFF;
+              border: 3px solid #ffffff;
               background: url("../img/medalsMapActive.png") no-repeat center;
               background-size: cover;
               transition: 0.35s ease-in-out;
@@ -853,23 +847,19 @@ body {
           }
 
           &.season {
-
             .image-wrapper {
               background: url("../img/summerMap.png") no-repeat center;
               background-size: cover;
               transition: 0.35s ease-in-out;
             }
-
           }
 
           &.activeSeason {
-
             .image-wrapper {
               background: url("../img/summerMapActive.png") no-repeat center;
               background-size: cover;
               transition: 0.35s ease-in-out;
             }
-
           }
 
           h4 {
@@ -1160,7 +1150,6 @@ body {
       height: 37.5px !important;
       width: 37.5px !important;
     }
-
   }
 
   .mapboxgl-ctrl-top-right .mapboxgl-ctrl {
@@ -1169,9 +1158,7 @@ body {
     @media screen and (max-width: 1450px) {
       margin: 15px 15px 0 0 !important;
     }
-
   }
-
 }
 
 #knowledge {
