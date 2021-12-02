@@ -94,6 +94,7 @@ const generateSecondGraph = data => {
 
 
 
+
 };
 
 (async () => {

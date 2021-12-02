@@ -4,6 +4,7 @@ let margin = { top: 50, right: 110, bottom: 30, left: 70 }
 let width = (window.innerWidth <= 1475) ? 700 - margin.left - margin.right : 800 - margin.left - margin.right
 let height = 400 - margin.top - margin.bottom
 
+
 const colors = {
     Asia: '#B4D6FF',
     Americas: '#F92B49',
@@ -113,6 +114,7 @@ const generateLineChart = (data) => {
             return colors[d.continent]
         })
         .attr("stroke-width", 5)
+        .style("cursor", "pointer")
         .attr("d", (d) => {
             return d3.line()
                 .curve(d3.curveBasis)
@@ -121,6 +123,46 @@ const generateLineChart = (data) => {
                 })
                 .y((d) => y(+d.gpd))
                 (d.values)
+        })
+        .on('mouseover', function (d) {
+            d3.select(this)
+                .transition()
+                .duration(100)
+                .attr("stroke-width", 10)
+
+            const lg = document.querySelector("." + d.continent)
+            lg.classList.toggle("hover-line")
+
+        })
+        .on('mouseout', function (d) {
+            d3.select(this)
+                .transition()
+                .duration(100)
+                .attr("stroke-width", 5)
+            const lg = document.querySelector("." + d.continent)
+            lg.classList.toggle("hover-line")
+        })
+
+
+    d3.selectAll(".case-color")
+        .on('mouseover', function () {
+            const legend = d3.select(this)["_groups"][0][0]
+            const continentClass = legend.classList[1]
+
+            svg.selectAll("path")
+                .transition()
+                .duration(100)
+                .attr("stroke-width", (d) => {
+                    if (d === null) return 2
+                    return (continentClass === d.continent) ? 10 : 5
+                })
+
+        })
+        .on("mouseout", function () {
+            d3.selectAll("path")
+                .transition()
+                .duration(100)
+                .attr("stroke-width", (d) => (d === null) ? 2 : 5)
         })
 }
 
