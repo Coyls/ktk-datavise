@@ -157,19 +157,19 @@ body {
 
   .scroll-wrapper {
     position: absolute;
-    bottom: 50px;
+    bottom: 78px;
     left: 50%;
     height: 175px;
     width: 54px;
     transform: translate(-50%);
-    background: url("../img/gif_slider.gif") center;
+    background: url("../img/sliderIntro.gif") center;
     background-size: cover;
 
     @media screen and (max-width: 1450px) {
-      bottom: 32px;
-      height: 134px;
-      width: 42px;
-      background: url("../img/introductionScroll1440.png");
+      bottom: 50px;
+      height: 120px;
+      width: 38px;
+      background: url("../img/introductionScroll1440.png") center;
       background-size: cover;
     }
   }
@@ -299,7 +299,7 @@ body {
       transition: transform 0.8s;
       transform-style: preserve-3d;
       box-shadow: 1.8px 1.8px 3.7px rgba(0, 0, 0, 0.025), 6px 6px 15.9px rgba(0, 0, 0, 0.04),
-        27px 27px 68px rgba(0, 0, 0, 0.07);
+      27px 27px 68px rgba(0, 0, 0, 0.07);
 
       &:hover {
         transform: rotateY(180deg);
@@ -408,7 +408,7 @@ body {
       transition: transform 0.8s;
       transform-style: preserve-3d;
       box-shadow: 1.8px 1.8px 3.7px rgba(0, 0, 0, 0.025), 6px 6px 15.9px rgba(0, 0, 0, 0.04),
-        27px 27px 68px rgba(0, 0, 0, 0.07);
+      27px 27px 68px rgba(0, 0, 0, 0.07);
       transform: translateY(-134px);
 
       &:hover {
@@ -489,6 +489,8 @@ body {
   height: 1065px;
   width: 100vw;
   background: rgb(193, 214, 245);
+  display: flex;
+  flex-direction: row;
 
   @media screen and (max-width: 1450px) {
     height: 800px;
@@ -556,7 +558,7 @@ body {
 
         background: rgba(250, 251, 252, 0.3);
         box-shadow: 1.8px 1.8px 3.7px rgba(0, 0, 0, 0.025), 6px 6px 15.9px rgba(0, 0, 0, 0.04),
-          27px 27px 68px rgba(0, 0, 0, 0.07);
+        27px 27px 68px rgba(0, 0, 0, 0.07);
         backdrop-filter: blur(7px);
         -webkit-backdrop-filter: blur(7px);
         border-radius: 20px;
@@ -1192,6 +1194,40 @@ body {
     }
   }
 
+
+  .popUpWrapper {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    .top {
+      position: relative;
+      margin: 0 auto;
+      height: 31px;
+      width: 31px;
+      background-color: #FFFFFF;
+      border-radius: 5px;
+      transform: rotate(45deg);
+    }
+
+    .popUp {
+      position: relative;
+      margin: 0 auto;
+      top: -18px;
+      height: 175px;
+      width: 175px;
+      background-color: #FFFFFF;
+      border-radius: 20px;
+      z-index: 1;
+    }
+
+  }
+
+
   .seasons-wrapper {
     position: absolute;
     top: 50%;
@@ -1297,7 +1333,7 @@ body {
     width: 683px;
     border-radius: 25px;
     box-shadow: 1.8px 1.8px 3.7px rgba(0, 0, 0, 0.025), 6px 6px 15.9px rgba(0, 0, 0, 0.04),
-      27px 27px 68px rgba(0, 0, 0, 0.07);
+    27px 27px 68px rgba(0, 0, 0, 0.07);
 
     @media screen and (max-width: 1024px) {
       width: 600px;

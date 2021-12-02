@@ -970,13 +970,25 @@ map.on('load', () => {
         let bbox = turf.extent(e.features[0])
 
         function center() {
-            map.fitBounds(bbox, {
-                padding: {top: 100, bottom: 100, left: 650, right: 0},
-                maxZoom: 3,
-                linear: true,
-                duration: 1000,
-                pitch: 0
-            })
+
+            if (mapInfoWrapper.classList.contains('active')) {
+                map.fitBounds(bbox, {
+                    padding: {top: 100, bottom: 100, left: 0, right: 0},
+                    maxZoom: 3,
+                    linear: true,
+                    duration: 1000,
+                    pitch: 0
+                })
+            } else {
+                map.fitBounds(bbox, {
+                    padding: {top: 100, bottom: 100, left: 600, right: 0},
+                    maxZoom: 3,
+                    linear: true,
+                    duration: 1000,
+                    pitch: 0
+                })
+            }
+
         }
 
         center()
@@ -1026,11 +1038,9 @@ map.on('load', () => {
                 console.log("no iso")
             }
 
-
         }
 
         getInfoOfCountries().then()
-
 
     });
 
