@@ -1,4 +1,5 @@
 @import "./graphs";
+@import "./animation";
 
 * {
   margin: 0;
@@ -23,7 +24,7 @@ body {
   left: 0;
   height: 100vh;
   width: 100vw;
-  background: #7C9FFF;
+  background: #7c9fff;
   z-index: 10;
   display: flex;
   align-items: center;
@@ -302,13 +303,15 @@ body {
       transition: transform 0.8s;
       transform-style: preserve-3d;
       box-shadow: 1.8px 1.8px 3.7px rgba(0, 0, 0, 0.025), 6px 6px 15.9px rgba(0, 0, 0, 0.04),
-      27px 27px 68px rgba(0, 0, 0, 0.07);
+        27px 27px 68px rgba(0, 0, 0, 0.07);
 
       &:hover {
         transform: rotateY(180deg);
         transition: transform 0.8s;
 
-        .image, h4, p {
+        .image,
+        h4,
+        p {
           transform: rotateY(180deg);
         }
 
@@ -322,7 +325,6 @@ body {
             height: 88px;
             width: 88px;
           }
-
         }
 
         h5 {
@@ -336,9 +338,7 @@ body {
           @media screen and (max-width: 1450px) {
             margin: 10px auto;
           }
-
         }
-
       }
 
       .image {
@@ -373,7 +373,7 @@ body {
         font-family: Poppins, serif;
         font-size: 20px;
         font-weight: 500;
-        color: #9DC2FF;
+        color: #9dc2ff;
         text-align: center;
         display: block;
 
@@ -381,7 +381,6 @@ body {
           margin: 60px auto 40px;
           font-size: 16px;
         }
-
       }
 
       p {
@@ -401,7 +400,6 @@ body {
           font-size: 13px;
         }
       }
-
     }
 
     .middle-wrapper {
@@ -414,14 +412,16 @@ body {
       transition: transform 0.8s;
       transform-style: preserve-3d;
       box-shadow: 1.8px 1.8px 3.7px rgba(0, 0, 0, 0.025), 6px 6px 15.9px rgba(0, 0, 0, 0.04),
-      27px 27px 68px rgba(0, 0, 0, 0.07);
+        27px 27px 68px rgba(0, 0, 0, 0.07);
       transform: translateY(-134px);
 
       &:hover {
         transform: rotateY(180deg) translateY(-134px);
         transition: transform 0.8s;
 
-        .image, h4, p {
+        .image,
+        h4,
+        p {
           transform: rotateY(180deg);
         }
 
@@ -435,7 +435,6 @@ body {
             height: 88px;
             width: 88px;
           }
-
         }
 
         h4 {
@@ -444,7 +443,6 @@ body {
           @media screen and (max-width: 1450px) {
             width: 280px;
           }
-
         }
 
         h5 {
@@ -462,20 +460,17 @@ body {
             width: 228px;
             margin: 10px auto;
           }
-
         }
-
       }
 
       .image {
         margin: 44px auto 52px;
 
-          @media screen and (max-width: 1450px) {
-            margin: 26px 112px;
-            height: 88px;
-            width: 88px;
-          }
-
+        @media screen and (max-width: 1450px) {
+          margin: 26px 112px;
+          height: 88px;
+          width: 88px;
+        }
       }
 
       h4 {
@@ -484,15 +479,12 @@ body {
         @media screen and (max-width: 1450px) {
           width: 270px;
         }
-
       }
 
       h5 {
         margin: 17px auto 47px;
       }
-
     }
-
   }
 }
 
@@ -568,7 +560,7 @@ body {
 
         background: rgba(250, 251, 252, 0.3);
         box-shadow: 1.8px 1.8px 3.7px rgba(0, 0, 0, 0.025), 6px 6px 15.9px rgba(0, 0, 0, 0.04),
-        27px 27px 68px rgba(0, 0, 0, 0.07);
+          27px 27px 68px rgba(0, 0, 0, 0.07);
         backdrop-filter: blur(7px);
         -webkit-backdrop-filter: blur(7px);
         border-radius: 20px;
@@ -1309,7 +1301,7 @@ body {
     width: 683px;
     border-radius: 25px;
     box-shadow: 1.8px 1.8px 3.7px rgba(0, 0, 0, 0.025), 6px 6px 15.9px rgba(0, 0, 0, 0.04),
-    27px 27px 68px rgba(0, 0, 0, 0.07);
+      27px 27px 68px rgba(0, 0, 0, 0.07);
 
     @media screen and (max-width: 1024px) {
       width: 600px;
@@ -1420,10 +1412,9 @@ body {
     left: 20px;
     height: 436px;
 
-    @media screen and (max-width: 1450px){
+    @media screen and (max-width: 1450px) {
       height: 350px;
     }
-
   }
 
   .wrapper {
@@ -1445,14 +1436,13 @@ body {
         font-family: Poppins, serif;
         font-size: 60px;
         font-weight: 500;
-        color: #2F2F2F;
+        color: #2f2f2f;
 
         @media screen and (max-width: 1450px) {
           width: 480px;
           margin: 90px 0 28px 130px;
           font-size: 45px;
         }
-
       }
 
       p {
@@ -1461,13 +1451,12 @@ body {
         font-family: Poppins, serif;
         font-size: 19px;
         font-weight: 400;
-        color: #050D39;
+        color: #050d39;
 
         @media screen and (max-width: 1450px) {
           font-size: 16px;
         }
       }
-
     }
 
     .right-wrapper {
@@ -1478,12 +1467,12 @@ body {
         margin: 236px 230px 0 79px;
         height: 56px;
         width: 310px;
-        background: #7C9FFF;
+        background: #7c9fff;
         border-radius: 50px;
         font-family: Poppins, serif;
         font-size: 30px;
         font-weight: 500;
-        color: #FFFFFF;
+        color: #ffffff;
         border: none;
         cursor: pointer;
 
@@ -1493,13 +1482,9 @@ body {
           margin: 175px 0 0 68px;
           font-size: 24px;
         }
-
       }
-
     }
-
   }
-
 }
 
 #footer {

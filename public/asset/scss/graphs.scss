@@ -150,7 +150,7 @@ $widthSlider1400: 80%;
         text-align: center;
         font-size: 60px;
         line-height: 90px;
-        font-weight: 500;
+        font-weight: 600;
         color: #7c9fff;
     }
 
@@ -184,7 +184,7 @@ $widthSlider1400: 80%;
             justify-content: center;
             align-items: center;
 
-            p {
+            p:not(.question-graph) {
                 position: relative;
                 width: 635px;
                 font-family: "Poppins", serif;
@@ -198,6 +198,28 @@ $widthSlider1400: 80%;
                     padding: 0 50px;
                     width: auto;
                 }
+            }
+
+            .question-graph {
+                display: flex;
+                flex-direction: row;
+                margin-top: 50px;
+                .question {
+                    margin-left: 0.5rem;
+                    text-align: left;
+                    font-size: 20px;
+                    opacity: 0.3;
+                    font-weight: 400;
+                }
+
+                img {
+                    margin: auto 0;
+                    height: 1.5rem;
+                }
+            }
+
+            #question-g-2 {
+                margin-top: 25px;
             }
         }
     }
@@ -231,6 +253,7 @@ $widthSlider1400: 80%;
         .case-color {
             width: 40px;
             height: 1rem;
+            transition: 100ms;
             margin: 0.75rem 0.5rem;
             cursor: pointer;
 
@@ -244,13 +267,14 @@ $widthSlider1400: 80%;
                 background-color: #d3dce5;
             }
             &#oceanie {
-                background-color: #fd4c4c;
+                background-color: #f6b6bf;
             }
             &#europe {
                 background-color: #7c9fff;
             }
 
             &.hover-line {
+                transition: 100ms;
                 width: 50px;
             }
         }
