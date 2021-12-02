@@ -1,5 +1,6 @@
 $inputColor: #7c9fff;
 $widthSlider: 90%;
+$widthSlider1400: 80%;
 
 * {
     font-family: "Poppins", sans-serif;
@@ -10,10 +11,12 @@ $widthSlider: 90%;
     margin-top: 6rem;
     width: 100%;
     text-align: center;
+    font-weight: 600;
 
     .date {
         color: $inputColor;
         position: relative;
+        font-weight: 600;
     }
 
     .slider-container {
@@ -24,9 +27,13 @@ $widthSlider: 90%;
             flex-direction: row;
             justify-content: space-between;
             width: $widthSlider;
+            @media screen and (max-width: 1450px) {
+                width: $widthSlider1400;
+            }
             margin: 0 auto;
 
             h4 {
+                font-weight: 600;
                 position: relative;
             }
         }
@@ -36,6 +43,9 @@ $widthSlider: 90%;
             height: 25px;
             -webkit-appearance: none;
             width: $widthSlider;
+            @media screen and (max-width: 1450px) {
+                width: $widthSlider1400;
+            }
             background: transparent;
         }
 
@@ -124,18 +134,23 @@ $widthSlider: 90%;
 // -------------------------
 #stats {
     position: relative;
-    padding: 92px 155px 170px;
+    padding: 90px 155px 170px;
     background: #ffffff;
 
-    h2 {
+    @media screen and (max-width: 1450px) {
+        padding-left: 45px;
+        padding-right: 45px;
+    }
+
+    #title-stats {
         position: relative;
-        margin-bottom: 102px;
+        margin-bottom: 100px;
         width: fit-content;
-        font-family: Poppins, serif;
+        font-family: "Poppins", serif;
+        font-weight: 600 !important;
         text-align: center;
         font-size: 60px;
-        line-height: 90px;
-        font-weight: 500;
+        // line-height: 90px;
         color: #7c9fff;
     }
 
@@ -169,7 +184,7 @@ $widthSlider: 90%;
             justify-content: center;
             align-items: center;
 
-            p {
+            p:not(.question-graph) {
                 position: relative;
                 width: 635px;
                 font-family: "Poppins", serif;
@@ -177,6 +192,34 @@ $widthSlider: 90%;
                 font-weight: 500;
                 color: #33343b;
                 line-height: 2.25rem;
+
+                @media screen and (max-width: 1450px) {
+                    font-size: 20px;
+                    padding: 0 50px;
+                    width: auto;
+                }
+            }
+
+            .question-graph {
+                display: flex;
+                flex-direction: row;
+                margin-top: 50px;
+                .question {
+                    text-align: left;
+                    font-size: 20px;
+                    opacity: 0.3;
+                    font-weight: 400;
+
+                    img {
+                        margin: auto 0;
+                        margin-right: 0.5rem;
+                        height: 1.5rem;
+                    }
+                }
+            }
+
+            #question-g-2 {
+                margin-top: 25px;
             }
         }
     }
@@ -210,7 +253,9 @@ $widthSlider: 90%;
         .case-color {
             width: 40px;
             height: 1rem;
+            transition: 100ms;
             margin: 0.75rem 0.5rem;
+            cursor: pointer;
 
             &#asia {
                 background-color: #b4d6ff;
@@ -222,10 +267,15 @@ $widthSlider: 90%;
                 background-color: #d3dce5;
             }
             &#oceanie {
-                background-color: #fd4c4c;
+                background-color: #f6b6bf;
             }
             &#europe {
                 background-color: #7c9fff;
+            }
+
+            &.hover-line {
+                transition: 100ms;
+                width: 50px;
             }
         }
     }

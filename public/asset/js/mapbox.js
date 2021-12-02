@@ -2,7 +2,7 @@ import countries from '../json/countries.json'
 import capitals from '../json/capitals.json'
 import axios from "axios"
 
-// const getCountryISO3 = require("country-iso-2-to-3");
+const getCountryISO3 = require("country-iso-2-to-3");
 
 mapboxgl.accessToken = 'pk.eyJ1Ijoibm9vb29vb29vb29vb29vb2UiLCJhIjoiY2t2aTN0OXFtMGZvYzJvbjBlYmNhcnJlbiJ9.7d0EuZjxcvKMFEuyVoEAnw'
 
@@ -12,7 +12,7 @@ const map = new mapboxgl.Map({
     container: 'map', // container ID
     style: "mapbox://styles/noooooooooooooooe/ckvi4aw5d1jsb14oak88v6scz", // style URL
     center: [3.5, 45], // starting position [lng, lat]
-    zoom: 4,
+    zoom: 3,
     maxZoom: 5,
     minZoom: 1.5,
     pitch: 0,
@@ -50,19 +50,6 @@ map.on('load', () => {
     const src = map.getSource('countries')._data.features
 
     const srcCapitals = map.getSource('capitals')._data.features
-    console.log(srcCapitals)
-
-    // Border
-    map.addLayer({
-        'id': 'countries',
-        'type': 'line',
-        'source': 'countries',
-        'layout': {},
-        'paint': {
-            'line-color': '#F9FBFE',
-            'line-width': 1
-        }
-    });
 
     ///////////////////////////////////////////// COUNTRIES HOVER //////////////////////////////////////////////////////
 
@@ -86,14 +73,14 @@ map.on('load', () => {
         if (e.features.length > 0) {
             if (hoveredStateId !== null) {
                 map.setFeatureState(
-                    { source: 'countries', id: hoveredStateId },
-                    { hover: false }
+                    {source: 'countries', id: hoveredStateId},
+                    {hover: false}
                 );
             }
             hoveredStateId = e.features[0].id;
             map.setFeatureState(
-                { source: 'countries', id: hoveredStateId },
-                { hover: true }
+                {source: 'countries', id: hoveredStateId},
+                {hover: true}
             );
         }
     });
@@ -101,8 +88,8 @@ map.on('load', () => {
     map.on('mouseleave', 'countriesHover', () => {
         if (hoveredStateId !== null) {
             map.setFeatureState(
-                { source: 'countries', id: hoveredStateId },
-                { hover: false }
+                {source: 'countries', id: hoveredStateId},
+                {hover: false}
             );
         }
         hoveredStateId = null;
@@ -457,6 +444,12 @@ map.on('load', () => {
             )
 
             map.setPaintProperty(
+                'countriesCircle',
+                'fill-opacity',
+                0,
+            )
+
+            map.setPaintProperty(
                 'countriesMedals',
                 'fill-opacity',
                 1,
@@ -482,7 +475,13 @@ map.on('load', () => {
             map.setPaintProperty(
                 'countriesPib',
                 'fill-opacity',
-                0.75,
+                1,
+            )
+
+            map.setPaintProperty(
+                'countriesCircle',
+                'fill-opacity',
+                1,
             )
 
             map.setPaintProperty(
@@ -540,9 +539,9 @@ map.on('load', () => {
                 medalsBigWrapper.classList.add("activeSeason")
                 pibBigWrapper.classList.remove("activeSeason")
 
-                firstWrapperGpdSpan.style.backgroundColor = "#ffafa8"
-                secondWrapperGpdSpan.style.backgroundColor = "#ff5753"
-                thirdWrapperGpdSpan.style.backgroundColor = "#ff0a00"
+                firstWrapperGpdSpan.style.backgroundColor = "#FBB4B4"
+                secondWrapperGpdSpan.style.backgroundColor = "#FD9B9B"
+                thirdWrapperGpdSpan.style.backgroundColor = "#FF7777"
 
                 pibBigWrapper.classList.remove('active')
                 medalsBigWrapper.classList.add('active')
@@ -639,9 +638,9 @@ map.on('load', () => {
                 firstWrapperMedalsVerification = firstWrapperGpd.classList.contains('active')
                 firstWrapperGpd.style.border = "3px solid #FD4C4C"
 
-                firstWrapperGpdSpan.style.backgroundColor = "#ffafa8"
-                secondWrapperGpdSpan.style.backgroundColor = "#ff5753"
-                thirdWrapperGpdSpan.style.backgroundColor = "#ff0a00"
+                firstWrapperGpdSpan.style.backgroundColor = "#FBB4B4"
+                secondWrapperGpdSpan.style.backgroundColor = "#FD9B9B"
+                thirdWrapperGpdSpan.style.backgroundColor = "#FF7777"
 
                 medalsBigWrapper.classList.add("activeSeason")
                 pibBigWrapper.classList.remove("activeSeason")
@@ -672,19 +671,19 @@ map.on('load', () => {
         'paint': {
             'fill-color': [
                 "case",
-                ["==", ["feature-state", "colorCountries"], 0], "#e9e9e9",
+                ["==", ["feature-state", "colorCountries"], 0], "#EAEAEA",
                 ["==", ["feature-state", "colorCountries"], 1], "#B4D6FF",
                 ["==", ["feature-state", "colorCountries"], 2], "#9DC2FF",
                 ["==", ["feature-state", "colorCountries"], 3], "#7C9FFF",
-                "#e9e9e9"
+                "#EAEAEA"
             ],
-            'fill-opacity': 0.75
+            'fill-opacity': 1
         }
     });
 
     async function pibCountries() {
         // Get the data
-        let data = await axios.get(process.env.VPS + '/gpds?year=' + slider.value)
+        let data = await axios.get(process.env.VPS + '/gpd-by-population?year=' + slider.value)
 
         let countriesGpd
         let color = 0
@@ -695,16 +694,16 @@ map.on('load', () => {
                 return e.properties.ISO_A3;
             }).indexOf(data.data[i].country);
 
-            countriesGpd = data.data[i].gpd
+            countriesGpd = data.data[i].gpdByPopulation
 
-            if (countriesGpd >= 0 && countriesGpd < 5000000000) {
+            if (countriesGpd >= 0 && countriesGpd < 2500) {
 
                 if (firstWrapperGpdVerification) {
 
                     color = 1
                 }
 
-            } else if (countriesGpd >= 5000000000 && countriesGpd < 20000000000) {
+            } else if (countriesGpd >= 2500 && countriesGpd < 15000) {
 
                 if (secondWrapperGpdVerification) {
 
@@ -725,7 +724,7 @@ map.on('load', () => {
                     source: 'countries',
                     id: indexOfFeatures
                 },
-                { colorCountries: color },
+                {colorCountries: color},
             );
 
             color = null
@@ -747,16 +746,16 @@ map.on('load', () => {
         'paint': {
             'fill-color': [
                 "case",
-                ["==", ["feature-state", "circleRadius"], 0], "#e9e9e9",
-                ["==", ["feature-state", "circleRadius"], 1], "#ffafa8",
-                ["==", ["feature-state", "circleRadius"], 2], "#ff5753",
-                ["==", ["feature-state", "circleRadius"], 3], "#ff0a00",
-                ["==", ["feature-state", "circleRadius"], 4], "#c6e6ff",
-                ["==", ["feature-state", "circleRadius"], 5], "#60aafc",
-                ["==", ["feature-state", "circleRadius"], 6], "#0048ff",
-                "#e9e9e9"
+                ["==", ["feature-state", "colorMedals"], 0], "#EAEAEA",
+                ["==", ["feature-state", "colorMedals"], 1], "#FBB4B4",
+                ["==", ["feature-state", "colorMedals"], 2], "#FD9B9B",
+                ["==", ["feature-state", "colorMedals"], 3], "#FF7777",
+                ["==", ["feature-state", "colorMedals"], 4], "#c6e6ff",
+                ["==", ["feature-state", "colorMedals"], 5], "#60aafc",
+                ["==", ["feature-state", "colorMedals"], 6], "#0048ff",
+                "#EAEAEA"
             ],
-            'fill-opacity': 0.75
+            'fill-opacity': 1
         }
     });
 
@@ -770,16 +769,25 @@ map.on('load', () => {
             dataArray.push(data.data[i].country)
         }
 
+        let srcCapitalsArray = []
+        for (let i = 0; i < srcCapitals.length; i++) {
+            srcCapitalsArray.push(getCountryISO3(srcCapitals[i].properties.ISO))
+        }
+
         let countriesMedals
+        let colorMedals = 0
         let circleRadius = 0
 
         for (let i = 0; i < src.length; i++) {
 
             let indexOfFeature = dataArray.findIndex(index => index === src[i].properties.ISO_A3)
 
+            let indexOfFeatureCapitals = srcCapitalsArray.findIndex(index => index === src[i].properties.ISO_A3)
+
             if (indexOfFeature === -1) {
 
                 countriesMedals = 0
+                circleRadius = 0
 
             } else {
 
@@ -787,108 +795,120 @@ map.on('load', () => {
 
             }
 
+            if (!firstWrapperMedalsVerification && !secondWrapperMedalsVerification && !thirdWrapperMedalsVerification) {
 
-            if (seasonsWrapperVerif) {
-
-                if (!firstWrapperMedalsVerification && !secondWrapperMedalsVerification && !thirdWrapperMedalsVerification) {
-
-                    circleRadius = 0
-
-                } else {
-
-                    if (countriesMedals > 0 && countriesMedals < 30) {
-
-                        if (firstWrapperMedalsVerification) {
-
-                            if (seasonsWrapperVerif) {
-
-                                if (medalsBigWrapper.classList.contains('active')) {
-
-                                    circleRadius = 1
-
-                                } else {
-
-                                    circleRadius = 4
-
-                                }
-
-                            } else {
-
-                                circleRadius = 1
-                            }
-
-                        }
-
-                    } else if (countriesMedals >= 30 && countriesMedals < 100) {
-
-                        if (secondWrapperMedalsVerification) {
-
-                            if (seasonsWrapperVerif) {
-
-                                if (medalsBigWrapper.classList.contains('active')) {
-
-                                    circleRadius = 2
-
-                                } else {
-
-                                    circleRadius = 5
-
-                                }
-
-                            } else {
-
-                                circleRadius = 2
-                            }
-
-                        }
-
-                    } else if (countriesMedals >= 100) {
-
-                        if (thirdWrapperMedalsVerification) {
-
-                            if (seasonsWrapperVerif) {
-
-                                if (medalsBigWrapper.classList.contains('active')) {
-
-                                    circleRadius = 3
-
-                                } else {
-
-                                    circleRadius = 6
-
-                                }
-
-                            } else {
-
-                                circleRadius = 3
-                            }
-
-                        }
-
-                    } else {
-
-                        circleRadius = 0
-
-                    }
-
-                }
+                colorMedals = 0
+                circleRadius = 0
 
             } else {
 
+                if (countriesMedals > 0 && countriesMedals < 10) {
+
+                    if (firstWrapperMedalsVerification) {
+
+                        if (seasonsWrapperVerif) {
+
+                            if (medalsBigWrapper.classList.contains('active')) {
+
+                                colorMedals = 1
+                                circleRadius = 1
+
+                            } else {
+
+                                colorMedals = 4
+
+                            }
+
+                        } else {
+
+                            colorMedals = 1
+                            circleRadius = 1
+                        }
+
+                    }
+
+                } else if (countriesMedals >= 10 && countriesMedals < 30) {
+
+                    if (secondWrapperMedalsVerification) {
+
+                        if (seasonsWrapperVerif) {
+
+                            if (medalsBigWrapper.classList.contains('active')) {
+
+                                colorMedals = 2
+                                circleRadius = 2
+
+                            } else {
+
+                                colorMedals = 5
+
+                            }
+
+                        } else {
+
+                            colorMedals = 2
+                            circleRadius = 2
+                        }
+
+                    }
+
+                } else if (countriesMedals >= 30) {
+
+                    if (thirdWrapperMedalsVerification) {
+
+                        if (seasonsWrapperVerif) {
+
+                            if (medalsBigWrapper.classList.contains('active')) {
+
+                                colorMedals = 3
+                                circleRadius = 3
+
+                            } else {
+
+                                colorMedals = 6
+
+                            }
+
+                        } else {
+
+                            colorMedals = 3
+                            circleRadius = 3
+                        }
+
+                    }
+
+                } else {
+
+                    colorMedals = 0
+                    circleRadius = 0
+
+                }
 
             }
 
+            if (seasonsWrapperVerif) {
+                circleRadius = 0
+            } else {
+                colorMedals = 0
+            }
 
             map.setFeatureState(
                 {
                     source: 'countries',
                     id: i
                 },
-                { circleRadius: circleRadius },
+                {colorMedals: colorMedals},
             );
 
-            circleRadius = null
+            map.setFeatureState(
+                {
+                    source: 'capitals',
+                    id: indexOfFeatureCapitals
+                },
+                {circleRadius: circleRadius},
+            );
 
+            colorMedals = null
 
         }
 
@@ -898,13 +918,75 @@ map.on('load', () => {
         medalsCountries().then()
     }
 
-    ///////////////////////////////////////////// COUNTRIES MEDALS CIRCLE /////////////////////////////////////////////////////
+    map.setPaintProperty(
+        'countriesMedals',
+        'fill-opacity',
+        0,
+    )
 
+    ///////////////////////////////////////////// COUNTRIES BORDER//////////////////////////////////////////////////////
 
+    map.addLayer({
+        'id': 'countries',
+        'type': 'line',
+        'source': 'countries',
+        'layout': {},
+        'paint': {
+            'line-color': '#F9FBFE',
+            'line-width': 1,
+            'line-opacity': 0.3
+        }
+    });
+
+    ///////////////////////////////////////////// COUNTRIES MEDALS CIRCLE //////////////////////////////////////////////
+
+    map.addLayer({
+        'id': 'countriesMedalsCircle',
+        'type': 'circle',
+        'source': 'capitals',
+        'paint': {
+            'circle-radius': [
+                "case",
+                ["==", ["feature-state", "circleRadius"], 0], 0,
+                ["==", ["feature-state", "circleRadius"], 1], 10,
+                ["==", ["feature-state", "circleRadius"], 2], 20,
+                ["==", ["feature-state", "circleRadius"], 3], 30,
+                0
+            ],
+            'circle-opacity': 0.65,
+            'circle-color': [
+                "case",
+                ["==", ["feature-state", "circleRadius"], 0], "#EAEAEA",
+                ["==", ["feature-state", "circleRadius"], 1], "#F36B79",
+                ["==", ["feature-state", "circleRadius"], 2], "#F36B79",
+                ["==", ["feature-state", "circleRadius"], 3], "#F36B79",
+                "#EAEAEA"
+            ],
+            "circle-stroke-width": [
+                "case",
+                ["==", ["feature-state", "circleRadius"], 0], 0,
+                ["==", ["feature-state", "circleRadius"], 1], 2,
+                ["==", ["feature-state", "circleRadius"], 2], 2,
+                ["==", ["feature-state", "circleRadius"], 3], 2,
+                0
+            ],
+            "circle-stroke-color": "#FE414D"
+        }
+    });
 
     ///////////////////////////////////////////////// COUNTRY //////////////////////////////////////////////////////////
 
     let countryRealName
+
+    const popUpWrapper = document.querySelector('.popUpWrapper')
+
+    document.onclick = () => {
+        popUpWrapper.classList.remove('active')
+    }
+
+    document.addEventListener('mousedown', () => {
+        popUpWrapper.classList.remove('active')
+    })
 
     map.on('click', 'countriesHover', (e) => {
         countryRealName = Object.values(e.features[0].properties)[1]
@@ -912,16 +994,103 @@ map.on('load', () => {
         let bbox = turf.extent(e.features[0])
 
         function center() {
-            map.fitBounds(bbox, {
-                padding: { top: 100, bottom: 100, left: 650, right: 0 },
-                maxZoom: 3,
-                linear: true,
-                duration: 1000,
-                pitch: 0
-            })
+
+            if (mapInfoWrapper.classList.contains('active')) {
+                map.fitBounds(bbox, {
+                    padding: {top: 0, bottom: 0, left: 0, right: 0},
+                    maxZoom: 3,
+                    linear: true,
+                    duration: 1000,
+                    pitch: 0
+                })
+            } else {
+                map.fitBounds(bbox, {
+                    padding: {top: 0, bottom: 0, left: 600, right: 0},
+                    maxZoom: 3,
+                    linear: true,
+                    duration: 1000,
+                    pitch: 0
+                })
+            }
+
         }
 
         center()
+
+        async function getInfoOfCountries() {
+
+            let countryName = e.features[0].properties.ADMIN
+            let countryIso = e.features[0].properties.ISO_A3
+
+            if (countryIso !== "-99") {
+
+                const dataMedals = await axios.get(process.env.VPS + '/medals?year=' + slider.value)
+                const dataPib = await axios.get(process.env.VPS + '/gpd-by-population/?year=' + slider.value)
+
+                let dataMedalsArray = []
+                let dataPibArray = []
+
+                for (let i = 0; i < dataMedals.data.length; i++) {
+                    dataMedalsArray.push(dataMedals.data[i].country)
+                }
+
+                for (let i = 0; i < dataPib.data.length; i++) {
+                    dataPibArray.push(dataPib.data[i].country)
+                }
+
+                let indexOfMedals = dataMedalsArray.findIndex(index => index === countryIso)
+                let indexOfPib = dataPibArray.findIndex(index => index === countryIso)
+
+                let countryMedals
+                let countryPib
+                let countryPopulation
+
+                if (indexOfMedals !== -1) {
+                    countryMedals = dataMedals.data[indexOfMedals].total
+                } else {
+                    countryMedals = 0
+                }
+
+                if (indexOfPib !== -1) {
+                    countryPib = dataPib.data[indexOfPib].gpdByPopulation
+                    countryPopulation = dataPib.data[indexOfPib].population.toFixed(2)
+                } else {
+                    countryPib = 0
+                }
+
+                console.log(countryName, countryMedals, countryPib)
+
+                const firstPartYear = document.querySelector('.popUp .first-part .year')
+                const firstPartCountry = document.querySelector('.popUp .first-part .country')
+                const numberMedals = document.querySelector('.popUp .numberMedals')
+                const numberPib = document.querySelector('.popUp .numberPib')
+                const numberPopulation = document.querySelector('.popUp .numberPopulation')
+
+                firstPartYear.innerHTML = `${slider.value}`
+                firstPartCountry.innerHTML = `${countryName}`
+                numberMedals.innerHTML = `${countryMedals}`
+                numberPib.innerHTML = `${countryPib} $`
+                numberPopulation.innerHTML = `${countryPopulation} M`
+
+                setTimeout(() => {
+
+                    if (mapInfoWrapper.classList.contains('active')) {
+                        popUpWrapper.classList.add('activeMapInfoActive')
+                    } else {
+                        popUpWrapper.classList.remove('activeMapInfoActive')
+                    }
+
+                    popUpWrapper.classList.add('active')
+
+                }, 650);
+
+            } else {
+                console.log("no iso")
+            }
+
+        }
+
+        getInfoOfCountries().then()
 
     });
 

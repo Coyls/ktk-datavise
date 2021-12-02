@@ -5,7 +5,7 @@ const svgContainer = document.getElementById("first-graph")
 
 // set the dimensions and margins of the graph
 let margin = { top: 50, right: 120, bottom: 30, left: 60 }
-let width = 800 - margin.left - margin.right
+let width = (window.innerWidth <= 1475) ? 700 - margin.left - margin.right : 800 - margin.left - margin.right
 let height = 400 - margin.top - margin.bottom
 
 const styleAxis = (svg) => {
@@ -89,7 +89,7 @@ const generateFirstGraph = (data) => {
         .attr("text-anchor", "middle")
         .attr("y", height)
         .attr("x", width + margin.right / 2 - 10)
-        .text("Budjet en")
+        .text("Budget en")
         .attr("font-size", "14")
         .attr("font-family", "Poppins")
         .attr("font-weight", "600")
@@ -128,14 +128,23 @@ const generateFirstGraph = (data) => {
         .attr("cy", (d) => { return y(d.medals); })
         .attr("r", 12)
         .style("fill", "#B4D6FF")
-        .on('mouseover', (d, i) => {
-            console.log("mouseover", d, i);
-            d3.select(this).attr("r", 30)
+        .style("cursor", "pointer")
+        .on('mouseover', function (d) {
+            d3.select(this)
+                .transition()
+                .duration(100)
+                .attr("r", 16)
             countryHover.text(d.country + " : " + d.medals)
         })
-        .on('mouseout', (d) => {
-            // d3.select("#" + d.country,).remove();
+        .on('mouseout', function (d) {
+            d3.select(this)
+                .transition()
+                .duration(100)
+                .attr("r", 12)
         })
+
+
+
 
 
 
