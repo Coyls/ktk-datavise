@@ -16,6 +16,7 @@ $widthSlider1400: 80%;
     .date {
         color: $inputColor;
         position: relative;
+        font-weight: 600;
     }
 
     .slider-container {
@@ -32,6 +33,7 @@ $widthSlider1400: 80%;
             margin: 0 auto;
 
             h4 {
+                font-weight: 600;
                 position: relative;
             }
         }
@@ -230,6 +232,7 @@ $widthSlider1400: 80%;
             width: 40px;
             height: 1rem;
             margin: 0.75rem 0.5rem;
+            cursor: pointer;
 
             &#asia {
                 background-color: #b4d6ff;
