@@ -964,6 +964,16 @@ map.on('load', () => {
 
     let countryRealName
 
+    const popUpWrapper = document.querySelector('.popUpWrapper')
+
+    document.onclick = () => {
+        popUpWrapper.classList.remove('active')
+    }
+
+    document.addEventListener('mousedown', () => {
+        popUpWrapper.classList.remove('active')
+    })
+
     map.on('click', 'countriesHover', (e) => {
         countryRealName = Object.values(e.features[0].properties)[1]
 
@@ -973,7 +983,7 @@ map.on('load', () => {
 
             if (mapInfoWrapper.classList.contains('active')) {
                 map.fitBounds(bbox, {
-                    padding: {top: 100, bottom: 100, left: 0, right: 0},
+                    padding: {top: 0, bottom: 0, left: 0, right: 0},
                     maxZoom: 3,
                     linear: true,
                     duration: 1000,
@@ -981,7 +991,7 @@ map.on('load', () => {
                 })
             } else {
                 map.fitBounds(bbox, {
-                    padding: {top: 100, bottom: 100, left: 600, right: 0},
+                    padding: {top: 0, bottom: 0, left: 600, right: 0},
                     maxZoom: 3,
                     linear: true,
                     duration: 1000,
@@ -1019,6 +1029,7 @@ map.on('load', () => {
 
                 let countryMedals
                 let countryPib
+                let countryPopulation
 
                 if (indexOfMedals !== -1) {
                     countryMedals = dataMedals.data[indexOfMedals].total
@@ -1028,13 +1039,28 @@ map.on('load', () => {
 
                 if (indexOfPib !== -1) {
                     countryPib = dataPib.data[indexOfPib].gpdByPopulation
+                    countryPopulation = dataPib.data[indexOfPib].population
                 } else {
                     countryPib = 0
                 }
 
                 console.log(countryName, countryMedals, countryPib)
 
+                const firstPartYear = document.querySelector('.popUp .first-part .year')
                 const firstPartCountry = document.querySelector('.popUp .first-part .country')
+                const numberMedals = document.querySelector('.popUp .numberMedals')
+                const numberPib = document.querySelector('.popUp .numberPib')
+                const numberPopulation = document.querySelector('.popUp .numberPopulation')
+
+                firstPartYear.innerHTML = `${slider.value}`
+                firstPartCountry.innerHTML = `${countryName}`
+                numberMedals.innerHTML = `${countryMedals}`
+                numberPib.innerHTML = `${countryPib} €`
+                numberPopulation.innerHTML = `${countryPopulation} M`
+
+                setTimeout(() => {
+                    popUpWrapper.classList.add('active')
+                }, 650);
 
             } else {
                 console.log("no iso")

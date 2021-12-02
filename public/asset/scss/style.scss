@@ -1178,6 +1178,16 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s, opacity 0.35s linear;
+
+    &.active {
+      opacity: 1;
+      visibility: visible;
+      transition: visibility 0s, opacity 0.35s linear;
+
+    }
 
     .top {
       position: relative;
@@ -1196,6 +1206,7 @@ body {
       background-color: #FFFFFF;
       border-radius: 20px;
       z-index: 1;
+      padding: 0 35px;
 
       display: flex;
       flex-direction: column;
@@ -1226,10 +1237,20 @@ body {
       }
 
       .first-part {
-        text-align: center;
+        position: relative;
+        display: flex;
+        flex-direction: row;
+        align-items: baseline;
+        justify-content: center;
+
+        .separator {
+          position: relative;
+          margin: 0 5px;
+        }
+
         h4 {
           position: relative;
-          margin: 13px 35px 0;
+          margin: 13px 0 0;
           font-family: Poppins, serif;
           font-size: 15px;
           font-weight: 500;
