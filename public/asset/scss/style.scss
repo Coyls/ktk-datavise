@@ -1173,19 +1173,18 @@ body {
   .popUpWrapper {
     position: absolute;
     top: 50%;
-    left: 50%;
+    left: 65%;
     z-index: 1;
-    //display: flex;
+    display: flex;
     flex-direction: column;
     justify-content: center;
-    display: none;
 
     .top {
       position: relative;
       margin: 0 auto;
       height: 31px;
       width: 31px;
-      background-color: #ffffff;
+      background-color: #FFFFFF;
       border-radius: 5px;
       transform: rotate(45deg);
     }
@@ -1194,11 +1193,51 @@ body {
       position: relative;
       margin: 0 auto;
       top: -18px;
-      height: 175px;
-      width: 175px;
-      background-color: #ffffff;
+      background-color: #FFFFFF;
       border-radius: 20px;
       z-index: 1;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+
+      h4 {
+        position: relative;
+        margin: 17px 0 2px;
+        font-family: Poppins, serif;
+        font-size: 15px;
+        font-weight: 500;
+        color: #9A9A9A;
+        text-align: center;
+      }
+
+      span {
+        position: relative;
+        font-family: Poppins, serif;
+        font-size: 15px;
+        font-weight: 400;
+        text-align: center;
+        color: #9DC2FF;
+      }
+
+      .populationSpan {
+        position: relative;
+        margin-bottom: 24px;
+      }
+
+      .first-part {
+        text-align: center;
+        h4 {
+          position: relative;
+          margin: 13px 35px 0;
+          font-family: Poppins, serif;
+          font-size: 15px;
+          font-weight: 500;
+          color: #000000;
+          text-align: center;
+        }
+      }
+
     }
   }
 

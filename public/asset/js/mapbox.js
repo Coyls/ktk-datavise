@@ -1034,6 +1034,8 @@ map.on('load', () => {
 
                 console.log(countryName, countryMedals, countryPib)
 
+                const firstPartCountry = document.querySelector('.popUp .first-part .country')
+
             } else {
                 console.log("no iso")
             }
