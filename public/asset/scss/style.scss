@@ -169,7 +169,6 @@ body {
       bottom: 50px;
       height: 120px;
       width: 38px;
-      background: url("../img/introductionScroll1440.png") center;
       background-size: cover;
     }
   }
@@ -1191,7 +1190,11 @@ body {
       opacity: 1;
       visibility: visible;
       transition: visibility 0s, opacity 0.35s linear;
+    }
 
+    &.activeMapInfoActive {
+      left: 50%;
+      transform: translateX(-50%);
     }
 
     .top {
@@ -1609,6 +1612,10 @@ body {
         @media screen and (max-width: 500px) {
           font-size: 16px;
         }
+      }
+
+      a {
+        text-decoration: none;
       }
 
       p {

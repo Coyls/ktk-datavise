@@ -12,7 +12,7 @@ const map = new mapboxgl.Map({
     container: 'map', // container ID
     style: "mapbox://styles/noooooooooooooooe/ckvi4aw5d1jsb14oak88v6scz", // style URL
     center: [3.5, 45], // starting position [lng, lat]
-    zoom: 4,
+    zoom: 3,
     maxZoom: 5,
     minZoom: 1.5,
     pitch: 0,
@@ -802,7 +802,7 @@ map.on('load', () => {
 
             } else {
 
-                if (countriesMedals > 0 && countriesMedals < 50) {
+                if (countriesMedals > 0 && countriesMedals < 10) {
 
                     if (firstWrapperMedalsVerification) {
 
@@ -827,7 +827,7 @@ map.on('load', () => {
 
                     }
 
-                } else if (countriesMedals >= 50 && countriesMedals < 100) {
+                } else if (countriesMedals >= 10 && countriesMedals < 30) {
 
                     if (secondWrapperMedalsVerification) {
 
@@ -852,7 +852,7 @@ map.on('load', () => {
 
                     }
 
-                } else if (countriesMedals >= 100) {
+                } else if (countriesMedals >= 30) {
 
                     if (thirdWrapperMedalsVerification) {
 
@@ -923,6 +923,20 @@ map.on('load', () => {
         'fill-opacity',
         0,
     )
+
+    ///////////////////////////////////////////// COUNTRIES BORDER//////////////////////////////////////////////////////
+
+    map.addLayer({
+        'id': 'countries',
+        'type': 'line',
+        'source': 'countries',
+        'layout': {},
+        'paint': {
+            'line-color': '#F9FBFE',
+            'line-width': 1,
+            'line-opacity': 0.3
+        }
+    });
 
     ///////////////////////////////////////////// COUNTRIES MEDALS CIRCLE //////////////////////////////////////////////
 
@@ -1039,7 +1053,7 @@ map.on('load', () => {
 
                 if (indexOfPib !== -1) {
                     countryPib = dataPib.data[indexOfPib].gpdByPopulation
-                    countryPopulation = dataPib.data[indexOfPib].population
+                    countryPopulation = dataPib.data[indexOfPib].population.toFixed(2)
                 } else {
                     countryPib = 0
                 }
@@ -1055,11 +1069,19 @@ map.on('load', () => {
                 firstPartYear.innerHTML = `${slider.value}`
                 firstPartCountry.innerHTML = `${countryName}`
                 numberMedals.innerHTML = `${countryMedals}`
-                numberPib.innerHTML = `${countryPib} €`
+                numberPib.innerHTML = `${countryPib} $`
                 numberPopulation.innerHTML = `${countryPopulation} M`
 
                 setTimeout(() => {
+
+                    if (mapInfoWrapper.classList.contains('active')) {
+                        popUpWrapper.classList.add('activeMapInfoActive')
+                    } else {
+                        popUpWrapper.classList.remove('activeMapInfoActive')
+                    }
+
                     popUpWrapper.classList.add('active')
+
                 }, 650);
 
             } else {
@@ -1070,19 +1092,6 @@ map.on('load', () => {
 
         getInfoOfCountries().then()
 
-    });
-
-    // Border
-    map.addLayer({
-        'id': 'countries',
-        'type': 'line',
-        'source': 'countries',
-        'layout': {},
-        'paint': {
-            'line-color': '#F9FBFE',
-            'line-width': 1,
-            'line-opacity': 0.3
-        }
     });
 
 });
