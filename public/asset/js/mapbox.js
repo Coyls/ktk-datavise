@@ -447,8 +447,8 @@ map.on('load', () => {
                 1,
             )
 
-            slider.setAttribute("value", "1994")
-            slider.setAttribute("step", "4")
+            inputWrapper.setAttribute("step", "4")
+            inputWrapper.setAttribute("value", "1992")
             setDate(slider, realDate)
 
         } else {
@@ -482,10 +482,10 @@ map.on('load', () => {
                 0,
             )
 
-            slider.max = 2020
-            slider.value = 1992
+            inputWrapper.max = 2020
+            inputWrapper.value = 1992
             setDate(slider, realDate)
-            slider.step = 2
+            inputWrapper.step = 2
 
         }
 
@@ -538,7 +538,6 @@ map.on('load', () => {
                 pibBigWrapper.classList.remove('active')
                 medalsBigWrapper.classList.add('active')
 
-                inputWrapper.max = 2020
                 inputWrapper.value = 1988
                 setDate(slider, realDate)
                 medalsCountries().then()
@@ -561,7 +560,6 @@ map.on('load', () => {
                 pibBigWrapper.classList.add('active')
                 medalsBigWrapper.classList.remove('active')
 
-                inputWrapper.max = 2018
                 inputWrapper.value = 1990
                 setDate(slider, realDate)
                 medalsCountries().then()
@@ -617,8 +615,7 @@ map.on('load', () => {
                 medalsBigWrapper.classList.remove('active')
                 pibBigWrapper.classList.add('active')
 
-                inputWrapper.max = 2018
-                inputWrapper.value = 1990
+                slider.value = 1990
                 setDate(slider, realDate)
                 medalsCountries().then()
 
@@ -640,8 +637,7 @@ map.on('load', () => {
                 pibBigWrapper.classList.remove('active')
                 medalsBigWrapper.classList.add('active')
 
-                inputWrapper.max = 2020
-                inputWrapper.value = 1988
+                slider.value = 1988
                 setDate(slider, realDate)
                 medalsCountries().then()
 
