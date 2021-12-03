@@ -9,7 +9,7 @@ const colors = {
     Asia: '#B4D6FF',
     Americas: '#F92B49',
     Africa: '#D3DCE5',
-    Oceania: '#FD4C4C',
+    Oceania: '#F6B6BF',
     Europe: '#7C9FFF',
 };
 

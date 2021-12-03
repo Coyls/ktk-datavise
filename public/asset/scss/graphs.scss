@@ -134,7 +134,7 @@ $widthSlider1400: 80%;
 // -------------------------
 #stats {
     position: relative;
-    padding: 92px 155px 170px;
+    padding: 90px 155px 170px;
     background: #ffffff;
 
     @media screen and (max-width: 1450px) {
@@ -142,15 +142,15 @@ $widthSlider1400: 80%;
         padding-right: 45px;
     }
 
-    h2 {
+    #title-stats {
         position: relative;
-        margin-bottom: 102px;
+        margin-bottom: 100px;
         width: fit-content;
-        font-family: Poppins, serif;
+        font-family: "Poppins", serif;
+        font-weight: 600 !important;
         text-align: center;
         font-size: 60px;
-        line-height: 90px;
-        font-weight: 500;
+        // line-height: 90px;
         color: #7c9fff;
     }
 
@@ -184,7 +184,7 @@ $widthSlider1400: 80%;
             justify-content: center;
             align-items: center;
 
-            p {
+            p:not(.question-graph) {
                 position: relative;
                 width: 635px;
                 font-family: "Poppins", serif;
@@ -198,6 +198,28 @@ $widthSlider1400: 80%;
                     padding: 0 50px;
                     width: auto;
                 }
+            }
+
+            .question-graph {
+                display: flex;
+                flex-direction: row;
+                margin-top: 50px;
+                .question {
+                    text-align: left;
+                    font-size: 20px;
+                    opacity: 0.3;
+                    font-weight: 400;
+
+                    img {
+                        margin: auto 0;
+                        margin-right: 0.5rem;
+                        height: 1.5rem;
+                    }
+                }
+            }
+
+            #question-g-2 {
+                margin-top: 25px;
             }
         }
     }
@@ -231,6 +253,7 @@ $widthSlider1400: 80%;
         .case-color {
             width: 40px;
             height: 1rem;
+            transition: 100ms;
             margin: 0.75rem 0.5rem;
             cursor: pointer;
 
@@ -244,13 +267,14 @@ $widthSlider1400: 80%;
                 background-color: #d3dce5;
             }
             &#oceanie {
-                background-color: #fd4c4c;
+                background-color: #f6b6bf;
             }
             &#europe {
                 background-color: #7c9fff;
             }
 
             &.hover-line {
+                transition: 100ms;
                 width: 50px;
             }
         }

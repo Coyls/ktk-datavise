@@ -12,7 +12,7 @@ const map = new mapboxgl.Map({
     container: 'map', // container ID
     style: "mapbox://styles/noooooooooooooooe/ckvi4aw5d1jsb14oak88v6scz", // style URL
     center: [3.5, 45], // starting position [lng, lat]
-    zoom: 4,
+    zoom: 3,
     maxZoom: 5,
     minZoom: 1.5,
     pitch: 0,
@@ -24,14 +24,6 @@ map.scrollZoom.disable();
 map.addControl(new mapboxgl.NavigationControl());
 
 let hoveredStateId = null;
-
-const body = document.querySelector("body");
-body.style.position = "fixed"
-
-window.addEventListener('load', (e) => {
-    body.style.position = "relative"
-    document.getElementById('loading').remove()
-});
 
 map.on('load', () => {
     map.addSource('countries', {
@@ -50,18 +42,6 @@ map.on('load', () => {
     const src = map.getSource('countries')._data.features
 
     const srcCapitals = map.getSource('capitals')._data.features
-
-    // Border
-    map.addLayer({
-        'id': 'countries',
-        'type': 'line',
-        'source': 'countries',
-        'layout': {},
-        'paint': {
-            'line-color': '#F9FBFE',
-            'line-width': 1
-        }
-    });
 
     ///////////////////////////////////////////// COUNTRIES HOVER //////////////////////////////////////////////////////
 
@@ -85,14 +65,14 @@ map.on('load', () => {
         if (e.features.length > 0) {
             if (hoveredStateId !== null) {
                 map.setFeatureState(
-                    { source: 'countries', id: hoveredStateId },
-                    { hover: false }
+                    {source: 'countries', id: hoveredStateId},
+                    {hover: false}
                 );
             }
             hoveredStateId = e.features[0].id;
             map.setFeatureState(
-                { source: 'countries', id: hoveredStateId },
-                { hover: true }
+                {source: 'countries', id: hoveredStateId},
+                {hover: true}
             );
         }
     });
@@ -100,8 +80,8 @@ map.on('load', () => {
     map.on('mouseleave', 'countriesHover', () => {
         if (hoveredStateId !== null) {
             map.setFeatureState(
-                { source: 'countries', id: hoveredStateId },
-                { hover: false }
+                {source: 'countries', id: hoveredStateId},
+                {hover: false}
             );
         }
         hoveredStateId = null;
@@ -467,8 +447,8 @@ map.on('load', () => {
                 1,
             )
 
-            inputWrapper.setAttribute("value", "1990")
             inputWrapper.setAttribute("step", "4")
+            inputWrapper.setAttribute("value", "1992")
             setDate(slider, realDate)
 
         } else {
@@ -503,7 +483,7 @@ map.on('load', () => {
             )
 
             inputWrapper.max = 2020
-            inputWrapper.value = 1990
+            inputWrapper.value = 1992
             setDate(slider, realDate)
             inputWrapper.step = 2
 
@@ -558,7 +538,6 @@ map.on('load', () => {
                 pibBigWrapper.classList.remove('active')
                 medalsBigWrapper.classList.add('active')
 
-                inputWrapper.max = 2020
                 inputWrapper.value = 1988
                 setDate(slider, realDate)
                 medalsCountries().then()
@@ -581,7 +560,6 @@ map.on('load', () => {
                 pibBigWrapper.classList.add('active')
                 medalsBigWrapper.classList.remove('active')
 
-                inputWrapper.max = 2018
                 inputWrapper.value = 1990
                 setDate(slider, realDate)
                 medalsCountries().then()
@@ -637,8 +615,7 @@ map.on('load', () => {
                 medalsBigWrapper.classList.remove('active')
                 pibBigWrapper.classList.add('active')
 
-                inputWrapper.max = 2018
-                inputWrapper.value = 1990
+                slider.value = 1990
                 setDate(slider, realDate)
                 medalsCountries().then()
 
@@ -660,8 +637,7 @@ map.on('load', () => {
                 pibBigWrapper.classList.remove('active')
                 medalsBigWrapper.classList.add('active')
 
-                inputWrapper.max = 2020
-                inputWrapper.value = 1988
+                slider.value = 1988
                 setDate(slider, realDate)
                 medalsCountries().then()
 
@@ -736,7 +712,7 @@ map.on('load', () => {
                     source: 'countries',
                     id: indexOfFeatures
                 },
-                { colorCountries: color },
+                {colorCountries: color},
             );
 
             color = null
@@ -764,7 +740,7 @@ map.on('load', () => {
                 ["==", ["feature-state", "colorMedals"], 3], "#FF7777",
                 ["==", ["feature-state", "colorMedals"], 4], "#c6e6ff",
                 ["==", ["feature-state", "colorMedals"], 5], "#60aafc",
-                ["==", ["feature-state", "colorMedals"], 6], "#0048ff",
+                ["==", ["feature-state", "colorMedals"], 6], "#2763fc",
                 "#EAEAEA"
             ],
             'fill-opacity': 1
@@ -814,7 +790,7 @@ map.on('load', () => {
 
             } else {
 
-                if (countriesMedals > 0 && countriesMedals < 50) {
+                if (countriesMedals > 0 && countriesMedals < 10) {
 
                     if (firstWrapperMedalsVerification) {
 
@@ -839,7 +815,7 @@ map.on('load', () => {
 
                     }
 
-                } else if (countriesMedals >= 50 && countriesMedals < 100) {
+                } else if (countriesMedals >= 10 && countriesMedals < 30) {
 
                     if (secondWrapperMedalsVerification) {
 
@@ -864,7 +840,7 @@ map.on('load', () => {
 
                     }
 
-                } else if (countriesMedals >= 100) {
+                } else if (countriesMedals >= 30) {
 
                     if (thirdWrapperMedalsVerification) {
 
@@ -936,7 +912,21 @@ map.on('load', () => {
         0,
     )
 
-    ///////////////////////////////////////////// COUNTRIES MEDALS CIRCLE /////////////////////////////////////////////////////
+    ///////////////////////////////////////////// COUNTRIES BORDER//////////////////////////////////////////////////////
+
+    map.addLayer({
+        'id': 'countries',
+        'type': 'line',
+        'source': 'countries',
+        'layout': {},
+        'paint': {
+            'line-color': '#F9FBFE',
+            'line-width': 1,
+            'line-opacity': 0.3
+        }
+    });
+
+    ///////////////////////////////////////////// COUNTRIES MEDALS CIRCLE //////////////////////////////////////////////
 
     map.addLayer({
         'id': 'countriesMedalsCircle',
@@ -976,24 +966,119 @@ map.on('load', () => {
 
     let countryRealName
 
+    const popUpWrapper = document.querySelector('.popUpWrapper')
+
+    document.onclick = () => {
+        popUpWrapper.classList.remove('active')
+    }
+
+    document.addEventListener('mousedown', () => {
+        popUpWrapper.classList.remove('active')
+    })
+
     map.on('click', 'countriesHover', (e) => {
         countryRealName = Object.values(e.features[0].properties)[1]
 
         let bbox = turf.extent(e.features[0])
 
         function center() {
-            map.fitBounds(bbox, {
-                padding: { top: 100, bottom: 100, left: 650, right: 0 },
-                maxZoom: 3,
-                linear: true,
-                duration: 1000,
-                pitch: 0
-            })
+
+            if (mapInfoWrapper.classList.contains('active')) {
+                map.fitBounds(bbox, {
+                    padding: {top: 0, bottom: 0, left: 0, right: 0},
+                    maxZoom: 3,
+                    linear: true,
+                    duration: 1000,
+                    pitch: 0
+                })
+            } else {
+                map.fitBounds(bbox, {
+                    padding: {top: 0, bottom: 0, left: 600, right: 0},
+                    maxZoom: 3,
+                    linear: true,
+                    duration: 1000,
+                    pitch: 0
+                })
+            }
+
         }
 
         center()
 
-        console.log(e.features[0])
+        async function getInfoOfCountries() {
+
+            let countryName = e.features[0].properties.ADMIN
+            let countryIso = e.features[0].properties.ISO_A3
+
+            if (countryIso !== "-99") {
+
+                const dataMedals = await axios.get(process.env.VPS + '/medals?year=' + slider.value)
+                const dataPib = await axios.get(process.env.VPS + '/gpd-by-population/?year=' + slider.value)
+
+                let dataMedalsArray = []
+                let dataPibArray = []
+
+                for (let i = 0; i < dataMedals.data.length; i++) {
+                    dataMedalsArray.push(dataMedals.data[i].country)
+                }
+
+                for (let i = 0; i < dataPib.data.length; i++) {
+                    dataPibArray.push(dataPib.data[i].country)
+                }
+
+                let indexOfMedals = dataMedalsArray.findIndex(index => index === countryIso)
+                let indexOfPib = dataPibArray.findIndex(index => index === countryIso)
+
+                let countryMedals
+                let countryPib
+                let countryPopulation
+
+                if (indexOfMedals !== -1) {
+                    countryMedals = dataMedals.data[indexOfMedals].total
+                } else {
+                    countryMedals = 0
+                }
+
+                if (indexOfPib !== -1) {
+                    countryPib = dataPib.data[indexOfPib].gpdByPopulation
+                    countryPopulation = dataPib.data[indexOfPib].population.toFixed(2)
+                } else {
+                    countryPib = 0
+                }
+
+                console.log(countryName, countryMedals, countryPib)
+
+                const firstPartYear = document.querySelector('.popUp .first-part .year')
+                const firstPartCountry = document.querySelector('.popUp .first-part .country')
+                const numberMedals = document.querySelector('.popUp .numberMedals')
+                const numberPib = document.querySelector('.popUp .numberPib')
+                const numberPopulation = document.querySelector('.popUp .numberPopulation')
+
+                firstPartYear.innerHTML = `${slider.value}`
+                firstPartCountry.innerHTML = `${countryName}`
+                numberMedals.innerHTML = `${countryMedals}`
+                numberPib.innerHTML = `${countryPib} $`
+                numberPopulation.innerHTML = `${countryPopulation} M`
+
+                setTimeout(() => {
+
+                    if (mapInfoWrapper.classList.contains('active')) {
+                        popUpWrapper.classList.add('activeMapInfoActive')
+                    } else {
+                        popUpWrapper.classList.remove('activeMapInfoActive')
+                    }
+
+                    popUpWrapper.classList.add('active')
+
+                }, 650);
+
+            } else {
+                console.log("no iso")
+            }
+
+        }
+
+        getInfoOfCountries().then()
 
     });
 
