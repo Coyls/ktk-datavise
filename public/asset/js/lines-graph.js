@@ -110,7 +110,6 @@ const generateLineChart = (data) => {
         .append("path")
         .attr("fill", "none")
         .attr("stroke", (d) => {
-            console.log(d)
             return colors[d.continent]
         })
         .attr("stroke-width", 5)

@@ -47,7 +47,6 @@ const generateSecondGraph = data => {
         .padding(15)(d3.hierarchy({ children: data }).sum(d => d.nbAthlete));
 
     const root = bubble(data);
-    console.log('data:', data)
 
     const node = svg.selectAll()
         .data(root.children)

@@ -164,7 +164,6 @@ const generateFirstGraph = (data) => {
 
     const { data } = await axios.get(process.env.VPS + '/medals-and-budjet?year=' + slider.value)
     generateFirstGraph(data)
-    console.log('data:', data)
 
     slider.addEventListener("mouseup", async () => {
         const svg = svgContainer.children[0]
