@@ -4,7 +4,7 @@
 
 Link online site : [KTK - Jeux Olympique](http://vps-080d9e1e.vps.ovh.net:3100/)
 
-Frontend of the data visualization project : [Backend](https://github.com/Coyls/datavise)
+Backend of the data visualization project : [Backend](https://github.com/Coyls/ktk-dataviz-backend/)
 
 If you want use the site in local you will need the same map on [Mapbox](https://www.mapbox.com/) and generate the token.
 
@@ -35,4 +35,5 @@ docker-compose up -d
 
 Go on [http://localhost:3100](http://localhost:3100)
 
+Now you can run the Backend
 
