@@ -1046,8 +1046,6 @@ map.on('load', () => {
                     countryPib = 0
                 }
 
-                console.log(countryName, countryMedals, countryPib)
-
                 const firstPartYear = document.querySelector('.popUp .first-part .year')
                 const firstPartCountry = document.querySelector('.popUp .first-part .country')
                 const numberMedals = document.querySelector('.popUp .numberMedals')
