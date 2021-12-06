@@ -1,0 +1,139 @@
+#introduction {
+  position: relative;
+  width: 100vw;
+  padding: 339px 0 380px;
+  background: url("../img/introductionBackground1920.png") center no-repeat;
+  background-size: cover;
+
+  @media screen and (max-width: 1450px) {
+    padding: 275px 0 213px;
+    background: url("../img/introductionBackground1440.png") center no-repeat;
+    background-size: cover;
+  }
+
+  .logo-wrapper {
+    position: absolute;
+    top: 50px;
+    left: 50px;
+    height: 31px;
+
+    @media screen and (max-width: 1450px) {
+      height: 24px;
+    }
+
+    img {
+      position: relative;
+      height: 100%;
+      background-size: cover;
+    }
+  }
+
+  .us-wrapper {
+    position: absolute;
+    top: 62px;
+    right: 62px;
+
+    @media screen and (max-width: 1450px) {
+      top: 52px;
+      right: 25px;
+    }
+
+    a {
+      text-decoration: none;
+      cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+
+      h4 {
+        font-family: Poppins, serif;
+        font-size: 25px;
+        font-weight: normal;
+        color: #2f2a2e;
+
+        @media screen and (max-width: 1450px) {
+          font-size: 15px;
+        }
+      }
+    }
+  }
+
+  .wrapper {
+    position: relative;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    .title-wrapper {
+      position: relative;
+      left: 150px;
+
+      @media screen and (max-width: 1450px) {
+        left: 118px;
+      }
+
+      h1 {
+        position: relative;
+        margin-bottom: 16px;
+        font-family: Poppins, serif;
+        font-size: 90px;
+        font-weight: 500;
+        text-align: left;
+        color: #7c9fff;
+        line-height: 110px;
+
+        @media screen and (max-width: 1450px) {
+          margin-bottom: 0;
+          font-size: 80px;
+          line-height: 88px;
+        }
+      }
+
+      h4 {
+        position: relative;
+        margin-bottom: 24px;
+        font-family: Poppins, serif;
+        font-size: 40px;
+        font-weight: 500;
+        text-align: left;
+        color: #33343b;
+
+        @media screen and (max-width: 1450px) {
+          margin-bottom: 0;
+          font-size: 30px;
+          line-height: 70px;
+        }
+      }
+
+      h5 {
+        position: relative;
+        font-family: Poppins, serif;
+        font-size: 25px;
+        font-weight: normal;
+        text-align: left;
+        color: #33343b;
+
+        @media screen and (max-width: 1450px) {
+          font-size: 15px;
+        }
+      }
+    }
+  }
+
+  .scroll-wrapper {
+    position: absolute;
+    bottom: 78px;
+    left: 50%;
+    height: 175px;
+    width: 54px;
+    transform: translate(-50%);
+    background: url("../img/sliderIntro.gif") center;
+    background-size: cover;
+
+    @media screen and (max-width: 1450px) {
+      bottom: 50px;
+      height: 120px;
+      width: 38px;
+      background-size: cover;
+    }
+  }
+}

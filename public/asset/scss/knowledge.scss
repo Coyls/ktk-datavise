@@ -1,0 +1,132 @@
+#knowledge {
+  position: relative;
+  padding-top: 78px;
+  padding-bottom: 110px;
+  background: #f9fbfe;
+
+  h2 {
+    position: relative;
+    font-family: Poppins, serif;
+    font-size: 60px;
+    font-weight: 500;
+    text-align: center;
+    color: #2f2f2f;
+  }
+
+  p {
+    position: relative;
+    margin: 27px auto 0;
+    width: 820px;
+    font-family: Poppins, serif;
+    font-size: 19px;
+    font-weight: 400;
+    text-align: center;
+    color: #33343b;
+
+    @media screen and (max-width: 1024px) {
+      width: 600px;
+    }
+  }
+
+  .wrapper {
+    position: relative;
+    margin: 90px auto 0;
+    width: 683px;
+    border-radius: 25px;
+    box-shadow: 1.8px 1.8px 3.7px rgba(0, 0, 0, 0.025), 6px 6px 15.9px rgba(0, 0, 0, 0.04),
+    27px 27px 68px rgba(0, 0, 0, 0.07);
+
+    @media screen and (max-width: 1024px) {
+      width: 600px;
+    }
+
+    .swiper-wrapper {
+      position: relative;
+      height: 100%;
+      width: 100%;
+      border-radius: 25px;
+
+      .swiper-slide {
+        position: relative;
+        border-radius: 25px;
+        background-color: #ffffff;
+        display: flex;
+        flex-direction: column;
+        cursor: pointer;
+        user-select: none;
+
+        h4 {
+          position: relative;
+          margin: 41px auto 50px;
+          font-family: Poppins, serif;
+          font-size: 28px;
+          font-weight: 500;
+          color: #2f2f2f;
+          text-align: center;
+        }
+
+        .wrapper {
+          position: relative;
+          height: 329px;
+          margin-top: 0;
+          display: flex;
+          flex-direction: row;
+          box-shadow: none;
+
+          .first-part {
+            position: relative;
+            height: 100%;
+            width: 50%;
+
+            p {
+              position: relative;
+              width: 265px;
+              margin: 40px 0 0 54px;
+              font-family: Poppins, serif;
+              font-size: 17px;
+              font-weight: 400;
+              color: #050d3960;
+              text-align: left;
+            }
+          }
+
+          .second-part {
+            position: relative;
+            height: 100%;
+            width: 50%;
+          }
+
+          img {
+            position: absolute;
+            top: 6px;
+            right: 0;
+            height: 100%;
+          }
+        }
+      }
+    }
+  }
+
+  .arrowWrapper {
+    position: absolute;
+    bottom: 285px;
+    left: 50%;
+    transform: translate(-50%);
+    display: flex;
+    justify-content: space-between;
+    width: 900px;
+    align-items: center;
+    user-select: none;
+
+    img {
+      position: relative;
+      height: 36px;
+      width: 36px;
+      cursor: pointer;
+    }
+
+    .nextSlide {
+      transform: rotate(180deg);
+    }
+  }
+}
