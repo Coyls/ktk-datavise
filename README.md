@@ -2,8 +2,6 @@
 
 # KTK Data visualization Frontend
 
-Link online site : [KTK - Jeux Olympique](http://vps-080d9e1e.vps.ovh.net:3100/)
-
 Backend of the data visualization project : [Backend](https://github.com/Coyls/ktk-dataviz-backend/)
 
 If you want use the site in local you will need the same map on [Mapbox](https://www.mapbox.com/) and generate the token.
